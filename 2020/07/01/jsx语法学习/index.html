@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【React整理系列】JSX语法学习 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="【React整理系列】JSX语法学习这是对官方文档的所...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【React整理系列】JSX语法学习</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E8%B5%9B%E5%8D%9A%E6%9C%8B%E5%85%8B2077%20%E6%97%A5%E8%90%BD%20%E7%81%AB%E8%BD%A6%20%E5%A5%B3%E5%AD%A9%20%E5%9D%90%E7%9D%80%204k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【React整理系列】JSX语法学习</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 01, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3447</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="【React整理系列】JSX语法学习"><a href="#【React整理系列】JSX语法学习" class="headerlink" title="【React整理系列】JSX语法学习"></a>【React整理系列】JSX语法学习</h3><p>这是对官方文档的所涉及概念的补充，更多具体概念描述还请移步<a target="_blank" rel="noopener" href="https://react.docschina.org/docs/introducing-jsx.html">官方文档-JSX简介</a></p>
+<p>JSX语法学习：</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">const element</span> = Hello, world!;<br></code></pre></td></tr></table></figure>
+
+<p>JSX:既不是字符串也不是 HTML,是一个 JavaScript 的语法扩展。具有 JavaScript 的全部功能。这里需要注意的是：<strong>JSX自身也是一个表达式</strong> <strong>！！！</strong></p>
+<h5 id="a-在JSX中中使用变量："><a href="#a-在JSX中中使用变量：" class="headerlink" title="a. 在JSX中中使用变量："></a>a. 在JSX中中<strong>使用变量</strong>：</h5><p>如果需要在JSX中使用变量，则需要使用{}单个大括号对其表达式进行相应的包裹： 比如我们需要打印某个变量，则需要使用 **{ 变量名 }**的形式</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs react">const name = &#x27;Josh Perez&#x27;;const element = Hello, &#123;name&#125;;<br>ReactDOM.render(<br>  element,<br>  document.getElementById(&#x27;root&#x27;)<br>);<br></code></pre></td></tr></table></figure>
+
+<h5 id="b-在JSX中使用JavaScript表达式（带返回值的函数-计算表达式等）"><a href="#b-在JSX中使用JavaScript表达式（带返回值的函数-计算表达式等）" class="headerlink" title="b. 在JSX中使用JavaScript表达式（带返回值的函数/计算表达式等）"></a>b. 在JSX中<strong>使用JavaScript表达式</strong>（带返回值的函数/计算表达式等）</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs react">function formatName(user) &#123;<br>  return user.firstName + &#x27; &#x27; + user.lastName;<br>&#125;<br><br>const user = &#123;<br>  firstName: &#x27;Harper&#x27;,<br>  lastName: &#x27;Perez&#x27;<br>&#125;;<br><br>const element = (<br>  <br>    Hello, &#123;formatName(user)&#125;!  <br>);<br><br>ReactDOM.render(<br>  element,<br>  document.getElementById(&#x27;root&#x27;)<br>);<br></code></pre></td></tr></table></figure>
+
+<h5 id="c-使用括号包裹JSX语法（官方建议）"><a href="#c-使用括号包裹JSX语法（官方建议）" class="headerlink" title="c. 使用括号包裹JSX语法（官方建议）"></a>c. 使用<strong>括号包裹JSX语法</strong>（官方建议）</h5><p>目的：<strong>避免分号陷阱</strong>（面试常问点：考察对<strong>JavaScript语法陷阱</strong>的理解） 我们会将 JSX 拆分为多行。同时，我们建议将内容包裹在括号中，虽然这样做不是强制要求的，但是这可以避免遇到陷阱 关于一些JavaScript陷阱，有这样一篇非常优秀的博客（不只是这一个陷阱）**<a target="_blank" rel="noopener" href="https://www.cnblogs.com/wangshenwei/p/javascript-syntax-trap.html">链接</a>** 其中自动插入分号陷阱，这篇博客是这样描述的：</p>
+<blockquote>
+<p>在语句结束时，你不必手动输入分号，换行即可。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br> <span class="hljs-keyword">var</span> bar = <span class="hljs-string">&quot;value&quot;</span><br> <span class="hljs-keyword">return</span> bar<br>&#125;<br><br><span class="hljs-comment">// &#123;&#125; 包围的语句块的最后一个语句的分号也可省略</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>&#123; <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;foo&quot;</span> &#125;<br></code></pre></td></tr></table></figure>
+
+<p>开发者们每写一行代码，就可以少敲打一次键盘，这看起来很人性化。但过于依赖分号自动插入，会带来一些潜在问题。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs JavaScript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span>(<span class="hljs-params"></span>) </span>&#123;<br> <span class="hljs-keyword">return</span><br> &#123;<br>     <span class="hljs-attr">bar</span>: <span class="hljs-number">1</span><br> &#125;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">bar</span>(<span class="hljs-params"></span>) </span>&#123;<br> <span class="hljs-keyword">var</span> a, b, c, d, e<br> a = b + c<br> (d + e).toString()<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>看看上面的代码，<code>foo()</code> 将返回什么？ <code>bar()</code> 又将怎么运行？ 事实上，前者将返回 <code>undefined</code> ，而后者的后两行代码将被理解为 <code>a = b + c(d + e).toString()</code> 。 JavaScript 的分号自动插入的规则并不那么清晰可辨，老实地多敲几次键盘，可以避免那些让你摸不着头绪的bug在某一天突然出现。</p>
+</blockquote>
+<h5 id="d-在JSX中使用特定属性"><a href="#d-在JSX中使用特定属性" class="headerlink" title="d.在JSX中使用特定属性"></a>d.在JSX中使用特定属性</h5><p>既然用到了类似html的标签，那么肯定要为它指定html中的重要属性。 其中有一个很重要的知识点： 我们为元素指定class的时候，<strong>由于class与JavaScript中的class关键字重复，会影响到JavaScript对JSX语法的编译</strong>，所以，我们必须使用className来为html元素指定class属性。如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs react">const element = (<br>    hello,ax xgp<br>);<br></code></pre></td></tr></table></figure>
+
+<p>我们可以查看到渲染结果： <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/07/369@32183115OHNGM.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > 可见已经成功将属性进行了绑定。</p>
+<h5 id="e-在JSX中，指定自定义属性的方法："><a href="#e-在JSX中，指定自定义属性的方法：" class="headerlink" title="e. 在JSX中，指定自定义属性的方法："></a>e. 在JSX中，指定自定义属性的方法：</h5><p>我们偶尔需要在html元素中指定我们自定义的相关属性，那么这时候我们就需要使用上面类似的做法，如：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs react">const element = (<br>       hello,ax xgp<br>   );<br>   ReactDOM.render(element, document.getElementById(&quot;app&quot;))<br></code></pre></td></tr></table></figure>
+
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/2020070108563564.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 要注意，react对于自定义的属性，由于React 内部识别机制，最好全部使用小写格式，否则会出现如下所示的警告： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200701093112630.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<blockquote>
+<p>React无法识别 DOM 元素上的”selfAttribution”插槽。如果您有意希望它作为自定义属性出现在 DOM 中，请将其拼写为小写”selfattribution”。如果不小心将其从父组件传递，请将其从 DOM 元素中删除。</p>
+</blockquote>
+<h5 id="f-通过JSX指定子元素"><a href="#f-通过JSX指定子元素" class="headerlink" title="f.通过JSX指定子元素"></a>f.通过JSX指定子元素</h5><p>其实也就是说我们可以类似用html的语法来对JSX进行描述，也就是可以嵌套使用html标签，同时与Vue相同，使用这种方式，必须有一个父元素（“子元素”定义就是这么来的）:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs react">const element = (<br>  <br>    Hello!<br>    Good to see you here.<br>  <br>);<br>ReactDOM.render(element, document.getElementById(&quot;app&quot;))<br></code></pre></td></tr></table></figure>
+
+<h5 id="g-JSX内部默认防止XSS攻击"><a href="#g-JSX内部默认防止XSS攻击" class="headerlink" title="g.JSX内部默认防止XSS攻击"></a>g.JSX内部默认防止XSS攻击</h5><p>由于React DOM在渲染所有输入内容之前，默认会进行转义，所有的内容在渲染之前都被转换成了字符串，所以可以有效防止XSS攻击。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs react">const title = response.potentiallyMaliciousInput;<br>// 直接使用是安全的：<br>const element = &#123;title&#125;;<br></code></pre></td></tr></table></figure>
+
+<h5 id="h-JSX无法直接表示对象"><a href="#h-JSX无法直接表示对象" class="headerlink" title="h. JSX无法直接表示对象"></a>h. JSX无法直接表示对象</h5><p>JSX中，如果直接将对象进行渲染，会报错：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs react">//错误代码<br>const user = &#123;<br>        firstName: &#x27;ax&#x27;,<br>        lastName: &#x27;xgp&#x27;<br>    &#125;<br>//下面的JSX中&#123;user&#125;这种写法是错误的<br>    const element = (<br>        hello,&#123; user&#125;<br>    );<br>    ReactDOM.render(element, document.getElementById(&quot;app&quot;))<br></code></pre></td></tr></table></figure>
+
+<p>报错信息如下： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200701094133358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 想要进行对象的打印，必须进行toString()将其转换为字符串（但是一般也没有这种应用场景）：</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs pf">hello,&#123; <span class="hljs-keyword">user</span>.<span class="hljs-keyword">to</span>String()&#125;<br></code></pre></td></tr></table></figure>
+
+<p>打印结果也不同于Vue的处理： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200701094432300.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 总之就是：别用，通过循环将其转为数组，而数组打印见下文。</p>
+<h5 id="i-React通过数组进行列表渲染"><a href="#i-React通过数组进行列表渲染" class="headerlink" title="i.React通过数组进行列表渲染"></a>i.React通过数组进行列表渲染</h5><p>列表渲染的应用场景很常见，在React中，通常用JSX数组来表示这个列表：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs react">let arrayShow = []<br>for (let item = 0; item &lt; 5; item++) &#123;<br>    let tempJSX = &#123;item&#125;<br>    arrayShow.push(tempJSX);<br>&#125;<br>const element = (<br>    <br>        <br>            &#123;arrayShow&#125;<br>        <br>    <br>);<br>ReactDOM.render(element, document.getElementById(&quot;app&quot;))<br></code></pre></td></tr></table></figure>
+
+<p>渲染结果： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200701095158758.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 检查元素： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200701095247627.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/07/01/jsx%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;01&#x2F;jsx%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;01&#x2F;jsx%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/07/01/%E3%80%90%E9%81%BF%E5%9D%91%E3%80%91powershell%EF%BC%9A%E5%9B%A0%E4%B8%BA%E5%9C%A8%E6%AD%A4%E7%B3%BB%E7%BB%9F%E4%B8%8A%E7%A6%81%E6%AD%A2%E8%BF%90%E8%A1%8C%E8%84%9A%E6%9C%AC-%E9%99%84%E5%8E%9F%E5%9B%A0/"><i class="iconfont iconleft"></i>【避坑】PowerShell：因为在此系统上禁止运行脚本 附原因和解决办法</a>
+    <a href="/2020/06/29/%E5%BD%93%E6%88%91%E4%BB%AC%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%AD%A6%E4%BB%80%E4%B9%88%EF%BC%9F/">当我们学软件工程时，我们在学什么？<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E3%80%90React%E6%95%B4%E7%90%86%E7%B3%BB%E5%88%97%E3%80%91JSX%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0"><span class="toc-text">【React整理系列】JSX语法学习</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

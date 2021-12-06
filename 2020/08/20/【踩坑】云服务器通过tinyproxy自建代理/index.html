@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【踩坑】云服务器通过tinyProxy自建代理 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content=" 爬虫ip代理的时候，有些小伙伴可能会想要使用自己的服...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【踩坑】云服务器通过tinyProxy自建代理</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%91%BD%E8%BF%90%E4%B9%8B%E5%A4%9C%20Fate%20Stay%20%E9%98%BF%E5%B0%94%E6%89%98%E5%88%A9%E4%BA%9A%E6%BD%98%E5%BE%B7%E6%8B%89%E8%B4%A1%20%E5%A1%9E%E8%8A%AD4k%E6%89%8B%E6%9C%BA%E5%A3%81%E7%BA%B8%E7%AB%96%E5%B1%8F%E5%8A%A8%E6%BC%AB.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【踩坑】云服务器通过tinyProxy自建代理</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 20, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1541</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/%E6%92%91%E4%BC%9E%E5%A5%B3%E5%AD%A9-%E6%97%A5%E6%9C%AC%E5%92%8C%E6%9C%8D%E7%BE%8E%E5%A5%B34k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8-300x191.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > 爬虫ip代理的时候，有些小伙伴可能会想要使用自己的服务器作为代理地址 本文通过tinyProxy来搭建一个Linux/Centos代理服务器 首先通过yum下载安装tinyProxy</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">yum <span class="hljs-keyword">install</span> -y tinyproxy<br></code></pre></td></tr></table></figure>
+
+<p>安装后，tinyproxy默认安装在/etc目录下，打开/etc/tinyproxy/ 目录 找到tinyproxy.conf文件进行编辑</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs awk">vi <span class="hljs-regexp">/etc/</span>tinyproxy/tinyproxy<br></code></pre></td></tr></table></figure>
+
+<p>初始化情况下，我们只需要对下面三项进行自定义即可 1. 修改默认端口</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Port</span> <span class="hljs-number">8888</span><br></code></pre></td></tr></table></figure>
+
+<p>-&gt;</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">Port</span> <span class="hljs-number">12345</span><br></code></pre></td></tr></table></figure>
+
+<p>修改为自己想要使用的端口（记得在安全组打开该端口权限） 2. 修改访问权限，允许全体访问(默认只有本地可以访问)</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute"><span class="hljs-nomarkup">Allow</span></span> <span class="hljs-number">127.0.0.1</span><br></code></pre></td></tr></table></figure>
+
+<p>-&gt;</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta">#Allow 127.0.0.1</span><br></code></pre></td></tr></table></figure>
+
+<p>将其注释掉即可 3. 隐藏via头部 去除已经被注释的部分，去掉下面的注释</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta">#DisableViaHeader Yes</span><br></code></pre></td></tr></table></figure>
+
+<p>-&gt;</p>
+<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs vala"><span class="hljs-meta">#</span><br></code></pre></td></tr></table></figure>
+
+<p>:wq保存退出 启动 TinyProxy</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">systemctl <span class="hljs-literal">start</span> tinyproxy.service<br></code></pre></td></tr></table></figure>
+
+<p>查看运行状态</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fortran">systemctl <span class="hljs-keyword">status</span> tinyproxy.service<br></code></pre></td></tr></table></figure>
+
+<p><a href="https://xgpax.top/wp-content/uploads/2020/08/wp_editor_md_8aef530663a75234232072f9776326d1.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/wp_editor_md_8aef530663a75234232072f9776326d1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> 本地进行测试</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> requests<br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    headers = &#123;<br>        <span class="hljs-string">&quot;User-Agent&quot;</span>: <span class="hljs-string">r&quot;Mozilla/5.0 (Windows NT&quot;</span><br>                      <span class="hljs-string">r&quot; 10.0; Win64; x64) App&quot;</span><br>                      <span class="hljs-string">r&quot;leWebKit/537.36 (KHTML, l&quot;</span><br>                      <span class="hljs-string">r&quot;ike Gecko) Chrome/84.0.414&quot;</span><br>                      <span class="hljs-string">r&quot;7.135 Safari/537.36 Edg/84.0.522.63&quot;</span><br>    &#125;<br>    proxies = &#123;<br>        <span class="hljs-string">&quot;http&quot;</span>: <span class="hljs-string">&quot;http://自己的IP:自己的端口&quot;</span>,<br>        <span class="hljs-string">&quot;https&quot;</span>: <span class="hljs-string">&quot;http://自己的IP:自己的端口&quot;</span><br>    &#125;<br>    <span class="hljs-comment"># response = requests.get(url=&quot;http://ip.tool.chinaz.com/&quot;,proxies=proxies,headers=headers)</span><br>    response = requests.get(url=<span class="hljs-string">&quot;https://httpbin.org/ip&quot;</span>,<br>                            proxies=&#123;<span class="hljs-string">&#x27;http&#x27;</span>: <span class="hljs-string">&#x27;http:/自己的IP:自己的端口&#x27;</span>, <span class="hljs-string">&#x27;https&#x27;</span>: <span class="hljs-string">&#x27;http://自己的IP:自己的端口&#x27;</span>&#125;,<br>                            headers=headers)<br>    <span class="hljs-built_in">print</span>(response.text)<br></code></pre></td></tr></table></figure>
+
+<p>打印结果为自家ip，说明搭建完成</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/08/20/%E3%80%90%E8%B8%A9%E5%9D%91%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87tinyproxy%E8%87%AA%E5%BB%BA%E4%BB%A3%E7%90%86/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;20&#x2F;%E3%80%90%E8%B8%A9%E5%9D%91%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87tinyproxy%E8%87%AA%E5%BB%BA%E4%BB%A3%E7%90%86&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;20&#x2F;%E3%80%90%E8%B8%A9%E5%9D%91%E3%80%91%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%80%9A%E8%BF%87tinyproxy%E8%87%AA%E5%BB%BA%E4%BB%A3%E7%90%86&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/08/20/%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91xpath%E4%BD%BF%E7%94%A8%E4%B8%8E%E5%AD%A6%E4%B9%A0%EF%BC%8Cpython-xpath%E8%A7%A3%E6%9E%90/"><i class="iconfont iconleft"></i>【python爬虫】xpath使用与学习，python xpath解析</a>
+    <a href="/2020/08/15/%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91python%E7%88%AC%E8%99%AB%E7%AC%94%E8%AE%B0%E4%B9%8Brequestsrebots-txtbs4/">【python爬虫】python爬虫笔记之requests,rebots.txt,bs4<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

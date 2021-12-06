@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【转存】tsconfig各项意义 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="自定义的一个tsconfig.json
+1234567...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【转存】tsconfig各项意义</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%91%BD%E8%BF%90fate%20grand%20order%20%E7%BA%A2%E8%89%B2%E7%9C%BC%E7%9D%9B%E5%8A%A8%E6%BC%AB%E7%BE%8E%E5%A5%B34k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【转存】tsconfig各项意义</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 21, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6347</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>自定义的一个tsconfig.json</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">&quot;compilerOptions&quot;</span>: &#123;<br>        <span class="hljs-attr">&quot;incremental&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">&quot;tsBuildInfoFile&quot;</span>: <span class="hljs-string">&quot;build/bulidFile&quot;</span>,<br>        <span class="hljs-attr">&quot;diagnostics&quot;</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">&quot;target&quot;</span>: <span class="hljs-string">&quot;ES6&quot;</span>,<br>        <span class="hljs-attr">&quot;module&quot;</span>: <span class="hljs-string">&quot;ES6&quot;</span>,<br>        <span class="hljs-attr">&quot;outDir&quot;</span>: <span class="hljs-string">&quot;dist&quot;</span><br>    &#125;,<br>    <span class="hljs-attr">&quot;include&quot;</span>: [<br>        <span class="hljs-string">&quot;src/**/*&quot;</span><br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>一个简单的 tsconfig.json 配置文件会有如下结构：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;compilerOptions&quot;</span>: &#123;<br><br>  &#125;,<br>  <span class="hljs-attr">&quot;files&quot;</span>: [<br>    <span class="hljs-string">&quot;app.ts&quot;</span>,<br>    <span class="hljs-string">&quot;foo.ts&quot;</span>,<br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>其中， ```compilerOptions```用来配置编译选项，files是一个数组，用来指定待编译文件。 这里的待编译文件是指入口文件，任何被入口文件依赖的文件，比如 ```foo.ts```依赖```bar.ts```，那这里并不需要写上```bar.ts```，编译器会自动把所有的依赖文件纳为编译对象。 也可以使用 ``` include ```和 ```exclude``` 来指定和排除待编译文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>  <span class="hljs-attr">&quot;compilerOptions&quot;</span>: &#123;<br>  &#125;,<br>  <span class="hljs-attr">&quot;include&quot;</span>: [<br>    <span class="hljs-string">&quot;src/**/*&quot;</span><br>  ],<br>  <span class="hljs-attr">&quot;exclude&quot;</span>: [<br>    <span class="hljs-string">&quot;node_modules&quot;</span>,<br>    <span class="hljs-string">&quot;**/*.spec.ts&quot;</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>  编译选项配置 compilerOptions:配置编译选项</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-string">&quot;incremental&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// TS编译器在第一次编译之后会生成一个存储编译信息的文件，第二次编译会在第一次的基础上进行增量编译，可以提高编译的速度</span><br><span class="hljs-string">&quot;tsBuildInfoFile&quot;</span>: <span class="hljs-string">&quot;./buildFile&quot;</span>, <span class="hljs-comment">// 增量编译文件的存储位置</span><br><span class="hljs-string">&quot;diagnostics&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 打印诊断信息 </span><br><span class="hljs-string">&quot;target&quot;</span>: <span class="hljs-string">&quot;ES5&quot;</span>, <span class="hljs-comment">// 目标语言的版本</span><br><span class="hljs-string">&quot;module&quot;</span>: <span class="hljs-string">&quot;CommonJS&quot;</span>, <span class="hljs-comment">// 生成代码的模板标准</span><br>                 <span class="hljs-comment">// 默认值 target === &quot;es3&quot; or &quot;es5&quot; ?&quot;commonjs&quot; : &quot;es6&quot;</span><br><span class="hljs-string">&quot;outFile&quot;</span>: <span class="hljs-string">&quot;./app.js&quot;</span>, <span class="hljs-comment">// 将多个相互依赖的文件生成一个文件，可以用在AMD模块中，</span><br>                      <span class="hljs-comment">// 即开启时应设置&quot;module&quot;: &quot;AMD&quot;,</span><br><span class="hljs-string">&quot;lib&quot;</span>: [], <span class="hljs-comment">// 编译时引入的 ES 功能库，包括：es5 、es6、es7、dom 等。// 如果未设置，则默认为： target 为 es5 时: [&quot;dom&quot;, &quot;es5&quot;, &quot;scripthost&quot;] </span><br><span class="hljs-comment">//target 为 es6 时: [&quot;dom&quot;, &quot;es6&quot;, &quot;dom.iterable&quot;, &quot;scripthost&quot;]</span><br><span class="hljs-string">&quot;allowJS&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 允许编译器编译JS，JSX文件</span><br><span class="hljs-string">&quot;checkJs&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 允许在JS文件中报错，通常与allowJS一起使用</span><br><span class="hljs-string">&quot;outDir&quot;</span>: <span class="hljs-string">&quot;./dist&quot;</span>, <span class="hljs-comment">// 指定输出目录</span><br><span class="hljs-string">&quot;rootDir&quot;</span>: <span class="hljs-string">&quot;./&quot;</span>, <span class="hljs-comment">// 指定输出文件目录(用于输出)，用于控制输出目录结构</span><br><span class="hljs-string">&quot;declaration&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 生成声明文件，开启后会自动生成声明文件</span><br><span class="hljs-string">&quot;declarationDir&quot;</span>: <span class="hljs-string">&quot;./file&quot;</span>, <span class="hljs-comment">// 指定生成声明文件存放目录</span><br><span class="hljs-string">&quot;emitDeclarationOnly&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 只生成声明文件，而不会生成js文件</span><br><span class="hljs-string">&quot;sourceMap&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 生成目标文件的sourceMap文件</span><br><span class="hljs-string">&quot;inlineSourceMap&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 生成目标文件的inline SourceMap，//inline SourceMap会包含在生成的js文件中</span><br><span class="hljs-string">&quot;declarationMap&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 为声明文件生成sourceMap</span><br><span class="hljs-string">&quot;typeRoots&quot;</span>: [], <span class="hljs-comment">// 声明文件目录，默认时node_modules/@types</span><br><span class="hljs-string">&quot;types&quot;</span>: [], <span class="hljs-comment">// 加载的声明文件包</span><br>              <span class="hljs-comment">//如果指定了某个值， 她会在 typeRoots 下找这个包，找到了就只加载这个包</span><br><span class="hljs-string">&quot;removeComments&quot;</span>:<span class="hljs-literal">true</span>, <span class="hljs-comment">// 删除注释 </span><br><span class="hljs-string">&quot;noEmit&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 不输出文件,即编译后不会生成任何js文件</span><br><span class="hljs-string">&quot;noEmitOnError&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 发送错误时不输出任何文件</span><br><span class="hljs-string">&quot;noEmitHelpers&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 不生成helper函数，减小体积，需要额外安装，常配合importHelpers一起使用</span><br><span class="hljs-string">&quot;importHelpers&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 通过tslib引入helper函数，文件必须是模块</span><br><span class="hljs-string">&quot;downlevelIteration&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 降级遍历器实现，如果目标源是es3/5，那么遍历器会有降级的实现</span><br><span class="hljs-string">&quot;strict&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 开启所有严格的类型检查</span><br><span class="hljs-string">&quot;alwaysStrict&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 在代码中注入&#x27;use strict&#x27;</span><br><span class="hljs-string">&quot;noImplicitAny&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 不允许隐式的any类型</span><br><span class="hljs-string">&quot;strictNullChecks&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 不允许把null、undefined赋值给其他类型的变量</span><br><span class="hljs-string">&quot;strictFunctionTypes&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 不允许函数参数双向协变</span><br><span class="hljs-string">&quot;strictPropertyInitialization&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 类的实例属性必须初始化</span><br><span class="hljs-string">&quot;strictBindCallApply&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 严格的bind/call/apply检查</span><br><span class="hljs-string">&quot;noImplicitThis&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 不允许this有隐式的any类型</span><br><span class="hljs-string">&quot;noUnusedLocals&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 检查只声明、未使用的局部变量(只提示不报错)</span><br><span class="hljs-string">&quot;noUnusedParameters&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 检查未使用的函数参数(只提示不报错)</span><br><span class="hljs-string">&quot;noFallthroughCasesInSwitch&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 防止switch语句贯穿(即如果没有break语句后面不会执行)</span><br><span class="hljs-string">&quot;noImplicitReturns&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">//每个分支都会有返回值</span><br><span class="hljs-string">&quot;esModuleInterop&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 允许export=导出，由import from 导入</span><br><span class="hljs-string">&quot;allowUmdGlobalAccess&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 允许在模块中全局变量的方式访问umd模块</span><br><span class="hljs-string">&quot;moduleResolution&quot;</span>: <span class="hljs-string">&quot;node&quot;</span>, <span class="hljs-comment">// 模块解析策略，ts默认用node的解析策略，即相对的方式导入</span><br><span class="hljs-string">&quot;baseUrl&quot;</span>: <span class="hljs-string">&quot;./&quot;</span>, <span class="hljs-comment">// 解析非相对模块的基地址，默认是当前目录</span><br><span class="hljs-string">&quot;paths&quot;</span>: &#123; <span class="hljs-comment">// 路径映射，相对于baseUrl</span><br>    <span class="hljs-comment">// 如使用jq时不想使用默认版本，而需要手动指定版本，可进行如下配置</span><br>   <span class="hljs-string">&quot;jquery&quot;</span>: [<span class="hljs-string">&quot;node_modules/jquery/dist/jquery.min.js&quot;</span>]<br>  &#125;,<br><span class="hljs-string">&quot;rootDirs&quot;</span>: [<span class="hljs-string">&quot;src&quot;</span>,<span class="hljs-string">&quot;out&quot;</span>], <span class="hljs-comment">// 将多个目录放在一个虚拟目录下，用于运行时，</span><br>                          <span class="hljs-comment">//即编译后引入文件的位置可能发生变化，</span><br>                          <span class="hljs-comment">//这也设置可以虚拟src和out在同一个目录下，不用再去改变路径也不会报错</span><br><span class="hljs-string">&quot;listEmittedFiles&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-comment">// 打印输出文件</span><br><span class="hljs-string">&quot;listFiles&quot;</span>: <span class="hljs-literal">true</span> , <span class="hljs-comment">// 打印编译的文件(包括引用的声明文件)</span><br><span class="hljs-string">&quot;jsx&quot;</span>:<span class="hljs-string">&quot;Preserve&quot;</span>   <span class="hljs-comment">//在 .tsx 中支持 JSX ：React 或 Preserve</span><br><span class="hljs-string">&quot;jsxFactory&quot;</span>:<span class="hljs-string">&quot;&quot;</span>   <span class="hljs-comment">//默认值 React.createElement 。  jsx 设置为 React 时使用的创建函数</span><br>    <span class="hljs-string">``</span><span class="hljs-string">`</span><br><span class="hljs-string"></span><br><span class="hljs-string">typeRoots和types</span><br><span class="hljs-string"></span><br><span class="hljs-string">声明模块通常会包含一个 index.d.ts 文件，或者其 package.json 设置了 types 字段。</span><br><span class="hljs-string"></span><br><span class="hljs-string">默认的，所有位于 node_modules/@types 路径下的模块都会引入到编译器。</span><br><span class="hljs-string">具体来说是，./node_modules/@types 、../node_modules/@types、../../node_modules/@types 等等。</span><br><span class="hljs-string"></span><br><span class="hljs-string">typeRoots 用来指定默认的类型声明文件查找路径，默认为 node_modules/@types 。比如:</span><br><span class="hljs-string">`</span><span class="hljs-string">``</span>js<br>&#123;<br>  <span class="hljs-string">&quot;compilerOptions&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;typeRoots&quot;</span>: [<span class="hljs-string">&quot;./typings&quot;</span>]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>上面的配置会自动引入 ./typings 下的所有 TS 类型声明模块，而不是 ./node_modules/@types 下的模块。 如果不希望自动引入 typeRoots 指定路径下的所有声明模块，那可以使用 types 指定自动引入哪些模块。比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-string">&quot;compilerOptions&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;types&quot;</span> : [<span class="hljs-string">&quot;node&quot;</span>, <span class="hljs-string">&quot;lodash&quot;</span>, <span class="hljs-string">&quot;express&quot;</span>]<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>只会引入 node 、 lodash 和 express 三个声明模块，其它的声明模块则不会被自动引入。 如果 types 被设置为 [] ，那么将不会自动引入任何声明模块。此时，如果想使用声明模块，只能在代码中手动引入了。 请记住，自动引入只对包含全局声明的模块有效。比如 jQuery ，我们不用手动 import 或者 /// 即可在任何文件中使用 $ 的类型。再比如，对于 import ‘foo’ ，编译器会分别在 node_modules 和 node_modules/@types 文件下查找 foo 模块和声明模块。 基于此，如果想让自定义声明的类型不需要手动引入就可以在任何地方使用，可以将其声明为全局声明 global ，然后让 files 或者 include 包含即可。 比如：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js">declare <span class="hljs-built_in">global</span> &#123;<br>  <span class="hljs-keyword">const</span> graphql: <span class="hljs-function">(<span class="hljs-params">query: TemplateStringsArray</span>) =&gt;</span> <span class="hljs-keyword">void</span>;<br>  namespace Gatsby &#123;<br>    interface ComponentProps &#123;<br>      <span class="hljs-attr">children</span>: <span class="hljs-function">() =&gt;</span> React.ReactNode,<br>      <span class="hljs-attr">data</span>: RootQueryType<br>    &#125;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样的话，就可以在任何地方直接使用 graphql 和 Gatsby 对应的类型了。 配置复用 可以使用 extends 来实现配置复用，即一个配置文件可以继承另一个文件的配置属性。 比如，建立一个基础的配置文件 configs/base.json ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-string">&quot;compilerOptions&quot;</span>: &#123;<br>    <span class="hljs-string">&quot;noImplicitAny&quot;</span>: <span class="hljs-literal">true</span>,<br>    <span class="hljs-string">&quot;strictNullChecks&quot;</span>: <span class="hljs-literal">true</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后，tsconfig.json 就可以引用这个文件的配置了：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js">&#123;<br>  <span class="hljs-string">&quot;extends&quot;</span>: <span class="hljs-string">&quot;./configs/base&quot;</span>,<br>  <span class="hljs-string">&quot;files&quot;</span>: [<br>    <span class="hljs-string">&quot;main.ts&quot;</span>,<br>    <span class="hljs-string">&quot;supplemental.ts&quot;</span><br>  ]<br>&#125;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/08/21/%E3%80%90%E8%BD%AC%E5%AD%98%E3%80%91tsconfig%E5%90%84%E9%A1%B9%E6%84%8F%E4%B9%89/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;21&#x2F;%E3%80%90%E8%BD%AC%E5%AD%98%E3%80%91tsconfig%E5%90%84%E9%A1%B9%E6%84%8F%E4%B9%89&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;21&#x2F;%E3%80%90%E8%BD%AC%E5%AD%98%E3%80%91tsconfig%E5%90%84%E9%A1%B9%E6%84%8F%E4%B9%89&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/08/21/%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91python%E7%BA%BF%E7%A8%8B%E6%B1%A0%E4%BD%BF%E7%94%A8/"><i class="iconfont iconleft"></i>【python爬虫】Python线程池使用</a>
+    <a href="/2020/08/21/%E3%80%90%E8%BD%AC%E5%AD%98%E3%80%91python%E7%88%AC%E8%99%AB%E7%9B%B8%E5%85%B3%E7%9A%84%E4%B8%80%E4%BA%9B%E4%B8%89%E6%96%B9%E5%B9%B3%E5%8F%B0%E5%9C%B0%E5%9D%80/">【转存】python爬虫相关的一些三方平台地址<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

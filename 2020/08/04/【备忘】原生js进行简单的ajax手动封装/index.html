@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【备忘】原生js进行简单的ajax手动封装 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="123456789101112131415161718...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【备忘】原生js进行简单的ajax手动封装</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%B0%91%E5%A5%B3%E5%A7%90%E5%A6%B9%E6%B0%B4%E6%89%8B%E6%9C%8D%E6%B3%B3%E8%A3%85%20%E6%B5%B7%E8%BE%B9%20%E5%9D%A6%E5%85%8B%203440x1440%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【备忘】原生js进行简单的ajax手动封装</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 04, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1812</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Ajax</span>(<span class="hljs-params">payload</span>) </span>&#123;<br>            <span class="hljs-comment">/**</span><br><span class="hljs-comment">             *  payload:&#123;</span><br><span class="hljs-comment">             *  url:&#x27;/url&#x27;,</span><br><span class="hljs-comment">             *  method:&#x27;get&#x27;,</span><br><span class="hljs-comment">             *  async: true</span><br><span class="hljs-comment">             * &#125;</span><br><span class="hljs-comment">             * */</span><br>            <span class="hljs-comment">// 创建xhr对象</span><br>            <span class="hljs-keyword">let</span> xhr = <span class="hljs-keyword">new</span> XMLHttpRequest();<br>            <span class="hljs-comment">// 通过open方法配置请求信息,</span><br>            <span class="hljs-comment">// 第一个参数是请求方式，第二个参数是请求的url，第三个参数是请求是否异步(true异步)</span><br>            <span class="hljs-comment">// xhr.open(请求方式:&#x27;get/post/put/delete&#x27;,请求地址:&#x27;url&#x27;，是否异步:true/false)</span><br>            xhr.open(payload.url, payload.method, <span class="hljs-literal">true</span>);<br>            <span class="hljs-comment">// 发送请求</span><br>            xhr.send();<br>            <span class="hljs-comment">/**</span><br><span class="hljs-comment">             * </span><br><span class="hljs-comment">            一个最基本的 ajax 请求就是上面三步</span><br><span class="hljs-comment">            但是光有上面的三个步骤，我们确实能把请求发送的到服务端</span><br><span class="hljs-comment">            如果服务端正常的话，响应也能回到客户端</span><br><span class="hljs-comment">            但是我们拿不到响应</span><br><span class="hljs-comment">            如果想拿到响应，我们有两个前提条件</span><br><span class="hljs-comment">            本次 HTTP 请求是成功的，也就是我们之前说的 http 状态码为 200 ~ 299</span><br><span class="hljs-comment">            ajax 对象也有自己的状态码，用来表示本次 ajax 请求中各个阶段</span><br><span class="hljs-comment">            readyState === 0： 表示未初始化完成，也就是 open 方法还没有执行 </span><br><span class="hljs-comment">            readyState === 1： 表示配置信息已经完成，也就是执行完 open 之后</span><br><span class="hljs-comment">            readyState === 2： 表示 send 方法已经执行完成</span><br><span class="hljs-comment">            readyState === 3： 表示正在解析响应内容</span><br><span class="hljs-comment">            readyState === 4： 表示响应内容已经解析完毕，可以在客户端使用了</span><br><span class="hljs-comment">             * */</span><br>            <span class="hljs-comment">// 如果是用 ajax 对象发送 post 请求，必须要先设置一下请求头中的 content-type</span><br>            <span class="hljs-comment">// 告诉一下服务端我给你的是一个什么样子的数据格式</span><br>            xhr.setRequestHeader(<span class="hljs-string">&#x27;content-type&#x27;</span>, <span class="hljs-string">&#x27;application/x-www-form-urlencoded&#x27;</span>)<br>            xhr.onreadystatechange(<span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>                <span class="hljs-comment">// 每次 readyState 改变的时候都会触发该事件</span><br>                <span class="hljs-comment">// 我们就在这里判断 readyState 的值是不是到 4</span><br>                <span class="hljs-comment">// 并且 http 的状态码是不是 200 ~ 299</span><br>                <span class="hljs-keyword">if</span> (xhr.readyState === <span class="hljs-number">4</span> &amp;&amp; <span class="hljs-regexp">/^2\d&#123;2$/</span>.test(xhr.status)) &#123;<br>                    <span class="hljs-comment">// 这里表示验证通过</span><br>                    <span class="hljs-comment">// 我们就可以获取服务端给我们响应的内容了</span><br><br>                &#125;<br>            &#125;)<br>        &#125;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/08/04/%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91%E5%8E%9F%E7%94%9Fjs%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84ajax%E6%89%8B%E5%8A%A8%E5%B0%81%E8%A3%85/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;04&#x2F;%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91%E5%8E%9F%E7%94%9Fjs%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84ajax%E6%89%8B%E5%8A%A8%E5%B0%81%E8%A3%85&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;04&#x2F;%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91%E5%8E%9F%E7%94%9Fjs%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84ajax%E6%89%8B%E5%8A%A8%E5%B0%81%E8%A3%85&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/08/04/%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91%E5%B1%95%E7%A4%BA%E5%9B%BE%E7%89%87%E7%AD%89%E6%96%87%E4%BB%B6%EF%BC%8Cwindow-url-createobjecturl%E6%96%B9%E6%B3%95%E4%BD%BF%E7%94%A8/"><i class="iconfont iconleft"></i>【备忘】展示图片等文件，window.URL.createObjectURL方法使用</a>
+    <a href="/2020/07/30/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/">【计算机网络学习笔记】第三章 数据链路层<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,355 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>实现一个异步并发调度器 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="笔者字节一面的时候遇到了下面这个面试题：
+123456...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">实现一个异步并发调度器</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B3%E5%8F%A3%E7%BA%A24k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">实现一个异步并发调度器</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 03, 2021</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2430</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>笔者字节一面的时候遇到了下面这个面试题：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//支持并发的调度器， 最多允许2两任务进行处理</span><br><span class="hljs-keyword">const</span> scheduler = <span class="hljs-keyword">new</span> Scheduler(<span class="hljs-number">2</span>)<br>scheduler.addTask(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;1’);   // 1s后输出’1&#x27;</span><br>scheduler.addTask(<span class="hljs-number">2</span>, <span class="hljs-string">&#x27;2’);  // 2s后输出’2&#x27;</span><br>scheduler.addTask(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;3’);  // 2s后输出’3&#x27;</span><br>scheduler.addTask(<span class="hljs-number">1</span>, <span class="hljs-string">&#x27;4’);  // 3s后输出’4&#x27;</span><br>scheduler.start();<br></code></pre></td></tr></table></figure>
+
+<p>当时由于紧张和经验不够，一下子卡壳了，没能及时做出来（痛哭） 回来后好好想了一下，有了以下的思路： 1. 首先用一个maxCount记录允许并发的数量，用一个tasks数组保存所有开始之前设定的任务<br>2. 我们需要对加入的任务进行一些封装，改成promise，这样就可以获取到完成的状态进行操作 3. 我们用working数组保存正在运行的任务，用tasks保存还未完成的任务 4. 在任务完成后，将tasks队列的第一个任务放入working中，并且运行 5. 如此，通过递归，就可以完成一个并发控制器</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 异步调度器</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Scheduler</span> </span>&#123;<br>    maxCount = <span class="hljs-number">0</span><br>    tasks = []<br>    working = []<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">count</span>)</span> &#123;<br>        <span class="hljs-built_in">this</span>.maxCount = count;<br>    &#125;<br>    addTask = <span class="hljs-function">(<span class="hljs-params">timer, content</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 控制函数</span><br>        <span class="hljs-keyword">const</span> target = <span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Promise</span>(<span class="hljs-function">(<span class="hljs-params">resolve</span>) =&gt;</span> &#123;<br>                <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>                    <span class="hljs-built_in">console</span>.log(content);<br>                    resolve();<br>                &#125;, <span class="hljs-number">1000</span> * timer);<br>            &#125;)<br>        &#125;<br>        <span class="hljs-comment">// 入队列</span><br>        <span class="hljs-built_in">this</span>.tasks.push(target)<br>    &#125;<br>    continueWork = <span class="hljs-function">(<span class="hljs-params">fn</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 递归终点（执行完成)</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.tasks.length &gt; <span class="hljs-number">0</span>) &#123;<br>            <span class="hljs-comment">// 将后面的拿进来继续执行</span><br>            <span class="hljs-comment">// 先确定下标</span><br>            <span class="hljs-keyword">let</span> idx = -<span class="hljs-number">1</span>;<br>            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-built_in">this</span>.working.length; i++) &#123;<br>                <span class="hljs-keyword">if</span> (fn === <span class="hljs-built_in">this</span>.working[i]) &#123;<br>                    <span class="hljs-comment">// 将其替换并执行</span><br>                    idx = i;<br>                    <span class="hljs-keyword">break</span>;<br>                &#125;<br>            &#125;<br>            <span class="hljs-comment">// 调用并运行</span><br>            <span class="hljs-keyword">const</span> next = <span class="hljs-built_in">this</span>.tasks.shift();<br>            next().then(<span class="hljs-function">() =&gt;</span> &#123;<br>                <span class="hljs-built_in">this</span>.continueWork(next)<br>            &#125;)<br>            <span class="hljs-built_in">this</span>.working[idx] = next;<br>        &#125;<br>    &#125;<br>    start = <span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-keyword">let</span> len = <span class="hljs-built_in">this</span>.tasks.length;<br>        <span class="hljs-keyword">if</span> (len &gt;= <span class="hljs-built_in">this</span>.maxCount) &#123;<br>            <span class="hljs-comment">// 否则就将其加入工作队列并执行</span><br>            <span class="hljs-built_in">this</span>.working = <span class="hljs-built_in">this</span>.tasks.splice(<span class="hljs-number">0</span>, <span class="hljs-built_in">this</span>.maxCount);<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.working.length)<br>            <span class="hljs-built_in">this</span>.working.map(<span class="hljs-function"><span class="hljs-params">fn</span> =&gt;</span> &#123;<br>                fn().then(<span class="hljs-function">() =&gt;</span> &#123;<br>                    <span class="hljs-comment">// 完成后再回调</span><br>                    <span class="hljs-comment">// 当前执行完毕</span><br>                    <span class="hljs-built_in">this</span>.continueWork(fn);<br>                &#125;)<br>            &#125;)<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>            <span class="hljs-comment">//小于调度范围： 直接全部执行</span><br>            <span class="hljs-built_in">this</span>.tasks.map(<span class="hljs-function"><span class="hljs-params">fn</span> =&gt;</span> fn())<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2021/01/03/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6%E5%99%A8/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2021&#x2F;01&#x2F;03&#x2F;%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6%E5%99%A8&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2021&#x2F;01&#x2F;03&#x2F;%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6%E5%99%A8&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/01/10/%E6%88%91%E7%9A%842020%E6%8A%80%E6%9C%AF%E6%80%BB%E7%BB%93%E5%92%8C%E5%AD%A6%E4%B9%A0%E5%9B%9E%E9%A1%BE/"><i class="iconfont iconleft"></i>我的2020技术总结和学习回顾</a>
+    <a href="/2020/12/06/%E4%BB%8E%E4%B8%80%E5%90%8D%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%9A%84%E8%A7%92%E5%BA%A6%E5%87%BA%E5%8F%91%EF%BC%8C%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82web%E5%AE%89%E5%85%A8/">【普及向】给学妹讲讲什么是web安全<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

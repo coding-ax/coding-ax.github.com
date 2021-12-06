@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【普及向】给学妹讲讲什么是web安全 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="一、从“Web安全”关键词讲起web安全，从语法上判断...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【普及向】给学妹讲讲什么是web安全</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%B0%91%E5%A5%B3%E7%99%BD%E8%89%B2%E5%A9%9A%E7%BA%B1%E8%A3%99%E5%AD%904k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【普及向】给学妹讲讲什么是web安全</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 06, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3973</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h2 id="一、从“Web安全”关键词讲起"><a href="#一、从“Web安全”关键词讲起" class="headerlink" title="一、从“Web安全”关键词讲起"></a>一、从“Web安全”关键词讲起</h2><p>web安全，从语法上判断，这是一个合成词。 web——万维网，是一个透过互联网访问的，由许多互相链接的超文本组成的系统，也是互联网的基石。 安全——可以控制特定已被识别的危害，使风险在一定可接受的水准以下，因此也可以减少一些造成健康或经济损失的可能性。</p>
+<h2 id="二、聊聊浏览器及其安全攻防策略"><a href="#二、聊聊浏览器及其安全攻防策略" class="headerlink" title="二、聊聊浏览器及其安全攻防策略"></a>二、聊聊浏览器及其安全攻防策略</h2><h3 id="2-1-同源协议"><a href="#2-1-同源协议" class="headerlink" title="2.1 同源协议"></a>2.1 同源协议</h3><p>同源策略是由Netspace提出来的一种安全策略。 URL格式： <a href="https://xgpax.top/wp-content/uploads/2020/12/wp_editor_md_a8cc2e80eb1d4365561a8eb26e2d60f0.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/12/wp_editor_md_a8cc2e80eb1d4365561a8eb26e2d60f0.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> 同源的源由一个URL的协议(protocol)、主机(host)、端口(port)定义，如果这三者一致，那么就是同源。反之，任何一个条件不满足，便是跨域。 <strong>浏览器针对同源协议的安全策略：</strong> 不同源之间的XMLHttpRequest不被允许，即在服务端默认未开启CORS（跨域资源共享Access-Control-Allow-Origin）权限设置的时候，JavaScript无法向非同源协议发起访问<br>另外：同源协议<strong>只针对ajax请求</strong>，所以例如表单提交，script标签，img标签中的src以及其他例如video audio之类的标签，websocket中非同源的内容都是允许的。</p>
+<h3 id="2-2-浏览器沙箱环境"><a href="#2-2-浏览器沙箱环境" class="headerlink" title="2.2 浏览器沙箱环境"></a>2.2 浏览器沙箱环境</h3><p>现代浏览器采用多进程架构。 如Chrome的主要进程分为：浏览器进程、渲染进程、插件进程、扩展进程。 <a href="https://xgpax.top/wp-content/uploads/2020/12/wp_editor_md_10df0de154bd5b6dded717f1beafbb1a.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/12/wp_editor_md_10df0de154bd5b6dded717f1beafbb1a.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> 也就是说，浏览器打开任何一个网站，都会同时启动四个新的进程。 其中渲染进程，就是web网页中使用的进程。渲染引擎由Sandbox隔离，网页内容要与浏览器内核进程通信要过IPCchannel，在其中进行安全检查。JavaScript所能执行的功能，就被牢牢地限定在这个进程中，所以web网站的权限相当有限（这也是为什么各大厂商都疯狂推荐客户端而非使用能替代的h5网页，毕竟用户信息能卖钱）。</p>
+<h3 id="2-3-恶意网站拦截名单"><a href="#2-3-恶意网站拦截名单" class="headerlink" title="2.3 恶意网站拦截名单"></a>2.3 恶意网站拦截名单</h3><p>原理：一般都是浏览器周期性地从服务器端获取一份最新的恶意网址黑名单，如果用户上网时访问的网址存在此黑名单中，浏览器就会弹出一个警告页面。 恶意网址主要有两类： 木马网站，网站由恶意代码通过浏览器漏洞执行shellcode，植入木马 钓鱼网站，模仿知名网站欺骗用户（比如常见的盗号网站） 举一个反例： <strong>996.icu</strong>曾经被各大国产主流浏览器厂商拦截 <a href="https://xgpax.top/wp-content/uploads/2020/12/wp_editor_md_b26c81d2c485f6062a6534c8a0f54f60.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/12/wp_editor_md_b26c81d2c485f6062a6534c8a0f54f60.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a></p>
+<h2 id="三、从http协议到web攻击"><a href="#三、从http协议到web攻击" class="headerlink" title="三、从http协议到web攻击"></a>三、从http协议到web攻击</h2><h3 id="3-1-http协议"><a href="#3-1-http协议" class="headerlink" title="3.1 http协议"></a>3.1 http协议</h3><p>HTTP 协议是一个<strong>无状态</strong>的请求/响应协议，通过建立一个可靠的会话层或者传输层连接来交换消息。</p>
+<h3 id="3-2-cookie、session"><a href="#3-2-cookie、session" class="headerlink" title="3.2 cookie、session"></a>3.2 cookie、session</h3><p>HTTP 协议无状态的特点是指它不会对发生过的请求和响应的状态做持久化存储。也就是说，HTTP 协议无法根据上一次请求的状态来处理本次请求。在早期，无状态的特点是 HTTP 协议的一大优势，由于不用存储状态，可以极大地提高服务器的运行效率。但是随着时代的发展，在越来越多的场景下，我们需要进行状态的保存以方便处理相应的业务， 简而言之就是服务器无法知道两个请求是否来自同一个浏览器。 于是引入了 Cookie，Session 技术。</p>
+<h4 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h4><p>Cookie通过在客户端记录信息确定用户身份，Session通过在服务器端记录信息确定用户身份。 cookie本质上是一个约定好的字段，设置好cookie后，浏览器会在每次访问自动带上cookie，这样服务器就知道客户端的身份，针对不同的用户做出不同的响应。</p>
+<h4 id="Session"><a href="#Session" class="headerlink" title="Session"></a>Session</h4><p>当客户端请求创建一个session的时候，服务器会先检查这个客户端的请求里是否已包含了一个session标识 - sessionId， 如果已包含这个sessionId，则说明以前已经为此客户端创建过session，服务器就按照sessionId把这个session检索出来使用（如果检索不到，一般会新建一个） 如果客户端请求不包含sessionId，则为此客户端创建一个session并且生成一个与此session相关联的sessionId sessionId的值一般是一个既不会重复，又不容易被仿造的字符串，这个sessionId将被在本次响应中返回给客户端保存。保存sessionId的方式大多情况下用的是cookie。</p>
+<h3 id="3-3-简述前后端分离"><a href="#3-3-简述前后端分离" class="headerlink" title="3.3 简述前后端分离"></a>3.3 简述前后端分离</h3><p><a target="_blank" rel="noopener" href="https://imgconvert.csdnimg.cn/aHR0cHM6Ly94Z3BheC50b3Avd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDQvJUU1JTg5JThEJUU1JTkwJThFJUU3JUFCJUFGLnBuZw?x-oss-process=image/format,png"><img   class="lazyload" data-original="https://imgconvert.csdnimg.cn/aHR0cHM6Ly94Z3BheC50b3Avd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDQvJUU1JTg5JThEJUU1JTkwJThFJUU3JUFCJUFGLnBuZw?x-oss-process=image/format,png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> 1.由于Ajax技术的出现，使得用户界面不再需要关心后端是如何实现数据修改（因为不再需要通过刷新界面和改变URL来切换不同的显示界面） 2.前端只需要关心从哪个URL（后端路由），通过哪种方式（GET/POST等）能够拿到数据或者提示相关数据的变更并返回相应结果（成功，或者失败），而不再需要关心后台如何编写，具体使用什么语言实现，也就是说后端的任何操作，前端都不需要再关心，只需要通过URL拿到相关的数据，就能在用户界面显示想要的效果。 3.而后端也不再需要关心用户通过URL，需要展示哪张由原本动态渲染出来的界面，只需要编写接口，提供与相关URL对应的http请求的数据，进行相关的操作，将数据转换为JSON并发送对应http请求。 4.于是为了解耦的更彻底，也为了程序员们能更好的专精于某一项具体的业务，前后端分离就成了不得不进行的任务与趋势。 从此前端人员专门负责用户的交互，维护用户的交互体验，并通过http请求进行相关的数据请求与展示操作。 而后端人员则专门对请求进行解析（对params,query等属性的处理，从而明白自己该干什么），对相关数据进行检索或存储，并在处理过后返回给前端。</p>
+<h3 id="3-4-h5：localStorage-sessionStorage-indexDB-api出现"><a href="#3-4-h5：localStorage-sessionStorage-indexDB-api出现" class="headerlink" title="3.4 h5：localStorage,sessionStorage,indexDB api出现"></a>3.4 h5：localStorage,sessionStorage,indexDB api出现</h3><p>时代和技术在进步，在h5中，出现了localStorage，sessionStorage,indexDB等api，利用这些api，前端可以在用户端存储相当大的数据，且这些api非常容易记忆和使用。</p>
+<h3 id="3-5-h5：token机制-json-web-token"><a href="#3-5-h5：token机制-json-web-token" class="headerlink" title="3.5 h5：token机制:json web token"></a>3.5 h5：token机制:json web token</h3><p>随着时代的更迭，前后端分离成为主流后，全部数据交互交给ajax后，过往由后端直接设置的cookie机制不再那么适用，为解决这个问题，另外的一种机制jwt应运而生。前端通过访问特定的url（一般是登录）来获取token，并将其设置进localStorage进行存储。在之后的请求中，将其放进http协议中的headers的对应字段中发送给服务端进行校验。</p>
+<h3 id="3-6-一些常见web攻击及其攻击形式"><a href="#3-6-一些常见web攻击及其攻击形式" class="headerlink" title="3.6 一些常见web攻击及其攻击形式"></a>3.6 一些常见web攻击及其攻击形式</h3><h4 id="xss攻击："><a href="#xss攻击：" class="headerlink" title="xss攻击："></a>xss攻击：</h4><p>XSS 简单点来说，就是攻击者想尽一切办法将可以执行的代码注入到网页中。 举个例子：原本我们限定用户只使用文字类型进行评论，但是这个用户不讲武德，直接按下f12进行抓包，往字段里写进了一些类似于： img id=”leftbar_overview_author_image” src=”#” onload=”javascript:for(let i=0;i&lt;3;i++)alert(1)” 的html标签 如此，如果我们未作任何转义处理，这段for(let i=0;i&lt;3;i++)alert(1)就会被写进数据库，从而在下次该web网站评论区被访问时，被其他访问该评论区的用户执行，也就是会alert 3次1 而alert事件 会导致js渲染进程的中断，极度影响用户体验。</p>
+<h4 id="SQL注入："><a href="#SQL注入：" class="headerlink" title="SQL注入："></a>SQL注入：</h4><p>SQL注入与XSS攻击在某些地方很是接近，同样是截断数据，往字段中写入一些非法语句，不过SQL针对的就是SQL拼接，比如在后端存在着这样一条拼接的函数（这个写法是不建议的，只做演示）：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-function"><span class="hljs-keyword">def</span> <span class="hljs-title">putRaw</span>(<span class="hljs-params">data</span>):</span><br>    <span class="hljs-comment"># sql = &quot;insert into %s (html) VALUES(&#x27;%s&#x27;)&quot; % (table, pymysql.escape_string(data))</span><br>    sql = <span class="hljs-string">&quot;insert into %s (html) VALUES(&#x27;%s&#x27;)&quot;</span> % (table, data)<br>    <span class="hljs-built_in">print</span>(sql)<br>    cursor.execute(sql)<br>    conn.commit()<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">True</span><br></code></pre></td></tr></table></figure>
+
+<p>由于#符号是sql的注释符 如果输入：<strong>1’);delete from raw_data#</strong> 后端的SQL语句就会变成：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> raw_data (html) <span class="hljs-keyword">VALUES</span>(<span class="hljs-string">&#x27;1&#x27;</span>);<span class="hljs-keyword">delete</span> <span class="hljs-keyword">from</span> raw_data#<span class="hljs-string">&#x27;)</span><br></code></pre></td></tr></table></figure>
+
+<p>从而导致所有数据被删除。 这就是SQL注入的一个简单案例</p>
+<h4 id="上述攻击的预防"><a href="#上述攻击的预防" class="headerlink" title="上述攻击的预防"></a>上述攻击的预防</h4><p>预防：不管是前端还是后端，都要做好输入输出的校验处理，对数据库一切用户输入进行转义</p>
+<h2 id="四、开发中防范web攻击的一些原则"><a href="#四、开发中防范web攻击的一些原则" class="headerlink" title="四、开发中防范web攻击的一些原则"></a>四、开发中防范web攻击的一些原则</h2><p>1.认证模块必须采用防暴力破解机制，例如：验证码或者多次连续尝试登录失败后锁定帐号或IP。 2.对于每一个需要授权访问的页面或servlet的请求都必须核实用户的会话标识是否合法、用户是否被授权执行这个操作，以防止URL越权。 3.登录过程中，往服务器端传递用户名和口令时，必须采用HTTPS安全协议（也就是带服务器端证书的SSL）。只提供本机接入、登录，做设备管理使用的场景暂时不要求。 4.对用户的最终认证处理过程必须放到服务器进行。 5.用户产生的数据必须在服务端进行校验；数据在输出到客户端前必须先进行HTML编码，以防止执行恶意代码、跨站脚本攻击。对于不可信的数据，输出到客户端前必须先进行 HTML 编码。 6 使用主流Web安全扫描工具扫描Web服务器和Web应用，不存在“高”级别的漏洞。 7.非嵌入式产品的Web应用，应使用预编译语句PreparedStatement代替直接的语句执行Statement，以防止SQL注入。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/12/06/%E4%BB%8E%E4%B8%80%E5%90%8D%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%9A%84%E8%A7%92%E5%BA%A6%E5%87%BA%E5%8F%91%EF%BC%8C%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82web%E5%AE%89%E5%85%A8/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;12&#x2F;06&#x2F;%E4%BB%8E%E4%B8%80%E5%90%8D%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%9A%84%E8%A7%92%E5%BA%A6%E5%87%BA%E5%8F%91%EF%BC%8C%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82web%E5%AE%89%E5%85%A8&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;12&#x2F;06&#x2F;%E4%BB%8E%E4%B8%80%E5%90%8D%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%9A%84%E8%A7%92%E5%BA%A6%E5%87%BA%E5%8F%91%EF%BC%8C%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82web%E5%AE%89%E5%85%A8&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2021/01/03/%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E5%BC%82%E6%AD%A5%E5%B9%B6%E5%8F%91%E8%B0%83%E5%BA%A6%E5%99%A8/"><i class="iconfont iconleft"></i>实现一个异步并发调度器</a>
+    <a href="/2020/11/15/%E3%80%90%E7%BB%83%E4%B9%A0%E5%B0%8Fdemo%E3%80%91%E4%BD%BF%E7%94%A8reactts%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%8B%96%E5%8A%A8%E6%8D%A2%E4%BD%8D%E7%BD%AE%E6%95%88%E6%9E%9C%EF%BC%88%E5%90%8C/">【练习小demo】使用React+TS实现一个拖动换位置效果（同时应用节流）<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%8E%E2%80%9CWeb%E5%AE%89%E5%85%A8%E2%80%9D%E5%85%B3%E9%94%AE%E8%AF%8D%E8%AE%B2%E8%B5%B7"><span class="toc-text">一、从“Web安全”关键词讲起</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E8%81%8A%E8%81%8A%E6%B5%8F%E8%A7%88%E5%99%A8%E5%8F%8A%E5%85%B6%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E7%AD%96%E7%95%A5"><span class="toc-text">二、聊聊浏览器及其安全攻防策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E5%90%8C%E6%BA%90%E5%8D%8F%E8%AE%AE"><span class="toc-text">2.1 同源协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B2%99%E7%AE%B1%E7%8E%AF%E5%A2%83"><span class="toc-text">2.2 浏览器沙箱环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E6%81%B6%E6%84%8F%E7%BD%91%E7%AB%99%E6%8B%A6%E6%88%AA%E5%90%8D%E5%8D%95"><span class="toc-text">2.3 恶意网站拦截名单</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E4%BB%8Ehttp%E5%8D%8F%E8%AE%AE%E5%88%B0web%E6%94%BB%E5%87%BB"><span class="toc-text">三、从http协议到web攻击</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-http%E5%8D%8F%E8%AE%AE"><span class="toc-text">3.1 http协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-cookie%E3%80%81session"><span class="toc-text">3.2 cookie、session</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E7%AE%80%E8%BF%B0%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB"><span class="toc-text">3.3 简述前后端分离</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-h5%EF%BC%9AlocalStorage-sessionStorage-indexDB-api%E5%87%BA%E7%8E%B0"><span class="toc-text">3.4 h5：localStorage,sessionStorage,indexDB api出现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-h5%EF%BC%9Atoken%E6%9C%BA%E5%88%B6-json-web-token"><span class="toc-text">3.5 h5：token机制:json web token</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-%E4%B8%80%E4%BA%9B%E5%B8%B8%E8%A7%81web%E6%94%BB%E5%87%BB%E5%8F%8A%E5%85%B6%E6%94%BB%E5%87%BB%E5%BD%A2%E5%BC%8F"><span class="toc-text">3.6 一些常见web攻击及其攻击形式</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E5%BC%80%E5%8F%91%E4%B8%AD%E9%98%B2%E8%8C%83web%E6%94%BB%E5%87%BB%E7%9A%84%E4%B8%80%E4%BA%9B%E5%8E%9F%E5%88%99"><span class="toc-text">四、开发中防范web攻击的一些原则</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

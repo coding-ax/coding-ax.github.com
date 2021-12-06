@@ -1,0 +1,357 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【python爬虫】selenium基本使用代码示例 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="Edge Driver下载地址：https://dev...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【python爬虫】selenium基本使用代码示例</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E7%BE%8E%E4%BA%BA%E9%B1%BC%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B34k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【python爬虫】selenium基本使用代码示例</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>August 25, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2790</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>Edge Driver下载地址：<a target="_blank" rel="noopener" href="https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/">https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/</a> 一般操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 从selenuim中导入webdriver</span><br><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep<br><span class="hljs-comment"># 特殊按键操作</span><br><span class="hljs-keyword">from</span> selenium.webdriver.common.keys <span class="hljs-keyword">import</span> Keys<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    browser = webdriver.Edge(executable_path=<span class="hljs-string">&#x27;../../msedgedriver.exe&#x27;</span>)<br>    <span class="hljs-comment"># 网址输入操作</span><br>    browser.get(<span class="hljs-string">&quot;https://xgpax.top/&quot;</span>)<br>    <span class="hljs-comment"># 数据选择操作</span><br>    title = browser.find_element_by_class_name(<span class="hljs-string">&#x27;banner-title-inner&#x27;</span>)<br>    sleep(<span class="hljs-number">3</span>)<br>    <span class="hljs-built_in">print</span>(title.get_attribute(<span class="hljs-string">&quot;class&quot;</span>), title.text)<br>    <span class="hljs-comment"># 执行js脚本</span><br>    browser.execute_script(<span class="hljs-string">&#x27;window.scrollTo(0,document.body.clientHeight)&#x27;</span>)<br>    <span class="hljs-comment"># 通过xpath查找</span><br>    search = browser.find_element_by_xpath(<span class="hljs-string">&#x27;//*[@id=&quot;leftbar_search_input&quot;]&#x27;</span>)<br>    <span class="hljs-comment"># 点击事件触发</span><br>    search.click()<br>    <span class="hljs-comment"># 键盘输入</span><br>    search.send_keys(<span class="hljs-string">&quot;转存&quot;</span>)<br>    <span class="hljs-comment"># 输入特殊键 enter</span><br>    search.send_keys(Keys.ENTER)<br>    sleep(<span class="hljs-number">5</span>)<br>    <span class="hljs-comment"># 浏览器退出操作</span><br>    browser.quit()<br></code></pre></td></tr></table></figure>
+
+<p>iframe和windows操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    brow = webdriver.Edge(<span class="hljs-string">&quot;../../msedgedriver.exe&quot;</span>)<br>    brow.get(<span class="hljs-string">&quot;http://www.yhdongman.com/show/28217-31716-0.html&quot;</span>)<br>    sleep(<span class="hljs-number">2</span>)<br>    search = brow.find_element_by_css_selector(<span class="hljs-string">&quot;#bdcs-search-form-input&quot;</span>)<br>    search.send_keys(<span class="hljs-string">&quot;shabi&quot;</span>)<br>    <span class="hljs-comment"># iframe操作 切换浏览器作用域</span><br>    <span class="hljs-comment"># 获取iframe</span><br>    iframe = brow.find_element_by_xpath(<span class="hljs-string">&#x27;//*[@id=&quot;dm456_player&quot;]/iframe&#x27;</span>)<br>    <span class="hljs-comment"># 切换到iframe</span><br>    brow.switch_to.frame(iframe)<br>    <span class="hljs-comment"># 进行操作</span><br>    iframe_img = brow.find_element_by_xpath(<span class="hljs-string">&#x27;//*[@id=&quot;player&quot;]&#x27;</span>)<br>    iframe_img.click()<br>    <span class="hljs-comment"># 返回默认文档</span><br>    brow.switch_to.default_content()<br>    <span class="hljs-comment"># 窗口操作</span><br>    <span class="hljs-comment"># 点击打开新窗口</span><br>    brow.find_element_by_xpath(<span class="hljs-string">&#x27;/html/body/div[7]/div/a[1]&#x27;</span>).click()<br>    <span class="hljs-comment"># 切换到新窗口</span><br>    brow.switch_to.window(brow.window_handles[<span class="hljs-number">1</span>])<br>    <span class="hljs-comment"># 关闭新窗口</span><br>    brow.close()<br>    <span class="hljs-comment"># 切换回来</span><br>    brow.switch_to.window(brow.window_handles[<span class="hljs-number">0</span>])<br>    sleep(<span class="hljs-number">2</span>)<br>    brow.get(<span class="hljs-string">&quot;https://taobao.com&quot;</span>)<br>    sleep(<span class="hljs-number">3</span>)<br>    brow.get(<span class="hljs-string">&quot;https://baidu.com&quot;</span>)<br>    sleep(<span class="hljs-number">5</span>)<br>    brow.quit()<br></code></pre></td></tr></table></figure>
+
+<p>动作链操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> selenium <span class="hljs-keyword">import</span> webdriver<br><span class="hljs-keyword">from</span> time <span class="hljs-keyword">import</span> sleep<br><span class="hljs-comment"># 导入动作链</span><br><span class="hljs-keyword">from</span> selenium.webdriver <span class="hljs-keyword">import</span> ActionChains<br><br><span class="hljs-keyword">if</span> __name__ == <span class="hljs-string">&quot;__main__&quot;</span>:<br>    edge = webdriver.Edge(executable_path=<span class="hljs-string">&quot;../../msedgedriver.exe&quot;</span>)<br>    edge.get(<span class="hljs-string">&quot;https://xgpax.top/&quot;</span>)<br>    edge.fullscreen_window()<br>    sleep(<span class="hljs-number">5</span>)<br>    a = edge.find_element_by_xpath(<span class="hljs-string">&#x27;//*[@id=&quot;post-340&quot;]/header/div/a&#x27;</span>)<br>    <span class="hljs-comment"># 实例化 动作链对象 传入浏览器驱动对象</span><br>    action = ActionChains(edge)<br>    <span class="hljs-comment"># 长按 传入目标对象</span><br>    action.click_and_hold(a)<br>    <span class="hljs-comment"># 发起动作</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">100</span>):<br>        action.move_by_offset(<span class="hljs-number">0</span>, <span class="hljs-number">1</span>)<br>        sleep(<span class="hljs-number">0.1</span>)<br>    <span class="hljs-comment"># 放开动作链</span><br>    action.release()<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/08/25/%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91selenium%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;25&#x2F;%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91selenium%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;08&#x2F;25&#x2F;%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91selenium%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/08/26/%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91selenuim%E4%BD%BF%E7%94%A8chrome%E6%97%A0%E5%A4%B4%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E9%85%8D%E7%BD%AE%E6%96%B9%E6%B3%95/"><i class="iconfont iconleft"></i>【python爬虫】selenuim使用Chrome无头浏览器的配置方法</a>
+    <a href="/2020/08/24/%E3%80%90python%E7%88%AC%E8%99%AB%E3%80%91aiohttp%E6%A8%A1%E5%9D%97%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BD%BF%E7%94%A8%E6%A0%B7%E4%BE%8B/">【python爬虫】aiohttp模块的基本使用样例<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>HTML利用标签接入B站搜索功能 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="HTML利用标签接入B站搜索功能输入许嵩
+输入老番茄
+...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">HTML利用标签接入B站搜索功能</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%8F%AF%E7%88%B1%E7%8C%AB%E8%80%B3%E5%A5%B3%E5%AD%A9%20%E6%A2%A6%E6%83%B3%20%E7%99%BD%E8%89%B2%E7%9A%84%E7%BE%BD%E6%AF%9B%204k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B83840x2160.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">HTML利用标签接入B站搜索功能</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 17, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1624</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="HTML利用标签接入B站搜索功能"><a href="#HTML利用标签接入B站搜索功能" class="headerlink" title="HTML利用标签接入B站搜索功能"></a>HTML利用标签接入B站搜索功能</h1><p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124114200187.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">输入许嵩</span></p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124114206440.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">输入老番茄</span></p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124114102473.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124114133938.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124114606492.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">搜索记录</span></p>
+<p>最近在制作个人网页的时候，想在网站中插入两个搜索接口，一个用来对接<a target="_blank" rel="noopener" href="https://www.bilibili.com/">B站</a>**搜索视频，另一个用来对接<a target="_blank" rel="noopener" href="https://y.qq.com/">QQ音乐</a>，搜索音乐。<br>*<em>搜索了一下后发现有使用百度进行搜索的例子：</em>*<br>利用HTML中的form标签进行验证，很是惭愧，HTML5并没有认真仔细的学习完，也没有上手做个不错的项目，于是重新学习了一下这个标签的用法，<br>实现了一个大概这样的效果：  </p>
+<p>首先对于bilibili，因为B站提供了专门的搜索网站：<a target="_blank" rel="noopener" href="http://search.bilibili.com/">bilibili搜索</a><br>然后我们进入网站后，尝试搜索一下：  </p>
+<p>可以看到当我们在输入刺客567时，链接变成了这样，也就是多了all?/keyword=搜索内容，于是我尝试着直接在链接处修改＝之后的值，发现确实跳转到了我们搜索内容所在的界面<br>这样就好办了，form标签的作用就是将我们的输入内容发送到其服务器：<br>代码如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs routeros">&lt;form <span class="hljs-attribute">action</span>=<span class="hljs-string">&quot;https://search.bilibili.com/all?&quot;</span> <span class="hljs-attribute">method</span>=<span class="hljs-string">&quot;get&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-string">&quot;_blank&quot;</span>&gt;<br><br>                    &lt;input <span class="hljs-attribute">id</span>=<span class="hljs-string">&quot;bfind&quot;</span> <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;text&quot;</span> <span class="hljs-attribute">name</span>=<span class="hljs-string">&quot;keyword&quot;</span> /&gt;<br>                    &lt;input <span class="hljs-attribute">type</span>=<span class="hljs-string">&quot;submit&quot;</span>  <span class="hljs-attribute">value</span>=<span class="hljs-string">&quot;搜索MV&quot;</span> /&gt;<br></code></pre></td></tr></table></figure>
+
+<p>其中form标签中的</p>
+<ol>
+<li> action指定了我们提交的地址。</li>
+<li>method指d定了我们所需要的进行的活动。<br> method有get和post两个选项，其中get和post的区别在于提交数据的方式</li>
+<li> 用post提交的数据，表单的数据不会出现在URL中，比较安全</li>
+<li> 而get则会以?name1=value1&amp;name2=value2的形式将其数据附加到URL的后面，而这也正是我们所需要的，所以我们定义name属性为keyword，url就会变为我们之前所测试的内容</li>
+</ol>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124120311365.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">qq音乐</span></p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124120409968.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">大千世界</span></p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191124121001572.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">搜索</span></p>
+<p>而对于QQ音乐的搜索，则出现了一些岔子，因为在QQ音乐中，没有专门的搜索网站(有一个，但是好像已经失效了<a target="_blank" rel="noopener" href="http://music.qq.com/miniportal/search.html">qq音乐搜索</a>）<br>所以我们打开其官网<a target="_blank" rel="noopener" href="https://y.qq.com/">QQ音乐</a><br>通过搜索框，我们看到：<br>其URL中为如上图中所显示的结果，<br>在y.qq.com/之后跟着的有portal/search.html,显然这是搜索功能所在的文件位置，<br>然后再看后面的部分，发现我们的输入部分在最后，<br>由此可看出来，其中的<strong>page=1</strong>等属性都是用来指定搜索范围的，于是我们尝试着将除了最后一句的<strong>w=大千世界</strong>以外的这些表单数据去掉，<br>也就是在浏览框输入  </p>
+<p>发现搜索同样成功，由此，我们就只需要向这个URL提交我们所需要的数据，就可以完成想要的搜索操作啦。<br>代码如下：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql">&lt;form action=&quot;https://y.qq.com/portal/search.html?&quot; <span class="hljs-keyword">method</span>=&quot;get&quot; target=&quot;_blank&quot;&gt;            <br>                    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=&quot;text&quot;  <span class="hljs-type">name</span>=&quot;w&quot;   /&gt; <br>                    &lt;<span class="hljs-keyword">input</span> <span class="hljs-keyword">type</span>=&quot;submit&quot; <span class="hljs-keyword">value</span>=&quot;搜索音乐&quot;  /&gt;<br>            &lt;/form&gt;<br></code></pre></td></tr></table></figure>
+
+<p>这样就完成了我们想要的操作结果。<br>感谢阅读，<br>希望这篇文章能对您有所帮助。</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/01/17/html%E5%88%A9%E7%94%A8%E6%A0%87%E7%AD%BE%E6%8E%A5%E5%85%A5b%E7%AB%99%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;01&#x2F;17&#x2F;html%E5%88%A9%E7%94%A8%E6%A0%87%E7%AD%BE%E6%8E%A5%E5%85%A5b%E7%AB%99%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;01&#x2F;17&#x2F;html%E5%88%A9%E7%94%A8%E6%A0%87%E7%AD%BE%E6%8E%A5%E5%85%A5b%E7%AB%99%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/01/17/w3c%E6%90%AC%E8%BF%90css%E5%BF%B5%E5%BF%B5%E7%A2%8E/"><i class="iconfont iconleft"></i>w3c搬运CSS念念碎</a>
+    <a href="/2020/01/17/%E5%8E%9F%E7%94%9Fjavascript%E5%AE%9E%E7%8E%B0%E7%85%A7%E7%89%87%E5%A2%99/">原生Javascript实现照片墙<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTML%E5%88%A9%E7%94%A8%E6%A0%87%E7%AD%BE%E6%8E%A5%E5%85%A5B%E7%AB%99%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD"><span class="toc-text">HTML利用标签接入B站搜索功能</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

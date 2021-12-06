@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【计算机网络学习笔记】第二章 物理层 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="1. 物理层的基本概念1.1 【重点】物理层主要任务
+...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【计算机网络学习笔记】第二章 物理层</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E9%87%91%E5%8F%91%E6%80%A7%E6%84%9F%E7%BE%8E%E5%A5%B3%20%E7%8B%AE%E5%AD%90%204k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【计算机网络学习笔记】第二章 物理层</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 28, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1232</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h2 id="1-物理层的基本概念"><a href="#1-物理层的基本概念" class="headerlink" title="1. 物理层的基本概念"></a>1. 物理层的基本概念</h2><h3 id="1-1-【重点】物理层主要任务"><a href="#1-1-【重点】物理层主要任务" class="headerlink" title="1.1 【重点】物理层主要任务"></a>1.1 【重点】物理层主要任务</h3><ul>
+<li>物理层的<strong>主要任务</strong>为：<strong>确定</strong>与<strong>传输媒体的接口</strong>有关的机械、电气、功能、过程<strong>特性</strong>。 （1） 机械特性 指明接口所用的接线器的形状和尺寸、引线数目和排列、固定和锁定装置等等。 （2） 电气特性 指明在接口电缆的各条线上出现的电压的范围。 （3） 功能特性 指明某条线上出现的某一电平的电压表示何意。 （4）规程特性 指明对于不同功能的各种可能事件的出现顺序。</li>
+<li>由于数据在<strong>计算机中</strong>一般为<strong>并行传输</strong>方式（即使用多位(bit)表述一个数据，比如8位(bit)表述一个字节），而数据在<strong>通信线路中</strong>的传输方式一般都是<strong>串行运输</strong>（每次运输一位(bit)），因此<strong>物理层</strong>还需要<strong>完成传输方式上的转换。</strong></li>
+<li>物理层的主要作用：尽可能地<strong>屏蔽掉</strong>物理设备和传输媒体，通信手段的<strong>不同</strong>，使数据链路层感觉不到这些差异，只考虑完成本层的协议和服务。</li>
+</ul>
+<h2 id="2-信道和信道的复用技术"><a href="#2-信道和信道的复用技术" class="headerlink" title="2. 信道和信道的复用技术"></a>2. 信道和信道的复用技术</h2><h3 id="2-1-信道的概念："><a href="#2-1-信道的概念：" class="headerlink" title="2.1 信道的概念："></a>2.1 信道的概念：</h3><p>一般是用来<strong>表示向某一个方向传送信息的媒体</strong></p>
+<ul>
+<li>信道复用：示意图 <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200728224905852.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></li>
+</ul>
+<h3 id="2-2-常见信道复用技术"><a href="#2-2-常见信道复用技术" class="headerlink" title="2.2 常见信道复用技术"></a>2.2 常见信道复用技术</h3><ul>
+<li>最基本的两种复用技术： <strong>频分复用</strong>（FDM）和<strong>时分复用</strong>（TDM) 频分复用：用户在<strong>分配到一定的频带</strong>后，在通信过程中<strong>自始至终都占用</strong>这个频带。 时分复用：用户在<strong>不同</strong>的<strong>时间</strong>占用<strong>同样</strong>的<strong>频带带宽</strong>（这里的带宽是频带带宽而不是数据的发送速率） 如图： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200728234450677.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200728231544164.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></li>
+<li><strong>波分复用</strong>(WDM)与<strong>密集波分复用</strong>(DWDM) 波分复用就是<strong>光</strong>的<strong>频分复用</strong>，因为光纤技术中光载波的频率很高，所以用波长来表示，而不是频率。 波分复用是指在一根光纤上复用两路光载波信号。 而随着技术发展，我们如今已经可以在一根光纤上复用几十路或更多路数的光载波信号，这就是密集波分复用(DWDM) <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200728233031210.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></li>
+<li><strong>码分复用</strong>(CDM)与<strong>码分多址</strong>(CDMA) <strong>码分多址就是码分复用的另一种说法</strong>，最初用于军事通信，现在已经广泛应用于民间移动通信。 在CDM/CDMA中，每一个比特时间再划分为m个bit的码片序列。</li>
+</ul>
+<h2 id="3-宽带接入技术"><a href="#3-宽带接入技术" class="headerlink" title="3. 宽带接入技术"></a>3. 宽带接入技术</h2><p>以下技术均为有线宽带技术</p>
+<h3 id="3-1-ADSL技术（非对称数字用户线）"><a href="#3-1-ADSL技术（非对称数字用户线）" class="headerlink" title="3.1 ADSL技术（非对称数字用户线）"></a>3.1 ADSL技术（非对称数字用户线）</h3><p>​ ADSL技术是用数字技术对现有的模拟电话用户线进行改造，使得它能够承载宽带数字业务。 ​ ADSL技术把0~4 kHZ的低端频谱留给传统电话使用，而把原来没有被利用的高端频谱留给用户上网使用。 ​ ADSL不能保证固定的数据率。由于用户在上网的时候主要是从因特网上下载资料，ADSL的下行带宽远远大于上行带宽。ADSL最大的优点是可以利用现用的电话网络中的用户线。</p>
+<h3 id="3-2-HFC网（光纤同轴混合网）"><a href="#3-2-HFC网（光纤同轴混合网）" class="headerlink" title="3.2 HFC网（光纤同轴混合网）"></a>3.2 HFC网（光纤同轴混合网）</h3><p>​ 为了提高传输的可靠性和电视信号的质量，HFC网把原有线电视网中的同轴电缆主干部分改换成了光纤。（常见例子：机顶盒类型电视）</p>
+<h3 id="3-3-FTTx技术（光纤到户）"><a href="#3-3-FTTx技术（光纤到户）" class="headerlink" title="3.3 FTTx技术（光纤到户）"></a>3.3 FTTx技术（光纤到户）</h3><p>​ Fiber To The…… x可以用来代表不同的光纤接入地点。比如光纤到路边（FTTC),光纤到小区（FTTZ)等</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/07/28/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;28&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;28&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2020/07/30/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/"><i class="iconfont iconleft"></i>【计算机网络学习笔记】第三章 数据链路层</a>
+    <a href="/2020/07/27/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E8%BF%B0/">【计算机网络学习笔记】第一章 概述<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%89%A9%E7%90%86%E5%B1%82%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="toc-text">1. 物理层的基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E3%80%90%E9%87%8D%E7%82%B9%E3%80%91%E7%89%A9%E7%90%86%E5%B1%82%E4%B8%BB%E8%A6%81%E4%BB%BB%E5%8A%A1"><span class="toc-text">1.1 【重点】物理层主要任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E4%BF%A1%E9%81%93%E5%92%8C%E4%BF%A1%E9%81%93%E7%9A%84%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="toc-text">2. 信道和信道的复用技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E4%BF%A1%E9%81%93%E7%9A%84%E6%A6%82%E5%BF%B5%EF%BC%9A"><span class="toc-text">2.1 信道的概念：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%B8%B8%E8%A7%81%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="toc-text">2.2 常见信道复用技术</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%AE%BD%E5%B8%A6%E6%8E%A5%E5%85%A5%E6%8A%80%E6%9C%AF"><span class="toc-text">3. 宽带接入技术</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-ADSL%E6%8A%80%E6%9C%AF%EF%BC%88%E9%9D%9E%E5%AF%B9%E7%A7%B0%E6%95%B0%E5%AD%97%E7%94%A8%E6%88%B7%E7%BA%BF%EF%BC%89"><span class="toc-text">3.1 ADSL技术（非对称数字用户线）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-HFC%E7%BD%91%EF%BC%88%E5%85%89%E7%BA%A4%E5%90%8C%E8%BD%B4%E6%B7%B7%E5%90%88%E7%BD%91%EF%BC%89"><span class="toc-text">3.2 HFC网（光纤同轴混合网）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-FTTx%E6%8A%80%E6%9C%AF%EF%BC%88%E5%85%89%E7%BA%A4%E5%88%B0%E6%88%B7%EF%BC%89"><span class="toc-text">3.3 FTTx技术（光纤到户）</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

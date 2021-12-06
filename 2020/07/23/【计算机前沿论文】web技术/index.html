@@ -1,0 +1,354 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【计算机前沿论文】web技术 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="web技术 摘要： Web，World Wide We...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【计算机前沿论文】web技术</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/Samus%204k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【计算机前沿论文】web技术</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 23, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6829</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>web技术 摘要： Web，World Wide Web，又叫万维网，全球广域网。贴近生活，或者说从狭义上讲，web即是我们所见的各种网页。而在广义上，web泛指一切通过前后端相关规范进行的应用开发（包括所有客户端开发）。web是一种典型的分布式应用结构，每一次信息交换都要涉及客户端和服务端。而web技术，指的是开发互联网应用的技术总称，一般包括web服务端（后端）技术和web客户端(前端)技术，代指的是一整套软件开发规范。 关键词： web，前端，后端，互联网。 Summary： Web, World Wide Web, also known as the World Wide Web, global wide area network. Close to life, or in a narrow sense, the web is the web we see all kinds of web pages. In a broad sense, the web general refers to all application development (including all client development) through the relevant pre-back specification. Web is a typical distributed application structure, each exchange of information involves the client and the service side. Web technology, refers to the development of Internet applications of the technology generally said, generally including web service side (back-end) technology and web client (front-end) technology, instead refers to a set of software development specifications. Key Words：web，front-end Web development，back-end web development，Internet 一、 引言 Web开发技术，从大体上也可以被分为客户端（前端）技术和服务端（后端）技术两大类。本文将从web的发展历史出发，从相关技术更迭的视角出发，对这些技术作简要介绍，让读者对Web技术有一个总体的认识。 二、 Web技术简述 1. 浏览器历史及内核 由于web技术具有前后端两方面的技术拓展，本文将分别从前后端出发，对相关历史进行概述。 在提到相关技术前，讨论Web开发技术的历史，当然要先说说Web的起源。众所周知，Web这个Internet上最热门的应用架构是由Tim Berners-Lee发明的。Web的前身是1980年Tim Berners-Lee负责的Enquire（Enquire Within Upon Everything的简称）项目。1990年11月，第一个Web服务器nxoc01.cern.ch开始运行，Tim Berners-Lee在自己编写的图形化Web浏览器”WorldWideWeb”上看到了最早的Web页面。1991年，CERN（European Particle Physics Laboratory）正式发布了Web技术标准。目前，与Web相关的各种技术标准都由著名的W3C组织（World Wide Web Consortium）管理和维护。 1994年，网景通信公司推出了网景浏览器1.0，随后迭代版本迅速占领浏览器大部分份额，就此拉开了浏览器的大战序幕。 浏览器的发展和竞争历史，相当具有趣味性。而在当前，主要有以下几大内核：Webkit，blink，Gecko，Trident。 浏览器内核，是人类智慧的高度结晶。 2. HTML/CSS/JavaScript HTML：HTML称为超文本标记语言，HTML的英文全称是 Hyper Text Markup Language，即超文本标记语言。HTML是由Web的发明者 Tim Berners-Lee和同事 Daniel W. Connolly于1990年创立的一种标记语言，它包括一系列标签．通过这些标签可以将网络上的文档格式统一，使分散的Internet资源连接为一个逻辑整体。HTML文本是由HTML命令组成的描述性文本，HTML命令可以说明文字，图形、动画、声音、表格、链接等。 CSS：HTML被发明开始，样式就以各种形式存在。不同的浏览器结合它们各自的样式语言为用户提供页面效果的控制。最初的HTML只包含很少的显示属性。 随着HTML的成长，为了满足页面设计者的要求，HTML添加了很多显示功能。但是随着这些功能的增加，HTML变的越来越杂乱，而且HTML页面也越来越臃肿。于是CSS便诞生了。CSS为HTML标记语言提供了一种样式描述，定义了其中元素的显示方式。CSS在Web设计领域是一个突破。利用它可以实现修改一个小的样式更新与之相关的所有页面元素。 JavaScript：JavaScript在1995年由Netscape公司的Brendan Eich，在网景导航者浏览器上首次设计实现而成。因为Netscape与Sun合作，Netscape管理层希望它外观看起来像Java，因此取名为JavaScript。它是一种具有函数优先的轻量级，解释型或即时编译型的高级编程语言。虽然它是作为开发Web页面的脚本语言而出名的，但是它也被用到了很多非浏览器环境中，JavaScript 基于原型编程、多范式的动态脚本语言，并且支持面向对象、命令式和声明式（如函数式编程）风格。 3. 前后端不分离时代 在分开提到前端技术和后端技术之前，我们需要先了解web技术经历过的两个阶段：前后端不分离-&gt;前后端分离 在JavaScript 诞生之后，可以用来更改前端 DOM 的样式，实现一些类似于时钟之类的小功能。那时候的JavaScript 仅限于此，大部分的前端界面还很简单，显示的都是纯静态的文本和图片。这种静态页面不能读取后台数据库中的数据，为了使得 Web 更加充满活力，以 PHP、JSP、ASP.NET 为代表的动态页面技术相继诞生。 PHP（PHP：Hypertext Preprocessor）最初是由 Rasmus Lerdorf 在 1995 年开始开发的，现在PHP 的标准由 PHP Group 维护。PHP 是一种开源的通用计算机脚本语言，尤其适用于网络开发并可嵌入 HTML 中使用，其主要目标是允许网络开发人员快速编写动态页面。 JSP（JavaServer Pages）是由 Sun 公司倡导和许多公司参与共同创建的一种使软件开发者可以响应客户端请求，从而动态生成 HTML、XML 或其他格式文档的 Web 网页的技术标准。JSP 技术是以 Java 语言为基础的。 在前后端耦合架构中，所有的静态资源和业务代码统一部署在同一台服务器上。服务器接收到浏览器的请求后，进行处理得到数据，然后将数据填充到静态页面中，最终返回给浏览器。 4. 前后端分离时代主要技术 我们首先来讨论一下前后端分离的最主要促成因素——Ajax技术 Ajax 即“Asynchronous Javascript And XML”（异步 JavaScript 和 XML） 单从名称上看，似乎并不好理解，XML一门数据交换语言，JS是一门编程语言，Asyncchronous是异步的意思。 最简单的理解：它是一门技术，一门“桥梁”技术，ajax技术使得前后端从此有了交换数据的位置。也正是它的出现和广泛应用，最后导致了前后端分离的出现。 由于ajax技术的出现，使得用户界面不再需要关心后端是如何实现数据修改（因为不再需要通过刷新界面和改变URL来切换不同的显示界面） 前端只需要关心从哪个URL（后端路由），通过哪种方式（GET/POST等）能够拿到数据或者提示相关数据的变更并返回相应结果（成功，或者失败），而不再需要关心后台如何编写，具体使用什么语言实现，也就是说后端的任何操作，前端都不需要再关心，只需要通过URL拿到相关的数据，就能在用户界面显示想要的效果。 而后端也不再需要关心用户通过URL，需要展示哪张由原本动态渲染出来的界面，只需要编写接口，提供与相关URL对应的http请求的数据，进行相关的操作，将数据转换为JSON并发送对应http请求。 于是为了解耦的更彻底，也为了程序员们能更好的专精于某一项具体的业务，前后端分离就成了不得不进行的任务与趋势。 从此前端人员专门负责用户的交互，维护用户的交互体验，并通过http请求进行相关的数据请求与展示操作。 而后端人员则专门对请求进行解析（对params,query等属性的处理，从而明白自己该干什么），对相关数据进行检索或存储，并在处理过后返回给前端。 http协议：超文本传输协议（英文：HyperText Transfer Protocol，缩写：HTTP）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。HTTP是一个客户端终端（用户）和服务器端（网站）请求和应答的标准（TCP）。通过使用网页浏览器、网络爬虫或者其它的工具，客户端发起一个HTTP请求到服务器上指定端口（默认端口为80）。我们称这个客户端为用户代理程序（user agent）。应答的服务器上存储着一些资源，比如HTML文件和图像。我们称这个应答服务器为源服务器（origin server）。在用户代理和源服务器中间可能存在多个“中间层”，比如代理服务器、网关或者隧道（tunnel）。 HTTP协议定义Web客户端如何从Web服务器请求Web页面，以及服务器如何把Web页面传送给客户端。HTTP协议采用了请求/响应模型。客户端向服务器发送一个请求报文，请求报文包含请求的方法、URL、协议版本、请求头部和请求数据。服务器以一个状态行作为响应，响应的内容包括协议的版本、成功或者错误代码、服务器信息、响应头部和响应数据。 a. 前端技术： 提到前端技术，再怎么发展，其实都离不开HTML，CSS，JavaScript，但是锦绣文章，光认识字是写不出来的。如今的前端技术，已经不再是简单的JQuery对DOM进行操作就可以满足的。日趋复杂的UI界面，随着各种各样设备的不断发展，当前的前端，面临着对各种设备的适配，又需要同时针对多平台，对程序员的要求也是越来越高，且前端发展正处于破茧期，发展速度过于可怕，技术迭代速度极快。技术层出不穷。 就比如近年来，WebAssembly的出现，使得JavaScript不再是唯一的前端开发语言。 WebAssembly 旨在通过提供在 web 上运行二进制格式，最大限度地提高性能，减小文件大小，并支持多种语言的 web 开发, 所有主流浏览器都已经支持。 WebAssembly结合日渐成熟的WebGL技术，使得大型的游戏等应用迁移到浏览器将逐渐成为可能. 随着基础的到位和不断推动改进的Web体验，WebAssembly将开始看到更多的应用。 而本身就身为JavaScript超集的TypeScript，以其优越的可维护性和更严密的代码逻辑，注定成为未来大型项目开发与维护的主流。 近来兴起的WebAssembly暂时不进行讨论。当下的前端，大概主流技术栈可以如下图所示：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">以上的技术，已经是一个前端工程所必须掌握且深入了解的知识。而前端的知识体系，也大概如此。<br>以<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Node</span>.</span></span>js，webpack作为工程化基础，又以Vue，React，Angular等框架以及背后涉及的相关技术作为支撑，前端注定将越来越走向现代化和工程化。<br></code></pre></td></tr></table></figure>
+
+<p>b. 后端技术： 后端，也称为“服务器端开发”，也就是在系统“后面”所发生的事情。同样，在后端服务器和浏览器或应用程序之间存储网站、应用数据和中间媒介的服务器都属于后端。简单来说，在应用程序或网站的屏幕上看不到的所有东西都是前端的后端。 后端开发人员研究幕后发生的事情，后端开发人员使用各种库，API，Web服务等。他们负责数据库系统的实现，确保各种Web服务之间的正确通信，生成后端功能等。 网站的后端需要设置服务器，存储和检索数据，以及将这些服务器与前端进行连接的接口。如果说前端开发人员更加关注网站的外观，后端开发人员则更更关注网站的速度、性能和响应能力，后端通过编码、云 API 和数据库进行集成。 由于后端语言和框架并不统一，在这里以Java语言作为例子，进行后端的相关讨论。当前Java后端框架，以SSM（spring,springMVC, MyBatis）作为主流。页面发送请求给控制器，控制器调用业务层处理逻辑，逻辑层向持久层发送请求，持久层与数据库交互，后将结果返回给业务层，业务层将处理逻辑发送给控制器，控制器再调用视图展现数据 对于后端语言，主要在于三个方面：接口的路由，数据库的持久化，相应逻辑的处理。至于其他的类似分布式，微服务，高并发等内容，都是更深一步的拓展，我们不做讨论。 三、 个人体会 作为一名计算机学院软件工程的学生，同时作为前端开发自学者，本人对于web技术有着极其浓厚的技术，所以在选题时，非常开心地拿到了这个选题。 对于我个人而言，我选择了前端开发工程师这条路线作为我目前的职业规划。本人通过自学，学会了前端开发的部分内容，如Vue,React框架的基本使用，初步了解webpack等脚手架工具的应用，对框架背后及其衍生的相关技术如（vue-router,vuex,react-router,redux）等技术有一定的使用经验，同时又因为课程内容和前端NodeJS相关的知识，本人对后端有一定的了解（当然，也仅限于非常浅显和初步的了解）。 在拿到这个选题后，我参考自己以前的相关博客内容，同时查阅大量资料，了解到了更多的开发知识。在这个过程中，我了解到了浏览器的相关历史，了解到了这背后的趣闻，同时也感叹了技术这种东西，确实是不进则退。唯有不断地保持学习的热度，才能保持与时代的同步。 对于自学前端的相关经历，我觉得我会一直记住，并坚持下去，活到老，学到老。回想起某位学长在自己GitHub简介中所描述的“热爱技术，深耕前端，乐于分享”。决定了自己的道路，就应该一往无前，深耕到底，而不是瞻前顾后，畏畏缩缩。 对于web技术，它是当今繁华互联网的基石，我们能看到这样丰富的互联网，这是这些技术在背后默默地发挥它们的作用。 通过本学期对软件工程与计算机前沿课程的学习，我对计算机行业有了更深入的了解，同时也对其他技术产生了技术，希望将来能有机会进行学习。我会好好珍惜这次学习的机会，作为我进一步学习的阶梯，在以后的工作学习中不断要求自己，完善自己，让自己做的更好。 在论文的撰写过程中，我也遇到了很多的问题，感受到了很多的技术盲点，在丰富论文内容的同时，也加深了自己对于web技术的理解。正如那句话：“纸上得来终觉浅，绝知此事要躬行”，通过自己的总结，我对web技术，也对自己所学，有了进一步的认知。 与此同时，我也在学习的过程中感受到了自己的不足，在以后的学习生活中，我将进一步加强编码能力，加强对基础专业课程（如数据结构与算法，操作系统，计算机组成原理等）的理解，夯实自己的课程水平，同时加深对计算机的相关认知，进一步学习更加先进的技术与知识。 四、 参考资料 1. 《点石成金：访客至上的网页设计秘笈》 Steve Krug 2. 《响应式Web设计：HTML5和CSS3实战》 Ben Frain 人民邮电出版社 3. 《JavaScript高级程序设计》 Nicholas C.Zakas 人民邮电出版社 4. 《计算机网络》 谢希仁 电子工业出版社 5. 《精通Java开发技术》 陈强. 清华大学出版社 6. 《Java设计模式》 Metsker S J 电子工业出版社 7. 《Java Web整合开发王者归来》 刘京华 清华大学出版社 8. 基于JSP网页自动生成工具开发 韩世芬 科技资讯 9. 基于JSP网页自动生成工具设计与实现 仲伟和 科技信息(科学教研) 10. 计算机专业课程群建设探索与实践 翟玉庆.邓建明.曹玖新 2006第二届大学计算机课程报告论坛</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/07/23/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%89%8D%E6%B2%BF%E8%AE%BA%E6%96%87%E3%80%91web%E6%8A%80%E6%9C%AF/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;23&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%89%8D%E6%B2%BF%E8%AE%BA%E6%96%87%E3%80%91web%E6%8A%80%E6%9C%AF&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;23&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%89%8D%E6%B2%BF%E8%AE%BA%E6%96%87%E3%80%91web%E6%8A%80%E6%9C%AF&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/07/23/%E3%80%907%E6%9C%88%E4%B8%8B%E3%80%91%E4%B8%80%E4%BA%9B%E7%AE%80%E7%AE%80%E5%8D%95%E5%8D%95%E7%9A%84%E6%83%B3%E6%B3%95/"><i class="iconfont iconleft"></i>【7月下】一些简简单单的想法</a>
+    <a href="/2020/07/03/whut%E6%95%99%E5%8A%A1%E5%A4%84%E4%BC%98%E5%8C%96/">【武汉理工大学选课辅助】浏览器插件<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

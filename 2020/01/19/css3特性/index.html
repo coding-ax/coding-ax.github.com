@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS3特性 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="CSS3特性transform示例：
+1234div&...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">CSS3特性</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E6%B0%B4%E4%B8%8B%E5%94%AF%E7%BE%8E%E6%A2%A6%E5%B9%BB%E6%B3%B3%E8%A3%85%E5%A5%B3%E7%94%9F5k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">CSS3特性</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 19, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3847</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="CSS3特性"><a href="#CSS3特性" class="headerlink" title="CSS3特性"></a>CSS3特性</h1><h2 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h2><p>示例：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><br>&#123;<br><span class="hljs-attribute">transform</span>:<span class="hljs-built_in">rotate</span>(<span class="hljs-number">30deg</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>用于元素的偏转（不再是一个简单的块状）</p>
+<p>deg：角度</p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200119123853585.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<p>顺时针旋转<br>## border-image,border-radius,box-shadow</p>
+<ul>
+<li>  border-image</li>
+</ul>
+<p>利用border-image可以自定义边框：</p>
+<p>border-image</p>
+<p>用法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><br>&#123;<br><span class="hljs-attribute">border-image</span>:<span class="hljs-built_in">url</span>(<span class="hljs-string">border.png</span>) <span class="hljs-number">30</span> <span class="hljs-number">30</span> round;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200119123917967.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<p>效果：<br>border-image有一下属性：</p>
+<ul>
+<li>  border-image-source（指定图片url(路径)）</li>
+<li>  border-image-slice（图片边框向内偏移）</li>
+<li>  border-image-width（图片边框的宽度）</li>
+<li>  border-image-outset（边框图像区域超出边框的量）</li>
+<li>  border-image-repeat（是否平铺（repeated),拉伸(stretched),铺满（rounded)</li>
+</ul>
+<p>默认值：none 100% 1 0 stretch</p>
+<p>其中border-image-slice这个参数是没有单位的，或者说是默认单位就是像素(px)(但是不能写进去)（支持百分值但是就是0.xx)</p>
+<ul>
+<li>  box-shawdow 语法： box-shadow：x-shadow y-shadow blur spread color inset; 说明： （1）x-shadow：设置水平阴影的位置（X轴），可以使用负值； （2）y-shadow：设置垂直阴影的位置（y轴），可以使用负值； （3）blur：设置阴影模糊半径； （4）spread：扩展半径，设置阴影的尺寸； （5）color：设置阴影的颜色； （6）inset：这个参数默认不设置。默认情况下为外阴影，inset表示内阴影。</li>
+</ul>
+<h1 id="888888是最常见的阴影颜色"><a href="#888888是最常见的阴影颜色" class="headerlink" title="888888是最常见的阴影颜色"></a>888888是最常见的阴影颜色</h1><p>最常规用法：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><br>&#123;<br><span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">5px</span> <span class="hljs-number">#888888</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200119124032884.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<ul>
+<li>  border-radius</li>
+</ul>
+<p>用于定义边界的框的圆角化：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><br>&#123;<br><span class="hljs-attribute">border</span>:<span class="hljs-number">2px</span> solid;<br><span class="hljs-attribute">border-radius</span>:<span class="hljs-number">25px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="使用line-height与text-align设置容器中的居中"><a href="#使用line-height与text-align设置容器中的居中" class="headerlink" title="使用line-height与text-align设置容器中的居中"></a>使用line-height与text-align设置容器中的居中</h2><p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200119124055780.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<p>示例：  </p>
+<p>示例代码：参见最后两行</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#back</span>&#123;<br>    <span class="hljs-attribute">background-color</span>: yellow;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">40%</span>;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">150px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">10px</span> outset chartreuse;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">5px</span> <span class="hljs-number">#888888</span>;<br>    <span class="hljs-attribute">border-radius</span>: <span class="hljs-number">50%</span>;<br>    <span class="hljs-attribute">text-align</span>: center;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">150px</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="使用background-size以及background-repeat定位背景图片显示范围："><a href="#使用background-size以及background-repeat定位背景图片显示范围：" class="headerlink" title="使用background-size以及background-repeat定位背景图片显示范围："></a>使用background-size以及background-repeat定位背景图片显示范围：</h2><p>示例：</p>
+<p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200119124107202.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<p>代码：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-id">#back</span>&#123;<br>    <span class="hljs-attribute">background-image</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">../img/1.jpg</span>);<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">150px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">150px</span>;<br>    <span class="hljs-attribute">position</span>: relative;<br>    <span class="hljs-attribute">left</span>: <span class="hljs-number">40%</span>;<br>    <span class="hljs-attribute">top</span>: <span class="hljs-number">150px</span>;<br>    <span class="hljs-attribute">border</span>: <span class="hljs-number">10px</span> outset chartreuse;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">10px</span> <span class="hljs-number">10px</span> <span class="hljs-number">5px</span> <span class="hljs-number">#888888</span>;<br>    <span class="hljs-comment">/* border-radius: 50%; */</span><br>    <span class="hljs-attribute">text-align</span>: center;<br>    <span class="hljs-attribute">line-height</span>: <span class="hljs-number">140px</span>;<br>    <span class="hljs-attribute">font-size</span>: <span class="hljs-number">25px</span>;<br>    <span class="hljs-attribute">font-family</span>: 楷体;<br>    <span class="hljs-attribute">background-size</span>: <span class="hljs-number">100%</span> <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">background-repeat</span>: no-repeat;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="CSS3-background-origin-属性"><a href="#CSS3-background-origin-属性" class="headerlink" title="CSS3 background-origin 属性"></a>CSS3 background-origin 属性</h2><p>background-origin 属性规定背景图片的定位区域。</p>
+<p>背景图片可以放置于 content-box、padding-box 或 border-box 区域。</p>
+<p><img    class="lazyload" data-original="https://imgconvert.csdnimg.cn/aHR0cHM6Ly93d3cudzNzY2hvb2wuY29tLmNuL2kvYmFja2dyb3VuZC1vcmlnaW4uZ2lm" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">背景图片的定位区域</span></p>
+<p>用来规定背景图的放置范围。</p>
+<h2 id="允许指定多张图作为背景图"><a href="#允许指定多张图作为背景图" class="headerlink" title="允许指定多张图作为背景图"></a>允许指定多张图作为背景图</h2><p>CSS3允许使用多张图片作为背景图的链接，在使用background-image的时候同时提供多个url()就行</p>
+<h2 id="text-shadow和word-wrap属性"><a href="#text-shadow和word-wrap属性" class="headerlink" title="text-shadow和word-wrap属性"></a>text-shadow和word-wrap属性</h2><ul>
+<li>  text-shadow与box-shadow类似，用来规定相关的属性</li>
+</ul>
+<p>其中四个属性与box-shadow一致：</p>
+<p>分别代表：垂直距离，水平距离，模糊距离，以及阴影的颜色，一般用于h标题</p>
+<ul>
+<li>  word-wrap则用于允许文本强制换行，对单词进行拆分</li>
+</ul>
+<h2 id="CSS动画："><a href="#CSS动画：" class="headerlink" title="CSS动画："></a>CSS动画：</h2><h3 id="2D转换"><a href="#2D转换" class="headerlink" title="2D转换"></a>2D转换</h3><ul>
+<li>  translate()方法</li>
+</ul>
+<p>通过translate方法，根据给定的Left（X坐标）和Top(y坐标) 位置参数进行转换：</p>
+<p>值 translate(50px,100px) 把元素从左侧移动 50 像素，从顶端移动 100 像素。</p>
+<ul>
+<li>  rotate()方法</li>
+</ul>
+<p>通过rotate(角度)是的元素按照顺时针旋转给定的角度（允许负数，逆时针）</p>
+<p>如rotate(30deg)就是将元素顺时针旋转30度</p>
+<ul>
+<li>  scale()方法</li>
+</ul>
+<p>通过scale()方法，对元素的尺寸进行增加或者减少吗，根据给定的宽度和高度参数进行放缩。</p>
+<p>示例：scale(2,4) 把宽度转换为原始尺寸的 2 倍，把高度转换为原始高度的 4 倍。</p>
+<ul>
+<li>  skew(方法)</li>
+</ul>
+<p>通过skew方法，元素会翻转给定的水平线（X轴）和垂直（Y轴）参数：</p>
+<p>示例：skew(30deg,20deg) 围绕 X 轴把元素翻转 30 度，围绕 Y 轴翻转 20 度。</p>
+<ul>
+<li>  matrix()方法把所有的2D转换方法组合在了一起：</li>
+</ul>
+<p>提供6个参数：matrix() 方法需要六个参数，包含数学函数，允许您：旋转、缩放、移动以及倾斜元素。</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">transform</span>:matrix(<span class="hljs-number">0</span>.<span class="hljs-number">866</span>,<span class="hljs-number">0</span>.<span class="hljs-number">5</span>,-<span class="hljs-number">0</span>.<span class="hljs-number">5</span>,<span class="hljs-number">0</span>.<span class="hljs-number">866</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>);<br></code></pre></td></tr></table></figure>
+
+<h3 id="3D转换"><a href="#3D转换" class="headerlink" title="3D转换"></a>3D转换</h3><ul>
+<li>  rotateX()方法：</li>
+</ul>
+<p>通过 rotateX() 方法，元素围绕其 X 轴以给定的度数进行旋转。</p>
+<ul>
+<li>  rotateY()方法</li>
+</ul>
+<p>通过 rotateY() 方法，元素围绕其 Y 轴以给定的度数进行旋转。</p>
+<h2 id="CSS过渡"><a href="#CSS过渡" class="headerlink" title="CSS过渡"></a>CSS过渡</h2><ul>
+<li>  transition：</li>
+</ul>
+<p>transition-property:规定应用过渡的CSS属性的名称.</p>
+<p>transition-duration:定义过渡效果花费的时间，默认是0.</p>
+<p>transtion-timing-function:规定过渡效果的时间曲线，默认是：“ease”.</p>
+<p>transition-delay：规定过渡效果何时开始，默认是0.</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">div</span><br>&#123;<br><span class="hljs-attribute">transition</span>: width <span class="hljs-number">1s</span> linear <span class="hljs-number">2s</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="CSS3-动画属性"><a href="#CSS3-动画属性" class="headerlink" title="CSS3 动画属性"></a>CSS3 动画属性</h2><p>下面的表格列出了 @keyframes 规则和所有动画属性：</p>
+<p>属性</p>
+<p>描述</p>
+<p>CSS</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_keyframes.asp">@keyframes</a></p>
+<p>规定动画。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation.asp">animation</a></p>
+<p>所有动画属性的简写属性，除了 animation-play-state 属性。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-name.asp">animation-name</a></p>
+<p>规定 @keyframes 动画的名称。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-duration.asp">animation-duration</a></p>
+<p>规定动画完成一个周期所花费的秒或毫秒。默认是 0。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-timing-function.asp">animation-timing-function</a></p>
+<p>规定动画的速度曲线。默认是 “ease”。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-delay.asp">animation-delay</a></p>
+<p>规定动画何时开始。默认是 0。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-iteration-count.asp">animation-iteration-count</a></p>
+<p>规定动画被播放的次数。默认是 1。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-direction.asp">animation-direction</a></p>
+<p>规定动画是否在下一周期逆向地播放。默认是 “normal”。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-play-state.asp">animation-play-state</a></p>
+<p>规定动画是否正在运行或暂停。默认是 “running”。</p>
+<p>3</p>
+<p><a target="_blank" rel="noopener" href="https://www.w3school.com.cn/cssref/pr_animation-fill-mode.asp">animation-fill-mode</a></p>
+<p>规定对象动画时间之外的状态。</p>
+<p>3</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs markdown">@keyframes name&#123;<br><span class="hljs-code">    form&#123;</span><br><span class="hljs-code"></span><br><span class="hljs-code">    &#125;</span><br><span class="hljs-code">    to&#123;</span><br><span class="hljs-code"></span><br><span class="hljs-code">    &#125;</span><br><span class="hljs-code">&#125;</span><br><span class="hljs-code">/*或者*/</span><br><span class="hljs-code">@keyframes name&#123;</span><br><span class="hljs-code">    0%&#123;</span><br><span class="hljs-code"></span><br><span class="hljs-code">    &#125;</span><br><span class="hljs-code">    25%&#123;</span><br><span class="hljs-code"></span><br><span class="hljs-code">    &#125;</span><br><span class="hljs-code">    50%&#123;</span><br><span class="hljs-code"></span><br><span class="hljs-code">    &#125;</span><br><span class="hljs-code">    75%&#123;</span><br><span class="hljs-code"></span><br><span class="hljs-code">    &#125;</span><br><span class="hljs-code">    100%&#123;</span><br><span class="hljs-code"></span><br><span class="hljs-code">    &#125;</span><br><span class="hljs-code">&#125;</span><br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/01/19/css3%E7%89%B9%E6%80%A7/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;01&#x2F;19&#x2F;css3%E7%89%B9%E6%80%A7&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;01&#x2F;19&#x2F;css3%E7%89%B9%E6%80%A7&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/01/19/javascript%E5%BF%B5%E5%BF%B5%E7%A2%8E%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B4%E4%BD%93%E6%A6%82%E8%BF%B0%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"><i class="iconfont iconleft"></i>JavaScript念念碎（一）整体概述以及数据类型</a>
+    <a href="/2020/01/17/mysql%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80%E7%AF%87/">MySql数据库基础篇<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#CSS3%E7%89%B9%E6%80%A7"><span class="toc-text">CSS3特性</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#transform"><span class="toc-text">transform</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#888888%E6%98%AF%E6%9C%80%E5%B8%B8%E8%A7%81%E7%9A%84%E9%98%B4%E5%BD%B1%E9%A2%9C%E8%89%B2"><span class="toc-text">888888是最常见的阴影颜色</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8line-height%E4%B8%8Etext-align%E8%AE%BE%E7%BD%AE%E5%AE%B9%E5%99%A8%E4%B8%AD%E7%9A%84%E5%B1%85%E4%B8%AD"><span class="toc-text">使用line-height与text-align设置容器中的居中</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8background-size%E4%BB%A5%E5%8F%8Abackground-repeat%E5%AE%9A%E4%BD%8D%E8%83%8C%E6%99%AF%E5%9B%BE%E7%89%87%E6%98%BE%E7%A4%BA%E8%8C%83%E5%9B%B4%EF%BC%9A"><span class="toc-text">使用background-size以及background-repeat定位背景图片显示范围：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-background-origin-%E5%B1%9E%E6%80%A7"><span class="toc-text">CSS3 background-origin 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%81%E8%AE%B8%E6%8C%87%E5%AE%9A%E5%A4%9A%E5%BC%A0%E5%9B%BE%E4%BD%9C%E4%B8%BA%E8%83%8C%E6%99%AF%E5%9B%BE"><span class="toc-text">允许指定多张图作为背景图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#text-shadow%E5%92%8Cword-wrap%E5%B1%9E%E6%80%A7"><span class="toc-text">text-shadow和word-wrap属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E5%8A%A8%E7%94%BB%EF%BC%9A"><span class="toc-text">CSS动画：</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2D%E8%BD%AC%E6%8D%A2"><span class="toc-text">2D转换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3D%E8%BD%AC%E6%8D%A2"><span class="toc-text">3D转换</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS%E8%BF%87%E6%B8%A1"><span class="toc-text">CSS过渡</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CSS3-%E5%8A%A8%E7%94%BB%E5%B1%9E%E6%80%A7"><span class="toc-text">CSS3 动画属性</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

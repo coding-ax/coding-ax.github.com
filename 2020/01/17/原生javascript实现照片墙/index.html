@@ -1,0 +1,375 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>原生Javascript实现照片墙 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="原生Javascript实现照片墙最近跟着网易云课堂的...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">原生Javascript实现照片墙</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E4%BA%91%20%E7%81%AF%E5%A1%94%20%E7%81%AB%E8%BD%A6%20%E5%A4%A7%E6%B5%B7%20%E6%A3%AE%E6%9E%97%20%E6%97%A5%E5%87%BA%20%E7%BB%98%E7%94%BB%204k%E5%A3%81%E7%BA%B83840x2160.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">原生Javascript实现照片墙</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 17, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1826</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="原生Javascript实现照片墙"><a href="#原生Javascript实现照片墙" class="headerlink" title="原生Javascript实现照片墙"></a>原生Javascript实现照片墙</h1><h3 id="最近跟着网易云课堂的JS学习视频的案例篇实现了一个类似这样的界面："><a href="#最近跟着网易云课堂的JS学习视频的案例篇实现了一个类似这样的界面：" class="headerlink" title="最近跟着网易云课堂的JS学习视频的案例篇实现了一个类似这样的界面："></a>最近跟着<a target="_blank" rel="noopener" href="https://study.163.com/">网易云课堂</a>的JS学习视频的案例篇实现了一个类似这样的界面：</h3><p><img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20191103100416758.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">示例</span></p>
+<p><strong>实现思路</strong>很简单，大致如下：</p>
+<h3 id="1-首先布局html"><a href="#1-首先布局html" class="headerlink" title="1.首先布局html:"></a>1.首先布局html:</h3><p>仅一个<strong>ul</strong>标签，其余元素之后再通过JS添加</p>
+<h3 id="2-通过js循环添加图片与元素："><a href="#2-通过js循环添加图片与元素：" class="headerlink" title="2.通过js循环添加图片与元素："></a>2.通过js循环添加图片与元素：</h3><figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">var ul=document.get<span class="hljs-constructor">ElementById(&#x27;<span class="hljs-params">ps</span>&#x27;)</span>;<br><span class="hljs-keyword">for</span>(<span class="hljs-keyword">let</span> i=<span class="hljs-number">1</span>;i&lt;=<span class="hljs-number">10</span>;i++)&#123;<br>var li=document.create<span class="hljs-constructor">Element(&#x27;<span class="hljs-params">li</span>&#x27;)</span>;<br>ul.append<span class="hljs-constructor">Child(<span class="hljs-params">li</span>)</span>;<br>var img=document.create<span class="hljs-constructor">Element(&#x27;<span class="hljs-params">img</span>&#x27;)</span>;<br>img.set<span class="hljs-constructor">Attribute(&#x27;<span class="hljs-params">src</span>&#x27;,&#x27;<span class="hljs-params">img</span><span class="hljs-operator">/</span>&#x27;+<span class="hljs-params">i</span>+&#x27;.<span class="hljs-params">jpg</span>&#x27;)</span>;<br>li.append<span class="hljs-constructor">Child(<span class="hljs-params">img</span>)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这里通过循环写入新的元素，省去了html定义重复元素的麻烦，但是注意<strong>图片格式要统一命名</strong>，以序号区分</p>
+<h3 id="3-定义CSS样式："><a href="#3-定义CSS样式：" class="headerlink" title="3.定义CSS样式："></a>3.定义CSS样式：</h3><p>个人对CSS的理解薄弱，不停地面向百度写CSS<br>所以在实现这个CSS界面的时候，感觉到了吃力，但是学习的过程本该如此</p>
+<blockquote>
+<p>“我本凡尘，然心向天空。”</p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs css">    <br>*&#123;<br>    <span class="hljs-attribute">margin</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">padding</span>: <span class="hljs-number">0</span>;<br>    <span class="hljs-attribute">border</span>: none;<br>    <span class="hljs-attribute">list-style</span>: none;<span class="hljs-comment">/*去掉点点*/</span><br>    <span class="hljs-attribute">background</span>: <span class="hljs-built_in">url</span>(<span class="hljs-string">img/beijing.jpg</span>) no-repeat;<br>    <span class="hljs-attribute">background-size</span>:cover;<br>    back;<br>&#125;<br><br><span class="hljs-selector-tag">html</span>,<span class="hljs-selector-tag">body</span>,<span class="hljs-selector-tag">ul</span>&#123;<br>    <span class="hljs-attribute">width</span>: <span class="hljs-number">100%</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100%</span>;<br>&#125;<br><br><span class="hljs-selector-id">#ps</span>&#123;<br>    <span class="hljs-attribute">position</span>: relative;<br>&#125;<br><span class="hljs-selector-id">#ps</span> <span class="hljs-selector-tag">li</span>&#123;<br>    <span class="hljs-attribute">width</span>:<span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>    <span class="hljs-attribute">box-shadow</span>: <span class="hljs-number">0</span> <span class="hljs-number">0</span> <span class="hljs-number">10px</span> <span class="hljs-number">#000</span>;<br>    <span class="hljs-attribute">position</span>:absolute;<br>    <span class="hljs-attribute">transition</span>: all <span class="hljs-number">1s</span>;<br>&#125;<br><span class="hljs-selector-id">#ps</span> <span class="hljs-selector-tag">li</span><span class="hljs-selector-class">.current</span>&#123;<br>    <span class="hljs-attribute">left</span>:<span class="hljs-number">50%</span> <span class="hljs-meta">!important</span>;<br>    <span class="hljs-attribute">top</span>:<span class="hljs-number">50%</span> <span class="hljs-meta">!important</span>;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">rotate</span>(<span class="hljs-number">0deg</span>) <span class="hljs-built_in">translate</span>(-<span class="hljs-number">50%</span>,-<span class="hljs-number">50%</span>) <span class="hljs-built_in">scale</span>(<span class="hljs-number">2</span>,<span class="hljs-number">2</span>) <span class="hljs-meta">!important</span>;<br>    <span class="hljs-attribute">z-index</span>: <span class="hljs-number">99</span>;<br>&#125;<br><span class="hljs-selector-tag">img</span> &#123;<br>    <span class="hljs-attribute">width</span>:<span class="hljs-number">200px</span>;<br>&#125;<br>        <br></code></pre></td></tr></table></figure>
+
+<h3 id="4-随机将元素分配到屏幕的各个位置并设置CSS属性："><a href="#4-随机将元素分配到屏幕的各个位置并设置CSS属性：" class="headerlink" title="4.随机将元素分配到屏幕的各个位置并设置CSS属性："></a>4.随机将元素分配到屏幕的各个位置并设置CSS属性：</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs routeros">var <span class="hljs-attribute">allLis</span>=ul.children;<br><br>var <span class="hljs-attribute">screenW</span>=document.documentElement.clientWidth-250;<br>var <span class="hljs-attribute">screenH</span>=document.documentElement.clientHeight-300;<br><br><span class="hljs-keyword">for</span>(let <span class="hljs-attribute">i</span>=0;i<br></code></pre></td></tr></table></figure>
+
+<p>``</p>
+<p>首先通过allLis获取到ul的子标签，也就是我们第二步添加的li标签</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">var</span> screenW=<span class="hljs-built_in">document</span>.documentElement.clientWidth<span class="hljs-number">-250</span>;<br><span class="hljs-keyword">var</span> screenH=<span class="hljs-built_in">document</span>.documentElement.clientHeight<span class="hljs-number">-300</span>;<br></code></pre></td></tr></table></figure>
+
+<p>通过<strong>screenW</strong>和<strong>screenH</strong>获取到屏幕的大小，从而进行接下来的随机分配位置<br>这里用到了<strong>underscore.js</strong>这个库，实际上可以通过内置的<strong>Math</strong>对象实现相同的操作。</p>
+<h3 id="5-通过JS的onmouseover事件设置鼠标当前所指的元素"><a href="#5-通过JS的onmouseover事件设置鼠标当前所指的元素" class="headerlink" title="5.通过JS的onmouseover事件设置鼠标当前所指的元素"></a>5.通过JS的onmouseover事件设置鼠标当前所指的元素</h3><figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs routeros">li.<span class="hljs-attribute">onmouseover</span>=function()&#123;<br>                        <span class="hljs-keyword">for</span>(let <span class="hljs-attribute">j</span>=0;j<br></code></pre></td></tr></table></figure>
+
+<p>`</p>
+<p>这里是写在循环中的，用于监听点击事件，并将当前所指的<strong>CSS</strong>属性进行调整。</p>
+<p>大致思路就是上述内容，代码简单而且容易实现，写下这篇博客其实是为了熟悉<strong>markdown</strong>的使用，不足之处还望海涵。</p>
+<p>` ``</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/01/17/%E5%8E%9F%E7%94%9Fjavascript%E5%AE%9E%E7%8E%B0%E7%85%A7%E7%89%87%E5%A2%99/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;01&#x2F;17&#x2F;%E5%8E%9F%E7%94%9Fjavascript%E5%AE%9E%E7%8E%B0%E7%85%A7%E7%89%87%E5%A2%99&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;01&#x2F;17&#x2F;%E5%8E%9F%E7%94%9Fjavascript%E5%AE%9E%E7%8E%B0%E7%85%A7%E7%89%87%E5%A2%99&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/01/17/html%E5%88%A9%E7%94%A8%E6%A0%87%E7%AD%BE%E6%8E%A5%E5%85%A5b%E7%AB%99%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD/"><i class="iconfont iconleft"></i>HTML利用标签接入B站搜索功能</a>
+    <a></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%8E%9F%E7%94%9FJavascript%E5%AE%9E%E7%8E%B0%E7%85%A7%E7%89%87%E5%A2%99"><span class="toc-text">原生Javascript实现照片墙</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E8%BF%91%E8%B7%9F%E7%9D%80%E7%BD%91%E6%98%93%E4%BA%91%E8%AF%BE%E5%A0%82%E7%9A%84JS%E5%AD%A6%E4%B9%A0%E8%A7%86%E9%A2%91%E7%9A%84%E6%A1%88%E4%BE%8B%E7%AF%87%E5%AE%9E%E7%8E%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E7%B1%BB%E4%BC%BC%E8%BF%99%E6%A0%B7%E7%9A%84%E7%95%8C%E9%9D%A2%EF%BC%9A"><span class="toc-text">最近跟着网易云课堂的JS学习视频的案例篇实现了一个类似这样的界面：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%A6%96%E5%85%88%E5%B8%83%E5%B1%80html"><span class="toc-text">1.首先布局html:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E9%80%9A%E8%BF%87js%E5%BE%AA%E7%8E%AF%E6%B7%BB%E5%8A%A0%E5%9B%BE%E7%89%87%E4%B8%8E%E5%85%83%E7%B4%A0%EF%BC%9A"><span class="toc-text">2.通过js循环添加图片与元素：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E5%AE%9A%E4%B9%89CSS%E6%A0%B7%E5%BC%8F%EF%BC%9A"><span class="toc-text">3.定义CSS样式：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%9A%8F%E6%9C%BA%E5%B0%86%E5%85%83%E7%B4%A0%E5%88%86%E9%85%8D%E5%88%B0%E5%B1%8F%E5%B9%95%E7%9A%84%E5%90%84%E4%B8%AA%E4%BD%8D%E7%BD%AE%E5%B9%B6%E8%AE%BE%E7%BD%AECSS%E5%B1%9E%E6%80%A7%EF%BC%9A"><span class="toc-text">4.随机将元素分配到屏幕的各个位置并设置CSS属性：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E9%80%9A%E8%BF%87JS%E7%9A%84onmouseover%E4%BA%8B%E4%BB%B6%E8%AE%BE%E7%BD%AE%E9%BC%A0%E6%A0%87%E5%BD%93%E5%89%8D%E6%89%80%E6%8C%87%E7%9A%84%E5%85%83%E7%B4%A0"><span class="toc-text">5.通过JS的onmouseover事件设置鼠标当前所指的元素</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

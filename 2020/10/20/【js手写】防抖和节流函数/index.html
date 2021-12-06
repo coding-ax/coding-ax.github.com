@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【js手写】防抖和节流函数 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="防抖和节流1.防抖1.1 防抖的概念防抖：当某个事件触...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【js手写】防抖和节流函数</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E9%95%BF%E5%8F%91%E5%B0%91%E5%A5%B3%E5%88%9D%E9%9F%B3%E6%9C%AA%E6%9D%A54k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【js手写】防抖和节流函数</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 20, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2140</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="防抖和节流"><a href="#防抖和节流" class="headerlink" title="防抖和节流"></a>防抖和节流</h1><h2 id="1-防抖"><a href="#1-防抖" class="headerlink" title="1.防抖"></a>1.防抖</h2><h3 id="1-1-防抖的概念"><a href="#1-1-防抖的概念" class="headerlink" title="1.1 防抖的概念"></a>1.1 防抖的概念</h3><p>防抖：当某个事件触发的<strong>频率过高</strong>时，为了<strong>避免不必要的性能开销</strong>，我们规定这个事件触发后，需要<strong>等待一段时间再执行其绑定的逻辑代码</strong>，如果在这一段时间内，该事件没有再次触发，就执行这个事件对应的逻辑，否则就<strong>重新进行计时等待</strong>，确保该事件不被过于频繁的触发。 比如我们为鼠标的移动绑定一个事件，显然这个事件会被过于频繁的触发，势必会带来很大的开销，甚至影响到UI的渲染，导致页面卡顿。</p>
+<h3 id="1-2-实现思路"><a href="#1-2-实现思路" class="headerlink" title="1.2 实现思路"></a>1.2 实现思路</h3><ol>
+<li> 构建一个debouce函数，这个函数中保存一个timeout变量用于记录设置的定时器状态，利用这个变量用于判断该事件的触发状态。</li>
+<li> 设置计时器来控制函数触发，并设置判断逻辑：</li>
+</ol>
+<p>- 当前对应逻辑函数首次触发，那么我们为其设置定时器，并将其保存到timeout变量 - 当对应逻辑函数已经进入计时阶段，那么我们在还没有逻辑函数触发前，清除设置过的定时器，并重新定时器进行定时</p>
+<h3 id="1-3-实现代码"><a href="#1-3-实现代码" class="headerlink" title="1.3 实现代码"></a>1.3 实现代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 防抖: 一个函数 在设置的时间后执行 如果在设置的时间间隔期间再次触发 那么本次就无效 重新计算</span><br><span class="hljs-comment">// 触发高频时间后n秒内只会执行一次 如果n秒高频时间内再次触发 则会重新计算时间</span><br><span class="hljs-comment">// 原理 debounce 触发后 首先清除掉timeout（释放 指向空） 然后返回节流数组 利用闭包保存timeout变量 </span><br><span class="hljs-keyword">const</span> debounce = <span class="hljs-function">(<span class="hljs-params">fn, time</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 利用闭包避免全局污染</span><br>    <span class="hljs-keyword">let</span> timeout = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (timeout) &#123;<br>            <span class="hljs-comment">// 在定时期间，那么清除原来计时器 重新计时(核心)</span><br>            <span class="hljs-built_in">clearTimeout</span>(timeout);<br>        &#125;<br>        <span class="hljs-comment">// 设置定时器</span><br>        timeout = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-comment">// 执行函数</span><br>            fn.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>)<br>        &#125;, time);<br>    &#125;<br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">clickButton</span>(<span class="hljs-params">type</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(type)<br>&#125;<br><span class="hljs-comment">//注意要绑定的事件一定是经过debouce处理过的事件，另外不能直接绑定debouce(clickButton,1000)(&#x27;防抖&#x27;) 因为这样绑定的函数都是重新在堆里开辟的新函数，每个都会创建新的timeout（不再是闭包中被保护的timeout）</span><br><span class="hljs-keyword">const</span> bindClick = debounce(clickButton, <span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
+
+<p>html部分： <a href="https://xgpax.top/wp-content/uploads/2020/10/wp_editor_md_e74400e63a5481375081920e3ceb08e7.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/10/wp_editor_md_e74400e63a5481375081920e3ceb08e7.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a></p>
+<h2 id="2-节流"><a href="#2-节流" class="headerlink" title="2.节流"></a>2.节流</h2><h3 id="2-1-节流的概念"><a href="#2-1-节流的概念" class="headerlink" title="2.1 节流的概念"></a>2.1 节流的概念</h3><p>节流和上述防抖的思路类似，它们的不同点是，防抖在事件一直触发的时候是不会执行逻辑的（必须等待对应时间不再次触发事件），而节流则是按照规定时间，必定再次触发。 打个比方： - <strong>防抖的场景：小谢催小尹还钱，小尹决定三天后还小谢的钱，但是小谢催款的话，小尹就重新计算这个三天的期限，20号催款，23还，21号再催，就24号还。除非小谢这三天没有催小尹还钱</strong>。 - <strong>节流的场景：小尹催小谢还钱，小谢决定三天内还小尹的钱，就算小尹这三天怎么催，小谢都会在第一次听到要还钱后的第三天，把钱还了。20号第一次催款，不论21，22号有没有催，小谢都会在23号把钱还给小尹。（小谢真好）</strong></p>
+<h3 id="2-2-实现思路"><a href="#2-2-实现思路" class="headerlink" title="2.2 实现思路"></a>2.2 实现思路</h3><ul>
+<li>  与防抖类似，但是这次我们换用一个闸门：status来保存该事件是否已经触发。如果没有触发，那就设置定时器，将其闸门标记修改，如果已经触发，那就直接返回，不进行操作。</li>
+</ul>
+<h3 id="2-3-实现代码"><a href="#2-3-实现代码" class="headerlink" title="2.3 实现代码"></a>2.3 实现代码</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 节流 ：重新触发不影响 原计时器 </span><br><span class="hljs-keyword">const</span> throttle = <span class="hljs-function">(<span class="hljs-params">fn, time</span>) =&gt;</span> &#123;<br>    <span class="hljs-comment">// 利用闭包 保存当前激活状态</span><br>    <span class="hljs-keyword">let</span> status = <span class="hljs-literal">false</span>;<br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">if</span> (status) &#123;<br>            <span class="hljs-keyword">return</span>;<br>        &#125;<br>        <span class="hljs-keyword">else</span> &#123;<br>            status = <span class="hljs-literal">true</span>;<br>            <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>                fn.apply(<span class="hljs-built_in">this</span>, <span class="hljs-built_in">arguments</span>);<br>                <span class="hljs-comment">// 重置status</span><br>                status = <span class="hljs-literal">false</span>;<br>            &#125;, time);<br>        &#125;<br>    &#125;<br>&#125;<br><span class="hljs-keyword">const</span> bindClick2 = throttle(clickButton, <span class="hljs-number">1000</span>);<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/10/20/%E3%80%90js%E6%89%8B%E5%86%99%E3%80%91%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;10&#x2F;20&#x2F;%E3%80%90js%E6%89%8B%E5%86%99%E3%80%91%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;10&#x2F;20&#x2F;%E3%80%90js%E6%89%8B%E5%86%99%E3%80%91%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/11/15/%E3%80%90%E7%BB%83%E4%B9%A0%E5%B0%8Fdemo%E3%80%91%E4%BD%BF%E7%94%A8reactts%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%8B%96%E5%8A%A8%E6%8D%A2%E4%BD%8D%E7%BD%AE%E6%95%88%E6%9E%9C%EF%BC%88%E5%90%8C/"><i class="iconfont iconleft"></i>【练习小demo】使用React+TS实现一个拖动换位置效果（同时应用节流）</a>
+    <a href="/2020/10/09/%E3%80%8A%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E3%80%8B-%E8%AF%BB%E5%90%8E%E6%84%9F/">《人人都是产品经理》 读后感<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81"><span class="toc-text">防抖和节流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%98%B2%E6%8A%96"><span class="toc-text">1.防抖</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-%E9%98%B2%E6%8A%96%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">1.1 防抖的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">1.2 实现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-text">1.3 实现代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%8A%82%E6%B5%81"><span class="toc-text">2.节流</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-%E8%8A%82%E6%B5%81%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-text">2.1 节流的概念</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-%E5%AE%9E%E7%8E%B0%E6%80%9D%E8%B7%AF"><span class="toc-text">2.2 实现思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-%E5%AE%9E%E7%8E%B0%E4%BB%A3%E7%A0%81"><span class="toc-text">2.3 实现代码</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

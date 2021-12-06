@@ -1,0 +1,372 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【js系列】如何手写一个call,apply以及bind - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="如何手写一个call,apply以及bind首先我们对...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【js系列】如何手写一个call,apply以及bind</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%A5%B3%E5%AD%A9%20%E9%97%AD%E7%9C%BC%20%E5%B8%BD%E5%AD%90%204k%E5%94%AF%E7%BE%8E%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【js系列】如何手写一个call,apply以及bind</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 06, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4291</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="如何手写一个call-apply以及bind"><a href="#如何手写一个call-apply以及bind" class="headerlink" title="如何手写一个call,apply以及bind"></a>如何手写一个call,apply以及bind</h1><p>首先我们对于call,apply以及bind三个函数的区别已经做了分析，具体请查看前文</p>
+<p>函数</p>
+<p>参数形式</p>
+<p>返回值</p>
+<p>call</p>
+<p>第一个参数为this要指向的对象，后面的参数同函数保持一致即可。</p>
+<p>立即执行，返回值即函数返回值。</p>
+<p>apply</p>
+<p>第一个参数为this要指向的对象，第二个参数为组织成数组形式的函数参数列表。</p>
+<p>立即执行，返回值即函数返回值。</p>
+<p>bind</p>
+<p>第一个参数为this要指向的对象，后面的参数同函数保持一致即可。</p>
+<p>返回一个绑定好第一个参数和后序参数的函数，需要接收然后再执行。</p>
+<h2 id="1-手写call"><a href="#1-手写call" class="headerlink" title="1.手写call"></a>1.手写call</h2><p>改变this的核心思想在于：谁调用函数，this指向谁。 所以我们需要为传入的对象绑定上一个fn属性，这个fn属性指向要执行的函数。 然后通过obj.fn()的形式调用，这样this也就指向了当前传入的obj对象。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 手写一个call</span><br>       <span class="hljs-built_in">Function</span>.prototype.myCall = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;<br>           <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">this</span> !== <span class="hljs-string">&quot;function&quot;</span>) &#123;<br>               <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&quot;this isn&#x27;t function&quot;</span>);<br>           &#125;<br>           <span class="hljs-comment">// 如果context为空 就默认指向window</span><br>           context = context  <span class="hljs-built_in">window</span>;<br>           <span class="hljs-comment">// 将函数（因为此时是Function.prototype调用的函数，所以this指向的就是该函数）挂载到对象上</span><br>           context.fn = <span class="hljs-built_in">this</span>;<br>           <span class="hljs-comment">// 获取参数</span><br>           <span class="hljs-keyword">let</span> args = <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">arguments</span>).slice(<span class="hljs-number">1</span>);<br>           <span class="hljs-comment">// 执行并拿到返回结果</span><br>           <span class="hljs-keyword">let</span> result = context.fn(...args);<br>           <span class="hljs-comment">// 清除其属性</span><br>           <span class="hljs-keyword">delete</span> context.fn;<br>           <span class="hljs-comment">// 返回结果</span><br>           <span class="hljs-keyword">return</span> result;<br>       &#125;<br>       <span class="hljs-keyword">let</span> obj = &#123;<br>           <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ax&quot;</span><br>       &#125;<br>       <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">...args</span>) </span>&#123;<br>           <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>           <span class="hljs-built_in">console</span>.log(...args)<br>           <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);<br>       &#125;<br>       print.myCall(obj, <span class="hljs-string">&quot;name&quot;</span>, <span class="hljs-string">&quot;mydear&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>结果: <img   class="lazyload" data-original="https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/1ba7a2b7dd484255b0437f2dab667db6~tplv-k3u1fbpfcp-zoom-1.image" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+<h2 id="2-手写apply"><a href="#2-手写apply" class="headerlink" title="2.手写apply"></a>2.手写apply</h2><p>apply和call的区别就在于参数的处理：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">Function</span>.prototype.myApply = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">this</span> !== <span class="hljs-string">&quot;function&quot;</span>) &#123;<br>        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&quot;this is not function&quot;</span>)<br>    &#125;<br>    <span class="hljs-comment">// 获取当前的context</span><br>    context = context  <span class="hljs-built_in">window</span>;<br>    <span class="hljs-comment">// 判断参数</span><br>    <span class="hljs-keyword">let</span> args = <span class="hljs-literal">null</span>;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>] != <span class="hljs-literal">null</span>) &#123;<br>        args = <span class="hljs-built_in">arguments</span>[<span class="hljs-number">1</span>];<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        args = [];<br>    &#125;<br>    <span class="hljs-comment">// 挂载函数</span><br>    context.fn = <span class="hljs-built_in">this</span>;<br>    <span class="hljs-keyword">let</span> result = context.fn(...args);<br>    <span class="hljs-comment">//移除属性</span><br>    <span class="hljs-keyword">delete</span> context.fn;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br><span class="hljs-keyword">let</span> obj = &#123;<br>    <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ax&quot;</span><br>&#125;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">...args</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>);<br>    <span class="hljs-built_in">console</span>.log(...args)<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);<br>&#125;<br>print.myApply(obj, <span class="hljs-string">&quot;ok&quot;</span>, <span class="hljs-string">&quot;test&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<h2 id="3-手写bind"><a href="#3-手写bind" class="headerlink" title="3.手写bind"></a>3.手写bind</h2><p>bind的返回结果是一个函数，而函数的调用有两种方式： 一种是直接调用，另一种则是通过new调用，这里需要进行不同的处理</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// bind返回的是一个函数 而函数的调用有两种方式</span><br>      <span class="hljs-comment">// 第一种是直接调用，另一种则是通过new调用</span><br>      <span class="hljs-comment">// 而在这两种方式中，如果使用new调用，那么当前的this指向的就是这个函数对象函数返回对象</span><br>      <span class="hljs-comment">// 对于这种情况 我们不需要再为其绑定this，因为this已经指向了其要指向的目标</span><br><br>      <span class="hljs-comment">// context :要bind的对象</span><br>      <span class="hljs-built_in">Function</span>.prototype.myBind = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">context</span>) </span>&#123;<br>          <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">this</span> !== <span class="hljs-string">&quot;function&quot;</span>) &#123;<br>              <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&quot;this is not a function&quot;</span>);<br>          &#125;<br>          <span class="hljs-comment">// bind的返回值是一个函数 这个函数可以通过new调用，也可以直接调用</span><br>          <span class="hljs-comment">// 提取bind的参数,因为第一个是context对象 所以需要分割</span><br>          <span class="hljs-keyword">const</span> args = <span class="hljs-built_in">Array</span>.from(<span class="hljs-built_in">arguments</span>).slice(<span class="hljs-number">1</span>);<br>          <span class="hljs-comment">// 获取context,如果没有就指向为window</span><br>          context = context  <span class="hljs-built_in">window</span>;<br>          <span class="hljs-comment">// 用_this变量保存当前的函数（在当前作用域this指向的就是函数体本身）</span><br>          <span class="hljs-keyword">const</span> _this = <span class="hljs-built_in">this</span>;<br>          <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>) </span>&#123;<br>              <span class="hljs-comment">// 返回的函数中 如果this的原型链上有F，说明是通过new进行调用的，那么我们不需要为其绑定this</span><br>              <span class="hljs-comment">// 否则就是直接调用，那么我们需要为其绑定this</span><br>              <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span> <span class="hljs-keyword">instanceof</span> F) &#123;<br>                  <span class="hljs-keyword">return</span> _this(...args);<br>              &#125; <span class="hljs-keyword">else</span> &#123;<br>                  <span class="hljs-keyword">return</span> _this.apply(context, args);<br>              &#125;<br>          &#125;<br>      &#125;<br><br>      <span class="hljs-comment">// 测试用例</span><br>      <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">print</span>(<span class="hljs-params">name, age</span>) </span>&#123;<br>          <span class="hljs-keyword">if</span> (name &amp;&amp; age) &#123;<br>              <span class="hljs-built_in">this</span>.name = name;<br>              <span class="hljs-built_in">this</span>.age = age;<br>          &#125;<br>          <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`hi,I am <span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.name&#125;</span>,I am <span class="hljs-subst">$&#123;<span class="hljs-built_in">this</span>.age&#125;</span> years old!`</span>);<br>      &#125;<br>      <span class="hljs-keyword">let</span> obj = &#123;<br>          <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;ax&quot;</span>,<br>          <span class="hljs-attr">age</span>: <span class="hljs-number">20</span><br>      &#125;<br>      <span class="hljs-keyword">let</span> obj2 = &#123;<br>          <span class="hljs-attr">name</span>: <span class="hljs-string">&quot;kime&quot;</span>,<br>          <span class="hljs-attr">age</span>: <span class="hljs-number">19</span><br>      &#125;<br>      <span class="hljs-comment">// 直接调用</span><br>      <span class="hljs-built_in">console</span>.log( obj) <span class="hljs-comment">//&#123;name: &quot;ax&quot;, age: 20&#125;</span><br>      <span class="hljs-keyword">let</span> f1 = print.myBind(obj);<br>      f1(); <span class="hljs-comment">//hi,I am ax,I am 20 years old!</span><br>      <span class="hljs-comment">// 直接调用参数改变</span><br>      f2 = print.myBind(obj, <span class="hljs-string">&quot;AX&quot;</span>, <span class="hljs-number">21</span>);<br>      <span class="hljs-comment">// 执行f</span><br>      f2();<span class="hljs-comment">//hi,I am AX,I am 21 years old!</span><br>      <span class="hljs-comment">// 打印看obj是否也发生了变化:确实发生了变化</span><br>      <span class="hljs-built_in">console</span>.log(obj);<span class="hljs-comment">//&#123;name: &quot;AX&quot;, age: 21&#125;</span><br><br>      <span class="hljs-comment">//通过new调用</span><br>      <span class="hljs-keyword">let</span> f3 = print.myBind(obj, <span class="hljs-string">&quot;AX&quot;</span>, <span class="hljs-number">30</span>);<br>      <span class="hljs-keyword">let</span> funcObj = <span class="hljs-keyword">new</span> f3();<br>      <span class="hljs-built_in">console</span>.log(funcObj)<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/10/06/%E3%80%90js%E7%B3%BB%E5%88%97%E3%80%91%E5%A6%82%E4%BD%95%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcallapply%E4%BB%A5%E5%8F%8Abind/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;10&#x2F;06&#x2F;%E3%80%90js%E7%B3%BB%E5%88%97%E3%80%91%E5%A6%82%E4%BD%95%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcallapply%E4%BB%A5%E5%8F%8Abind&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;10&#x2F;06&#x2F;%E3%80%90js%E7%B3%BB%E5%88%97%E3%80%91%E5%A6%82%E4%BD%95%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcallapply%E4%BB%A5%E5%8F%8Abind&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/10/09/%E3%80%8A%E4%BA%BA%E4%BA%BA%E9%83%BD%E6%98%AF%E4%BA%A7%E5%93%81%E7%BB%8F%E7%90%86%E3%80%8B-%E8%AF%BB%E5%90%8E%E6%84%9F/"><i class="iconfont iconleft"></i>《人人都是产品经理》 读后感</a>
+    <a href="/2020/10/06/%E5%A6%82%E4%BD%95%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAnew%E6%95%88%E6%9E%9C/">【JS系列】如何模拟实现一个new效果<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A6%82%E4%BD%95%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AAcall-apply%E4%BB%A5%E5%8F%8Abind"><span class="toc-text">如何手写一个call,apply以及bind</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%89%8B%E5%86%99call"><span class="toc-text">1.手写call</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E6%89%8B%E5%86%99apply"><span class="toc-text">2.手写apply</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E6%89%8B%E5%86%99bind"><span class="toc-text">3.手写bind</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

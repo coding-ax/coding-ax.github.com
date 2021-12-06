@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>通过Array.from和递归实现深拷贝 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="Array.from的作用以及通过Array.from...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">通过Array.from和递归实现深拷贝</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/lovelive%20%E5%8D%97%E5%B0%8F%E9%B8%9F4k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">通过Array.from和递归实现深拷贝</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 03, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2100</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h1 id="Array-from的作用以及通过Array-from递归实现深拷贝"><a href="#Array-from的作用以及通过Array-from递归实现深拷贝" class="headerlink" title="Array.from的作用以及通过Array.from递归实现深拷贝"></a>Array.from的作用以及通过Array.from递归实现深拷贝</h1><h2 id="一、作用"><a href="#一、作用" class="headerlink" title="一、作用"></a>一、作用</h2><p>Array.from:将一个可迭代对象转换为数组并将其返回</p>
+<h2 id="二、参数说明"><a href="#二、参数说明" class="headerlink" title="二、参数说明"></a>二、参数说明</h2><p>第一个参数 目标迭代对象 第二个参数map函数(作用同map) 第三个参数map回调使用的this对象</p>
+<h2 id="三、Array-from的浅拷贝"><a href="#三、Array-from的浅拷贝" class="headerlink" title="三、Array.from的浅拷贝"></a>三、Array.from的浅拷贝</h2><h3 id="浅拷贝概念与原理"><a href="#浅拷贝概念与原理" class="headerlink" title="浅拷贝概念与原理"></a>浅拷贝概念与原理</h3><p>浅拷贝：在JavaScript语言中，数据类型被定义在栈和堆中，其中基本数据类型：<code>Number</code>,<code>String</code>,<code>Symbol</code>,<code>BigInt</code>,<code>undefined</code>,<code>null</code>都是定义在栈上，对其进行赋值和修改操作都是直接在栈上进行操作。 而唯一的引用数据类型:<code>object</code>在使用的时候是：先在堆里开辟一片空间用于存放其数据，随后在栈上开辟一个指针并将其指向堆里开辟的空间。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj = &#123;<br>    <span class="hljs-attr">a</span>:<span class="hljs-number">1</span><br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>如上所示的代码，实际上obj变量中，存的是一个指针，这个指针指向堆中存放的代表<code>&#123;a:1&#125;</code>的底层二进制数据 浅拷贝，也就是变量赋值时，仅是复制了一份程序栈中的指针（地址），而非在堆里重新申请空间，这样，当我们改变堆里数据的属性，就会改变所有指针指向其中的变量。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">let</span> obj1 = &#123;<br>    <span class="hljs-attr">a</span>:<span class="hljs-number">1</span><br>&#125;;<br><span class="hljs-keyword">let</span> obj2 = obj1;<br>obj2.b = <span class="hljs-number">2</span>;<br><span class="hljs-built_in">console</span>.log(obj===obj2) <span class="hljs-comment">//true</span><br><span class="hljs-built_in">console</span>.log(obj1); <span class="hljs-comment">//&#123;a:1,b:2&#125;</span><br><span class="hljs-built_in">console</span>.log(obj2); <span class="hljs-comment">//&#123;a:1,b:2&#125;</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="浅拷贝在Array-from中的体现"><a href="#浅拷贝在Array-from中的体现" class="headerlink" title="浅拷贝在Array.from中的体现"></a>浅拷贝在Array.from中的体现</h3><p>使用Array.from直接返回的数组，基本数据类型是拷贝了一份，不会被影响。但是数组内部的引用数据类型是浅拷贝，也就是拷贝下来的仍然是一个指针，而非在堆栈上创建一个新数组，当对其进行更改时会影响到另一个对象的数据元素</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;--------我是一条分割线:浅拷贝第一次打印---------&#x27;</span>);<br><span class="hljs-keyword">let</span> arr1 = [<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]];<br><span class="hljs-keyword">let</span> newArr1 = <span class="hljs-built_in">Array</span>.from(arr1);<br><span class="hljs-built_in">console</span>.log(arr1);<br><span class="hljs-built_in">console</span>.log(newArr1);<br><span class="hljs-comment">// 避免因为console.log打印的异步特性导致打印成同一个模样</span><br><span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;--------我是一条分割线:浅拷贝第二次打印---------&#x27;</span>);<br>    <span class="hljs-comment">// 进行操作</span><br>    arr1.push(<span class="hljs-number">6</span>);<br>    arr1[<span class="hljs-number">1</span>].push(<span class="hljs-number">4</span>);<br>    newArr1.push(<span class="hljs-number">0</span>);<br>    newArr1[<span class="hljs-number">2</span>].push(<span class="hljs-number">9</span>);<br>    <span class="hljs-comment">// 打印更改后的数据检测是否是深拷贝</span><br>    <span class="hljs-built_in">console</span>.log(arr1);<br>    <span class="hljs-built_in">console</span>.log(newArr1);<br>&#125;, <span class="hljs-number">500</span>)<br></code></pre></td></tr></table></figure>
+
+<p>结果： <a href="https://xgpax.top/wp-content/uploads/2020/10/wp_editor_md_ac194e4900a8ccac1886646504ab7441.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/10/wp_editor_md_ac194e4900a8ccac1886646504ab7441.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a></p>
+<h3 id="利用第二个参数递归实现深拷贝"><a href="#利用第二个参数递归实现深拷贝" class="headerlink" title="利用第二个参数递归实现深拷贝"></a>利用第二个参数递归实现深拷贝</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;--------我是一条分割线：深拷贝第一次打印---------&#x27;</span>);<br>        <span class="hljs-comment">// 如何使用Array.from实现一个深拷贝?</span><br>        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">deepClone</span>(<span class="hljs-params">val</span>) </span>&#123;<br>            <span class="hljs-keyword">return</span> <span class="hljs-built_in">Array</span>.isArray(val) ? <span class="hljs-built_in">Array</span>.from(val, deepClone) : val<br>        &#125;<br>        <span class="hljs-keyword">let</span> arr = [<span class="hljs-number">1</span>, [<span class="hljs-number">2</span>, <span class="hljs-number">3</span>], [<span class="hljs-number">4</span>, <span class="hljs-number">5</span>]];<br>        <span class="hljs-keyword">let</span> newArr = <span class="hljs-built_in">Array</span>.from(arr, deepClone);<br>        <span class="hljs-built_in">console</span>.log(arr);<br>        <span class="hljs-built_in">console</span>.log(newArr);<br>        <span class="hljs-comment">// 避免因为console.log打印的异步特性导致打印成同一个模样</span><br>        <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-string">&#x27;--------我是一条分割线：深拷贝第二次打印---------&#x27;</span>);<br>            <span class="hljs-comment">// 进行操作</span><br>            arr.push(<span class="hljs-number">6</span>);<br>            arr[<span class="hljs-number">1</span>].push(<span class="hljs-number">4</span>);<br>            newArr.push(<span class="hljs-number">0</span>);<br>            newArr[<span class="hljs-number">2</span>].push(<span class="hljs-number">9</span>);<br>            <span class="hljs-comment">// 打印更改后的数据检测是否是深拷贝</span><br>            <span class="hljs-built_in">console</span>.log(arr);<br>            <span class="hljs-built_in">console</span>.log(newArr);<br>        &#125;, <span class="hljs-number">1000</span>)<br></code></pre></td></tr></table></figure>
+
+<p>结果： <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/10/UH755YB22RKDACPD1Z.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/10/03/array-from%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87array-from%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E6%B7%B1%E6%8B%B7%E8%B4%9D/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;10&#x2F;03&#x2F;array-from%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87array-from%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E6%B7%B1%E6%8B%B7%E8%B4%9D&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;10&#x2F;03&#x2F;array-from%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87array-from%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E6%B7%B1%E6%8B%B7%E8%B4%9D&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/10/04/this%E7%9A%84%E5%9B%9B%E7%A7%8D%E6%8C%87%E5%90%91%E5%92%8C%E4%B8%89%E7%A7%8D%E6%94%B9%E5%8F%98%E6%96%B9%E6%B3%95/"><i class="iconfont iconleft"></i>【js系列】this的四种指向和三种改变方法</a>
+    <a href="/2020/10/01/vue3%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E4%B8%80-%E5%88%9B%E5%BB%BAvue3%E9%A1%B9%E7%9B%AE/">【Vue3学习笔记】(一) 创建Vue3项目<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Array-from%E7%9A%84%E4%BD%9C%E7%94%A8%E4%BB%A5%E5%8F%8A%E9%80%9A%E8%BF%87Array-from%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text">Array.from的作用以及通过Array.from递归实现深拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BD%9C%E7%94%A8"><span class="toc-text">一、作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E"><span class="toc-text">二、参数说明</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Array-from%E7%9A%84%E6%B5%85%E6%8B%B7%E8%B4%9D"><span class="toc-text">三、Array.from的浅拷贝</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D%E6%A6%82%E5%BF%B5%E4%B8%8E%E5%8E%9F%E7%90%86"><span class="toc-text">浅拷贝概念与原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%85%E6%8B%B7%E8%B4%9D%E5%9C%A8Array-from%E4%B8%AD%E7%9A%84%E4%BD%93%E7%8E%B0"><span class="toc-text">浅拷贝在Array.from中的体现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%A9%E7%94%A8%E7%AC%AC%E4%BA%8C%E4%B8%AA%E5%8F%82%E6%95%B0%E9%80%92%E5%BD%92%E5%AE%9E%E7%8E%B0%E6%B7%B1%E6%8B%B7%E8%B4%9D"><span class="toc-text">利用第二个参数递归实现深拷贝</span></a></li></ol></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

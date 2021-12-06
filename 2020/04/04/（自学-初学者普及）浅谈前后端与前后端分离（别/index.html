@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>（自学/初学者普及）浅谈前后端与前后端分离（别再说你不懂什么是前后端分离） - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="程序员都在说前后端分离，开发岗位也被很明确的分成了前后...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">（自学/初学者普及）浅谈前后端与前后端分离（别再说你不懂什么是前后端分离）</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E7%A2%A7%E8%93%9D%E8%88%AA%E7%BA%BF%20%E5%B0%91%E5%A5%B3%20%E7%82%B9%E5%BF%83%20%E5%B0%8F%E7%8B%97%20%E5%8F%AF%E4%B9%90%204k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">（自学/初学者普及）浅谈前后端与前后端分离（别再说你不懂什么是前后端分离）</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>April 04, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3526</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>程序员都在说前后端分离，开发岗位也被很明确的分成了前后端工程师，很多大学的刚进入计算机专业的小伙伴和打算进入计算机行业的朋友，通常会有这些问题：</p>
+<ul>
+<li>  究竟<strong>什么是前后端</strong>呢？</li>
+<li><strong>前后端分离</strong>又<strong>是什么</strong>呢？</li>
+<li><strong>为什么</strong>会有所谓的<strong>前后端分离</strong>这一概念呢？</li>
+<li><strong>如何实现前后端分离</strong>呢？</li>
+<li>  前后端各自该做些什么？</li>
+</ul>
+<h4 id="1-1-前端的基本概念："><a href="#1-1-前端的基本概念：" class="headerlink" title="1.1 前端的基本概念："></a>1.1 前端的基本概念：</h4><p>要理解什么是<strong>前后端</strong>，</p>
+<ul>
+<li>首先让我们从最简单的字面意思来理解，前端指的自然就是我们寻常人所见到的软件界面。</li>
+<li>需要注意的是，由于近年来神奇的各种框架，web api的日益完善以及SPA(Single Page Application)等形式的逐渐普及，前端早已不只是单指web的B/S架构，现在的前端已经将“罪恶”的双手伸向了所有的用户体验界面（也就是所谓的Android，ios乃至桌面端）。</li>
+<li>除了web常见的Angular（适合后端人员转前端时学习和使用）,Vue,React,Selvet等MVVM框架以外，由于近几年来H5+app以及微信小程序等形式的逐渐出现与流行，还有uniapp等多端方案的渐渐流行，Electron等开源框架的出现，JavaScript逐渐占领了几乎所有用户界面。</li>
+</ul>
+<p>前端程序员们津津乐道着这样一句话：</p>
+<blockquote>
+<p><strong>凡是可以用 JavaScript 来写的应用，最终都会用 JavaScript 来写。——Atwood定律（Jeff Atwood在2007年提出）</strong></p>
+</blockquote>
+<p>虽然吹嘘，但是不得不承认，JavaScript这门语言确实具有其独特的魅力，也深受众多人的喜爱。 前端，从广义上来讲，泛指一切用户界面，即所有直接同用户进行交互的界面。</p>
+<h4 id="1-2-后端的基本概念："><a href="#1-2-后端的基本概念：" class="headerlink" title="1.2 后端的基本概念："></a>1.2 后端的基本概念：</h4><ul>
+<li>后端，就是指的用户无法触碰的位置，也就是服务器所在的位置，用户无法看到的部分</li>
+<li>后端通常的任务是存储和检索数据，遵循一定的业务逻辑和规则，同数据库（可能位于另一台服务器）进行相关交互（CRUD 增删改查)，对数据进行业务逻辑相关的处理，并将处理结果返回给前端进行展示。</li>
+<li>后端的基本技术通常包括网络请求的接收和解析（即通过URL获知该进行的相关操作），对数据库的增删改查，对各种数据的处理和封装（此部分通常涉及较多的算法知识），主动对其他网络资源的数据进行检索和处理（爬虫）以及其他知识。</li>
+</ul>
+<p>相比在前端处于绝对霸主地位的JavaScript，后端的语言多种多样，但就互联网来说，Java，Python，NodeJs最为常见，使用最为广泛。 而就web而言，各种语言有各自各种各样的框架（Java的SSM,Node的Koa2,Python的Django等等）。</p>
+<h4 id="1-3-AJAX技术："><a href="#1-3-AJAX技术：" class="headerlink" title="1.3 AJAX技术："></a>1.3 AJAX技术：</h4><p>Ajax 即“<strong>A</strong>synchronous <strong>J</strong>avascript <strong>A</strong>nd <strong>X</strong>ML”（异步 JavaScript 和 XML） 单从名称上看，似乎并不好理解，XML一门数据交换语言，JS是一门编程语言，Asyncchronous是异步的意思。它们有啥关系呢？ 其实不必如此关心它的词面意思 最简单的理解：它是一门技术，一门“桥梁”技术，ajax技术使得前后端从此有了交换数据的位置。 <strong>也正是它的出现和广泛应用，最后导致了前后端分离的出现。</strong> ajax技术使得JavaScript能在<strong>不刷新页面</strong>（即保持原页面状态不变化）的情况下，与服务器进行交互，从服务器拿到想要的数据（这种数据，该数据最常见的形式就是XML（没落）与<strong>JSON</strong>（JavaScript Object Notation） 拿到数据之后，JavaScript通过操作<strong>DOM</strong>（浏览器节点文档树，也就是html元素）进行数据的修改，从而实现不改变页面却改变了页面的显示内容。</p>
+<h4 id="1-4-基本示意图"><a href="#1-4-基本示意图" class="headerlink" title="1.4 基本示意图"></a>1.4 基本示意图</h4><p><img    class="lazyload" data-original="https://imgconvert.csdnimg.cn/aHR0cHM6Ly94Z3BheC50b3Avd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDQvJUU1JTg5JThEJUU1JTkwJThFJUU3JUFCJUFGLnBuZw?x-oss-process=image/format,png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">示意图</span></p>
+<h4 id="2-1-前后端分离的基本概念与由来："><a href="#2-1-前后端分离的基本概念与由来：" class="headerlink" title="2.1 前后端分离的基本概念与由来："></a>2.1 前后端分离的基本概念与由来：</h4><ol>
+<li> 由于ajax技术的出现，使得用户界面不再需要关心后端是如何实现数据修改（因为不再需要通过刷新界面和改变URL来切换不同的显示界面）</li>
+</ol>
+<ul>
+<li>  前端只需要关心从哪个URL（后端路由），通过哪种方式（GET/POST等）能够拿到数据或者提示相关数据的变更并返回相应结果（成功，或者失败），而不再需要关心后台如何编写，具体使用什么语言实现，也就是说后端的任何操作，前端都不需要再关心，只需要通过URL拿到相关的数据，就能在用户界面显示想要的效果。</li>
+</ul>
+<ol start="2">
+<li> 而后端也不再需要关心用户通过URL，需要展示哪张由原本动态渲染出来的界面，只需要编写接口，提供与相关URL对应的http请求的数据，进行相关的操作，将数据转换为JSON并发送对应http请求。</li>
+</ol>
+<ul>
+<li>  于是为了解耦的更彻底，也为了程序员们能更好的专精于某一项具体的业务，前后端分离就成了不得不进行的任务与趋势。</li>
+</ul>
+<p>从此前端人员专门负责用户的交互，维护用户的交互体验，并通过http请求进行相关的数据请求与展示操作。 而后端人员则专门对请求进行解析（对params,query等属性的处理，从而明白自己该干什么），对相关数据进行检索或存储，并在处理过后返回给前端。 这就是前后端分离的内容。</p>
+<h4 id="2-2-前后端分离的实现"><a href="#2-2-前后端分离的实现" class="headerlink" title="2.2 前后端分离的实现"></a>2.2 前后端分离的实现</h4><p>以一段JavaScript中ES6的fetch函数为例：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">fetch(<span class="hljs-string">&quot;http://**.***.***.***:3000/api/search?name=kk&quot;</span>)<br>     .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json())<br>     .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>       <span class="hljs-built_in">console</span>.log(res);<br>       <span class="hljs-built_in">this</span>.newData = res;<br><br>       <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.newData);<br>     &#125;);<br></code></pre></td></tr></table></figure>
+
+<p>前端可以通过这段代码请求到部署在 ```http://**.***.***.***:3000/api/search?name=kk``` 上的后端项目，并得到相关的请求数据res(response的缩写) 而后端(以一个简单的反向代理服务器为例子)</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> Koa = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;koa&quot;</span>);<br><span class="hljs-keyword">var</span> superagent = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;superagent&quot;</span>);<br><span class="hljs-keyword">var</span> cors = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;koa2-cors&#x27;</span>);<br><br><br><span class="hljs-keyword">var</span> path = <span class="hljs-string">&quot;&quot;</span>;<br><span class="hljs-keyword">var</span> app = <span class="hljs-keyword">new</span> Koa();<br>app.use(cors());<br><span class="hljs-keyword">var</span> ans = &#123;&#125;;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">agent</span>(<span class="hljs-params">path</span>) </span>&#123;<br>  superagent<br>    .get(path)<br>    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>      <span class="hljs-comment">// console.log(res.text);</span><br>      ans = <span class="hljs-built_in">JSON</span>.parse(res.text);<br>      <span class="hljs-built_in">console</span>.log(ans);<br>    &#125;)<br>    .then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>      app.use(<span class="hljs-keyword">async</span> (ctx, next) =&gt; &#123;<br>        <span class="hljs-keyword">await</span> next();<br>        ctx.response.type = <span class="hljs-string">&quot;application/javascript&quot;</span>;<br>        ctx.response.body = ans;<br>      &#125;);<br><br>      app.listen(<span class="hljs-number">3000</span>);<br>    &#125;);<br>&#125;<br><span class="hljs-built_in">console</span>.log(<span class="hljs-string">&quot;server start at http://localhost:3000&quot;</span>);<br>agent(<span class="hljs-string">&quot;https://****/**/**&quot;</span>);<br></code></pre></td></tr></table></figure>
+
+<p>首先通过框架创建相关网络连接对象，并使其监听对应3000端口，然后将处理后的JSON数据发送到http协议的body部分 这就是ajax交互的大概示例。</p>
+<h4 id="2-3-前后端路线的选择"><a href="#2-3-前后端路线的选择" class="headerlink" title="2.3 前后端路线的选择"></a>2.3 前后端路线的选择</h4><p>很多小伙伴纠结，我到底是该学前端好呢？还是学后端好呢？ 嗯，学术了这么久，那就说句实在话，</p>
+<blockquote>
+<p><em>脚下的路，如果不是自己的选择，那么旅途的终点在哪儿，也没人知道</em></p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-comment">---《镇魂街》</span><br></code></pre></td></tr></table></figure>
+</blockquote>
+<p>其实两边的基础知识，乃至背后涵盖的计算机网络等相关知识，都是必定要学习完成，才能算得上毕业的。 也就是说，大可以<strong>都认真接触一番</strong>。 <strong>实践，才是最好的老师</strong>。 <strong>感谢阅读</strong>，关于前后端路由以及SPA建议看另外一篇博客： <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44831027/article/details/104808448">《关于前后端路由与渲染的那些事》</a></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/04/04/%EF%BC%88%E8%87%AA%E5%AD%A6-%E5%88%9D%E5%AD%A6%E8%80%85%E6%99%AE%E5%8F%8A%EF%BC%89%E6%B5%85%E8%B0%88%E5%89%8D%E5%90%8E%E7%AB%AF%E4%B8%8E%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%EF%BC%88%E5%88%AB/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;04&#x2F;04&#x2F;%EF%BC%88%E8%87%AA%E5%AD%A6-%E5%88%9D%E5%AD%A6%E8%80%85%E6%99%AE%E5%8F%8A%EF%BC%89%E6%B5%85%E8%B0%88%E5%89%8D%E5%90%8E%E7%AB%AF%E4%B8%8E%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%EF%BC%88%E5%88%AB&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;04&#x2F;04&#x2F;%EF%BC%88%E8%87%AA%E5%AD%A6-%E5%88%9D%E5%AD%A6%E8%80%85%E6%99%AE%E5%8F%8A%EF%BC%89%E6%B5%85%E8%B0%88%E5%89%8D%E5%90%8E%E7%AB%AF%E4%B8%8E%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%EF%BC%88%E5%88%AB&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/06/29/%E5%BD%93%E6%88%91%E4%BB%AC%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%AD%A6%E4%BB%80%E4%B9%88%EF%BC%9F/"><i class="iconfont iconleft"></i>当我们学软件工程时，我们在学什么？</a>
+    <a href="/2020/03/11/vue-router%E7%9A%84%E4%BD%BF%E7%94%A8/">vue-router的使用方式<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,350 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>一招教你部署自己的静态h5页面到WordPress服务器（阿里云WordPress应用镜像）（纯新手向） - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="许多刚开始学习前端的小伙伴，在开通了阿里云的WordP...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">一招教你部署自己的静态h5页面到WordPress服务器（阿里云WordPress应用镜像）（纯新手向）</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%B9%BB%E6%83%B3%E5%A5%B3%E5%AD%A9%20%E5%92%8C%E6%9C%8D%20%E7%BA%A2%E5%A4%B4%E5%8F%91%20%E5%94%AF%E7%BE%8E%E8%89%BA%E6%9C%AF4k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">一招教你部署自己的静态h5页面到WordPress服务器（阿里云WordPress应用镜像）（纯新手向）</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 20, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>719</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="许多刚开始学习前端的小伙伴，在开通了阿里云的WordPress之后，还想放置一些自己的界面，并通过子目录的方式访问-比如网站页面为abc-com，子页面在abc-com-children-具体该怎么操作呢？-许多文章说只需要将静态资源放到对应的位置就可以，但是笔者没有看到有文章具体指出其对应位置，在这里针对WordPress指出相关的路径与操作-首先，下载xhell以及xftp等软件（学生版免费）：Xshell传送门-下载完成后，通过SSH协议连接到个人的服务器，也就是输入你的主机ip号，root用户密码，在xhell中点击在xftp中打开：-WordPress应用镜像是基于Centos的，我们需要了解Linux的部分权限管理，来到-root下，点击上一级回到根目录：-我们可以看到：-在Linux系统中，-home下保存的就是非root用户所存放的内容：-我们打开这个位置：-这个熟悉的www用户，显然就是我们浏览器所进入的位置，继续点进这个文件夹：-我们看到了：-这里就讲到了浏览器的解析原理，浏览器会去寻找index页面作为网站的入口，所以-我们这样-就来到了WordPress的主页（也就是通过仪表盘构建的主页面）-我们只需要在此新建文件夹，然后将自己写的带index-html的界面上传到此处：-比如：-这个music就是笔者上传的内容，-上传完毕，大功告成，我们打开浏览器：-就可以访问自己写的页面啦！-都看到这了，好的坏的都给个赞？（厚颜无耻）"><a href="#许多刚开始学习前端的小伙伴，在开通了阿里云的WordPress之后，还想放置一些自己的界面，并通过子目录的方式访问-比如网站页面为abc-com，子页面在abc-com-children-具体该怎么操作呢？-许多文章说只需要将静态资源放到对应的位置就可以，但是笔者没有看到有文章具体指出其对应位置，在这里针对WordPress指出相关的路径与操作-首先，下载xhell以及xftp等软件（学生版免费）：Xshell传送门-下载完成后，通过SSH协议连接到个人的服务器，也就是输入你的主机ip号，root用户密码，在xhell中点击在xftp中打开：-WordPress应用镜像是基于Centos的，我们需要了解Linux的部分权限管理，来到-root下，点击上一级回到根目录：-我们可以看到：-在Linux系统中，-home下保存的就是非root用户所存放的内容：-我们打开这个位置：-这个熟悉的www用户，显然就是我们浏览器所进入的位置，继续点进这个文件夹：-我们看到了：-这里就讲到了浏览器的解析原理，浏览器会去寻找index页面作为网站的入口，所以-我们这样-就来到了WordPress的主页（也就是通过仪表盘构建的主页面）-我们只需要在此新建文件夹，然后将自己写的带index-html的界面上传到此处：-比如：-这个music就是笔者上传的内容，-上传完毕，大功告成，我们打开浏览器：-就可以访问自己写的页面啦！-都看到这了，好的坏的都给个赞？（厚颜无耻）" class="headerlink" title="许多刚开始学习前端的小伙伴，在开通了阿里云的WordPress之后，还想放置一些自己的界面，并通过子目录的方式访问,比如网站页面为abc.com，子页面在abc.com/children 具体该怎么操作呢？ 许多文章说只需要将静态资源放到对应的位置就可以，但是笔者没有看到有文章具体指出其对应位置，在这里针对WordPress指出相关的路径与操作 - 首先，下载xhell以及xftp等软件（学生版免费）：Xshell传送门 - 下载完成后，通过SSH协议连接到个人的服务器，也就是输入你的主机ip号，root用户密码，在xhell中点击在xftp中打开： - WordPress应用镜像是基于Centos的，我们需要了解Linux的部分权限管理，来到/root下，点击上一级回到根目录： 我们可以看到：  - 在Linux系统中，/home下保存的就是非root用户所存放的内容： 我们打开这个位置：  - 这个熟悉的www用户，显然就是我们浏览器所进入的位置，继续点进这个文件夹：  - 我们看到了：  - 这里就讲到了浏览器的解析原理，浏览器会去寻找index页面作为网站的入口，所以,我们这样,就来到了WordPress的主页（也就是通过仪表盘构建的主页面） - 我们只需要在此新建文件夹，然后将自己写的带index.html的界面上传到此处： 比如：  这个music就是笔者上传的内容，  上传完毕，大功告成，我们打开浏览器：  就可以访问自己写的页面啦！ 都看到这了，好的坏的都给个赞？（厚颜无耻）"></a>许多刚开始学习前端的小伙伴，在开通了阿里云的WordPress之后，还想放置一些自己的界面，并通过子目录的方式访问,比如网站页面为abc.com，子页面在abc.com/children 具体该怎么操作呢？ 许多文章说只需要将静态资源放到对应的位置就可以，但是笔者没有看到有文章具体指出其对应位置，在这里针对WordPress指出相关的路径与操作 - 首先，下载xhell以及xftp等软件（学生版<strong>免费</strong>）：<a target="_blank" rel="noopener" href="https://xshell.en.softonic.com/">Xshell传送门</a> - 下载完成后，通过SSH协议连接到个人的服务器，也就是输入你的主机ip号，root用户密码，在xhell中点击在xftp中打开： - WordPress应用镜像是基于Centos的，我们需要了解Linux的部分权限管理，来到/root下，点击上一级回到根目录： 我们可以看到： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200220224129809.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> - 在Linux系统中，/home下保存的就是非root用户所存放的内容： 我们打开这个位置： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200220224242294.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> - 这个熟悉的www用户，显然就是我们浏览器所进入的位置，继续点进这个文件夹： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200220224443209.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> - 我们看到了： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/2020022022470872.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> - 这里就讲到了浏览器的解析原理，浏览器会去寻找index页面作为网站的入口，所以,我们这样,就来到了WordPress的主页（也就是通过仪表盘构建的主页面） - 我们只需要在此新建文件夹，然后将自己写的带index.html的界面上传到此处： 比如： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/202002202249462.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 这个music就是笔者上传的内容， <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200220225016265.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 上传完毕，大功告成，我们打开浏览器： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200220225252482.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 就可以访问自己写的页面啦！ <strong>都看到这了，好的坏的都给个赞？（厚颜无耻）</strong></h3>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/02/20/%E4%B8%80%E6%8B%9B%E6%95%99%E4%BD%A0%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E9%9D%99%E6%80%81h5%E9%A1%B5%E9%9D%A2%E5%88%B0wordpress%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E9%98%BF%E9%87%8C%E4%BA%91/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;02&#x2F;20&#x2F;%E4%B8%80%E6%8B%9B%E6%95%99%E4%BD%A0%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E9%9D%99%E6%80%81h5%E9%A1%B5%E9%9D%A2%E5%88%B0wordpress%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E9%98%BF%E9%87%8C%E4%BA%91&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;02&#x2F;20&#x2F;%E4%B8%80%E6%8B%9B%E6%95%99%E4%BD%A0%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E9%9D%99%E6%80%81h5%E9%A1%B5%E9%9D%A2%E5%88%B0wordpress%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E9%98%BF%E9%87%8C%E4%BA%91&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/03/11/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/"><i class="iconfont iconleft"></i>箭头函数()=>{}</a>
+    <a href="/2020/01/19/javascript%E5%BF%B5%E5%BF%B5%E7%A2%8E%EF%BC%88%E4%B8%80%EF%BC%89%E6%95%B4%E4%BD%93%E6%A6%82%E8%BF%B0%E4%BB%A5%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">JavaScript念念碎（一）整体概述以及数据类型<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B8%E5%A4%9A%E5%88%9A%E5%BC%80%E5%A7%8B%E5%AD%A6%E4%B9%A0%E5%89%8D%E7%AB%AF%E7%9A%84%E5%B0%8F%E4%BC%99%E4%BC%B4%EF%BC%8C%E5%9C%A8%E5%BC%80%E9%80%9A%E4%BA%86%E9%98%BF%E9%87%8C%E4%BA%91%E7%9A%84WordPress%E4%B9%8B%E5%90%8E%EF%BC%8C%E8%BF%98%E6%83%B3%E6%94%BE%E7%BD%AE%E4%B8%80%E4%BA%9B%E8%87%AA%E5%B7%B1%E7%9A%84%E7%95%8C%E9%9D%A2%EF%BC%8C%E5%B9%B6%E9%80%9A%E8%BF%87%E5%AD%90%E7%9B%AE%E5%BD%95%E7%9A%84%E6%96%B9%E5%BC%8F%E8%AE%BF%E9%97%AE-%E6%AF%94%E5%A6%82%E7%BD%91%E7%AB%99%E9%A1%B5%E9%9D%A2%E4%B8%BAabc-com%EF%BC%8C%E5%AD%90%E9%A1%B5%E9%9D%A2%E5%9C%A8abc-com-children-%E5%85%B7%E4%BD%93%E8%AF%A5%E6%80%8E%E4%B9%88%E6%93%8D%E4%BD%9C%E5%91%A2%EF%BC%9F-%E8%AE%B8%E5%A4%9A%E6%96%87%E7%AB%A0%E8%AF%B4%E5%8F%AA%E9%9C%80%E8%A6%81%E5%B0%86%E9%9D%99%E6%80%81%E8%B5%84%E6%BA%90%E6%94%BE%E5%88%B0%E5%AF%B9%E5%BA%94%E7%9A%84%E4%BD%8D%E7%BD%AE%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%8C%E4%BD%86%E6%98%AF%E7%AC%94%E8%80%85%E6%B2%A1%E6%9C%89%E7%9C%8B%E5%88%B0%E6%9C%89%E6%96%87%E7%AB%A0%E5%85%B7%E4%BD%93%E6%8C%87%E5%87%BA%E5%85%B6%E5%AF%B9%E5%BA%94%E4%BD%8D%E7%BD%AE%EF%BC%8C%E5%9C%A8%E8%BF%99%E9%87%8C%E9%92%88%E5%AF%B9WordPress%E6%8C%87%E5%87%BA%E7%9B%B8%E5%85%B3%E7%9A%84%E8%B7%AF%E5%BE%84%E4%B8%8E%E6%93%8D%E4%BD%9C-%E9%A6%96%E5%85%88%EF%BC%8C%E4%B8%8B%E8%BD%BDxhell%E4%BB%A5%E5%8F%8Axftp%E7%AD%89%E8%BD%AF%E4%BB%B6%EF%BC%88%E5%AD%A6%E7%94%9F%E7%89%88%E5%85%8D%E8%B4%B9%EF%BC%89%EF%BC%9AXshell%E4%BC%A0%E9%80%81%E9%97%A8-%E4%B8%8B%E8%BD%BD%E5%AE%8C%E6%88%90%E5%90%8E%EF%BC%8C%E9%80%9A%E8%BF%87SSH%E5%8D%8F%E8%AE%AE%E8%BF%9E%E6%8E%A5%E5%88%B0%E4%B8%AA%E4%BA%BA%E7%9A%84%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%8C%E4%B9%9F%E5%B0%B1%E6%98%AF%E8%BE%93%E5%85%A5%E4%BD%A0%E7%9A%84%E4%B8%BB%E6%9C%BAip%E5%8F%B7%EF%BC%8Croot%E7%94%A8%E6%88%B7%E5%AF%86%E7%A0%81%EF%BC%8C%E5%9C%A8xhell%E4%B8%AD%E7%82%B9%E5%87%BB%E5%9C%A8xftp%E4%B8%AD%E6%89%93%E5%BC%80%EF%BC%9A-WordPress%E5%BA%94%E7%94%A8%E9%95%9C%E5%83%8F%E6%98%AF%E5%9F%BA%E4%BA%8ECentos%E7%9A%84%EF%BC%8C%E6%88%91%E4%BB%AC%E9%9C%80%E8%A6%81%E4%BA%86%E8%A7%A3Linux%E7%9A%84%E9%83%A8%E5%88%86%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86%EF%BC%8C%E6%9D%A5%E5%88%B0-root%E4%B8%8B%EF%BC%8C%E7%82%B9%E5%87%BB%E4%B8%8A%E4%B8%80%E7%BA%A7%E5%9B%9E%E5%88%B0%E6%A0%B9%E7%9B%AE%E5%BD%95%EF%BC%9A-%E6%88%91%E4%BB%AC%E5%8F%AF%E4%BB%A5%E7%9C%8B%E5%88%B0%EF%BC%9A-%E5%9C%A8Linux%E7%B3%BB%E7%BB%9F%E4%B8%AD%EF%BC%8C-home%E4%B8%8B%E4%BF%9D%E5%AD%98%E7%9A%84%E5%B0%B1%E6%98%AF%E9%9D%9Eroot%E7%94%A8%E6%88%B7%E6%89%80%E5%AD%98%E6%94%BE%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%9A-%E6%88%91%E4%BB%AC%E6%89%93%E5%BC%80%E8%BF%99%E4%B8%AA%E4%BD%8D%E7%BD%AE%EF%BC%9A-%E8%BF%99%E4%B8%AA%E7%86%9F%E6%82%89%E7%9A%84www%E7%94%A8%E6%88%B7%EF%BC%8C%E6%98%BE%E7%84%B6%E5%B0%B1%E6%98%AF%E6%88%91%E4%BB%AC%E6%B5%8F%E8%A7%88%E5%99%A8%E6%89%80%E8%BF%9B%E5%85%A5%E7%9A%84%E4%BD%8D%E7%BD%AE%EF%BC%8C%E7%BB%A7%E7%BB%AD%E7%82%B9%E8%BF%9B%E8%BF%99%E4%B8%AA%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%9A-%E6%88%91%E4%BB%AC%E7%9C%8B%E5%88%B0%E4%BA%86%EF%BC%9A-%E8%BF%99%E9%87%8C%E5%B0%B1%E8%AE%B2%E5%88%B0%E4%BA%86%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%A7%A3%E6%9E%90%E5%8E%9F%E7%90%86%EF%BC%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BC%9A%E5%8E%BB%E5%AF%BB%E6%89%BEindex%E9%A1%B5%E9%9D%A2%E4%BD%9C%E4%B8%BA%E7%BD%91%E7%AB%99%E7%9A%84%E5%85%A5%E5%8F%A3%EF%BC%8C%E6%89%80%E4%BB%A5-%E6%88%91%E4%BB%AC%E8%BF%99%E6%A0%B7-%E5%B0%B1%E6%9D%A5%E5%88%B0%E4%BA%86WordPress%E7%9A%84%E4%B8%BB%E9%A1%B5%EF%BC%88%E4%B9%9F%E5%B0%B1%E6%98%AF%E9%80%9A%E8%BF%87%E4%BB%AA%E8%A1%A8%E7%9B%98%E6%9E%84%E5%BB%BA%E7%9A%84%E4%B8%BB%E9%A1%B5%E9%9D%A2%EF%BC%89-%E6%88%91%E4%BB%AC%E5%8F%AA%E9%9C%80%E8%A6%81%E5%9C%A8%E6%AD%A4%E6%96%B0%E5%BB%BA%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%86%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E5%B8%A6index-html%E7%9A%84%E7%95%8C%E9%9D%A2%E4%B8%8A%E4%BC%A0%E5%88%B0%E6%AD%A4%E5%A4%84%EF%BC%9A-%E6%AF%94%E5%A6%82%EF%BC%9A-%E8%BF%99%E4%B8%AAmusic%E5%B0%B1%E6%98%AF%E7%AC%94%E8%80%85%E4%B8%8A%E4%BC%A0%E7%9A%84%E5%86%85%E5%AE%B9%EF%BC%8C-%E4%B8%8A%E4%BC%A0%E5%AE%8C%E6%AF%95%EF%BC%8C%E5%A4%A7%E5%8A%9F%E5%91%8A%E6%88%90%EF%BC%8C%E6%88%91%E4%BB%AC%E6%89%93%E5%BC%80%E6%B5%8F%E8%A7%88%E5%99%A8%EF%BC%9A-%E5%B0%B1%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E8%87%AA%E5%B7%B1%E5%86%99%E7%9A%84%E9%A1%B5%E9%9D%A2%E5%95%A6%EF%BC%81-%E9%83%BD%E7%9C%8B%E5%88%B0%E8%BF%99%E4%BA%86%EF%BC%8C%E5%A5%BD%E7%9A%84%E5%9D%8F%E7%9A%84%E9%83%BD%E7%BB%99%E4%B8%AA%E8%B5%9E%EF%BC%9F%EF%BC%88%E5%8E%9A%E9%A2%9C%E6%97%A0%E8%80%BB%EF%BC%89"><span class="toc-text">许多刚开始学习前端的小伙伴，在开通了阿里云的WordPress之后，还想放置一些自己的界面，并通过子目录的方式访问,比如网站页面为abc.com，子页面在abc.com&#x2F;children 具体该怎么操作呢？ 许多文章说只需要将静态资源放到对应的位置就可以，但是笔者没有看到有文章具体指出其对应位置，在这里针对WordPress指出相关的路径与操作 - 首先，下载xhell以及xftp等软件（学生版免费）：Xshell传送门 - 下载完成后，通过SSH协议连接到个人的服务器，也就是输入你的主机ip号，root用户密码，在xhell中点击在xftp中打开： - WordPress应用镜像是基于Centos的，我们需要了解Linux的部分权限管理，来到&#x2F;root下，点击上一级回到根目录： 我们可以看到： 在这里插入图片描述 - 在Linux系统中，&#x2F;home下保存的就是非root用户所存放的内容： 我们打开这个位置： 在这里插入图片描述 - 这个熟悉的www用户，显然就是我们浏览器所进入的位置，继续点进这个文件夹： 在这里插入图片描述 - 我们看到了： 在这里插入图片描述 - 这里就讲到了浏览器的解析原理，浏览器会去寻找index页面作为网站的入口，所以,我们这样,就来到了WordPress的主页（也就是通过仪表盘构建的主页面） - 我们只需要在此新建文件夹，然后将自己写的带index.html的界面上传到此处： 比如： 在这里插入图片描述 这个music就是笔者上传的内容， 在这里插入图片描述 上传完毕，大功告成，我们打开浏览器： 在这里插入图片描述 就可以访问自己写的页面啦！ 都看到这了，好的坏的都给个赞？（厚颜无耻）</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

@@ -1,0 +1,369 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【练习小demo】使用React+TS实现一个拖动换位置效果（同时应用节流） - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="本练习demo旨在练习ts的使用，同时熟悉drag相关...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【练习小demo】使用React+TS实现一个拖动换位置效果（同时应用节流）</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E6%A8%B1%E5%B2%9B%E9%BA%BB%E8%A1%A34k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【练习小demo】使用React+TS实现一个拖动换位置效果（同时应用节流）</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 15, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3721</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>本练习demo旨在练习ts的使用，同时熟悉drag相关的事件</p>
+<h3 id="1-思路分析"><a href="#1-思路分析" class="headerlink" title="1.思路分析"></a>1.思路分析</h3><p>mouse拖拽事件，通常有三个非常重要的过程:onMouseDown(鼠标按下) onMouseMove（鼠标拖动） onMouseUp（鼠标松开），通常我们在使用mouse拖拽这一事件的过程中，大概就是在这三个事件中进行相应的处理 我们最终要实现的demo效果，就是在鼠标按下后能够带动方块随鼠标位置移动，松开后固定在最后的位置。 如图： <a href="https://xgpax.top/wp-content/uploads/2020/11/wp_editor_md_5833d977323c73f4da425552644602e2.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/11/wp_editor_md_5833d977323c73f4da425552644602e2.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> 移动后: <a href="https://xgpax.top/wp-content/uploads/2020/11/wp_editor_md_33c170b501bd15a9b96ae2b90af55b37.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/11/wp_editor_md_33c170b501bd15a9b96ae2b90af55b37.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> 而这，只需要控制相关的定位:left和top就能实现这个功能（注意，left和top使用前，其position必须被规定为非static（默认） 在这里我们采用最简单的fixed布局就好（当然其他的也可以）</p>
+<h3 id="2-与react结合"><a href="#2-与react结合" class="headerlink" title="2.与react结合"></a>2.与react结合</h3><p>我们采用react+ts来编写这个demo 创建命令:</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">npx create-react-app my-drag-demo --typescript<br></code></pre></td></tr></table></figure>
+
+<p>创建后直接改动app.tsx</p>
+<h3 id="3-节流函数的编写"><a href="#3-节流函数的编写" class="headerlink" title="3.节流函数的编写"></a>3.节流函数的编写</h3><p>节流函数的关键在于设置一个闸门，为了避免全局污染，我们用闭包来返回一个由节流函数包装后的函数 手写节流函数这种操作就不再这里赘述了</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> throttle: <span class="hljs-function">(<span class="hljs-params">func: <span class="hljs-built_in">Function</span>, interval: <span class="hljs-built_in">number</span></span>) =&gt;</span> <span class="hljs-built_in">Function</span> = <span class="hljs-function">(<span class="hljs-params"></span></span><br><span class="hljs-params"><span class="hljs-function">  func: <span class="hljs-built_in">Function</span>,</span></span><br><span class="hljs-params"><span class="hljs-function">  interval: <span class="hljs-built_in">number</span></span></span><br><span class="hljs-params"><span class="hljs-function"></span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> timer: <span class="hljs-built_in">any</span> = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">...arg: <span class="hljs-built_in">any</span></span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!timer) &#123;<br>      timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        func(...arg);<br>        timer = <span class="hljs-literal">null</span>;<br>      &#125;, interval);<br>    &#125;<br>  &#125;;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h3 id="4-业务逻辑编写"><a href="#4-业务逻辑编写" class="headerlink" title="4.业务逻辑编写"></a>4.业务逻辑编写</h3><p>首先对于鼠标的点击，我们需要使用一个boolean变量来进行判断是否处在点击状态，然后用left变量和top变量来记录当前的位置，所以我们可以这样使用</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">const</span> [left, setLeft] = useState(<span class="hljs-number">0</span>);<br><span class="hljs-keyword">const</span> [top, setTop] = useState(<span class="hljs-number">0</span>);<br><span class="hljs-keyword">const</span> [click, setClick] = useState(<span class="hljs-literal">false</span>);<br></code></pre></td></tr></table></figure>
+
+<p>定义好之后就可以进行相关逻辑的编写，其中要对onmousemove的逻辑进行节流函数包裹：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs tsx">// 移动的事件触发函数<br>  const drag: (event: Object) =&gt; void = (event: any) =&gt; &#123;<br>    if (click) &#123;<br>      setLeft(event.clientX - 200);<br>      setTop(event.clientY - 200);<br>    &#125;<br>  &#125;;<br>  // 用节流函数包裹后：节流版本<br>  const throttleDrag = throttle(drag, 10);<br></code></pre></td></tr></table></figure>
+
+<p>而其他逻辑和样式设置如下：</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs ts">&lt;div<br>       style=&#123;&#123;<br>         <span class="hljs-attr">position</span>: <span class="hljs-string">&quot;fixed&quot;</span>,<br>         <span class="hljs-attr">left</span>: left + <span class="hljs-string">&quot;px&quot;</span>,<br>         <span class="hljs-attr">top</span>: top + <span class="hljs-string">&quot;px&quot;</span>,<br>         <span class="hljs-attr">backgroundColor</span>: <span class="hljs-string">&quot;#000000&quot;</span>,<br>         <span class="hljs-attr">width</span>: <span class="hljs-string">&quot;400px&quot;</span>,<br>         <span class="hljs-attr">height</span>: <span class="hljs-string">&quot;400px&quot;</span>,<br>       &#125;&#125;<br>       onMouseDown=&#123;<span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">any</span></span>) =&gt;</span> &#123;<br>         setClick(<span class="hljs-literal">true</span>);<br>         setLeft(event.clientX - <span class="hljs-number">200</span>);<br>         setTop(event.clientY - <span class="hljs-number">200</span>);<br>       &#125;&#125;<br>       onMouseMove=&#123;<span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> &#123;<br>         throttleDrag(event);<br>       &#125;&#125;<br>       onMouseUp=&#123;<span class="hljs-function">() =&gt;</span> &#123;<br>         setClick(<span class="hljs-literal">false</span>);<br>       &#125;&#125;<br>     &gt;&lt;/div&gt;<br></code></pre></td></tr></table></figure>
+
+<p>大功告成！</p>
+<h3 id="完整代码："><a href="#完整代码：" class="headerlink" title="完整代码："></a>完整代码：</h3><figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">import</span> React, &#123; useRef, useState, useEffect &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">const</span> debounce: <span class="hljs-function">(<span class="hljs-params">func: <span class="hljs-built_in">Function</span></span>) =&gt;</span> <span class="hljs-built_in">Function</span> = <span class="hljs-function">(<span class="hljs-params">func: <span class="hljs-built_in">Function</span></span>) =&gt;</span> &#123;<br>  <span class="hljs-keyword">let</span> timer: <span class="hljs-built_in">any</span> = <span class="hljs-literal">null</span>;<br>  <span class="hljs-keyword">return</span> <span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">Object</span></span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (!timer) &#123;<br>      timer = <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        func(event);<br>        timer = <span class="hljs-literal">null</span>;<br>      &#125;, <span class="hljs-number">10</span>);<br>    &#125;<br>  &#125;;<br>&#125;;<br><span class="hljs-keyword">let</span> click = <span class="hljs-literal">false</span>;<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">App</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">let</span> dragTest = useRef(<span class="hljs-literal">null</span>);<br>  <span class="hljs-keyword">const</span> [left, setLeft] = useState(<span class="hljs-number">0</span>);<br>  <span class="hljs-keyword">const</span> [top, setTop] = useState(<span class="hljs-number">0</span>);<br>  useEffect(<span class="hljs-function">() =&gt;</span> &#123;&#125;, [left, top]);<br>  <span class="hljs-comment">// 节流</span><br>  <span class="hljs-keyword">const</span> drag: <span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">Object</span></span>) =&gt;</span> <span class="hljs-built_in">void</span> = <span class="hljs-function">(<span class="hljs-params">event: <span class="hljs-built_in">any</span></span>) =&gt;</span> &#123;<br>    <span class="hljs-keyword">if</span> (click) &#123;<br>      setLeft(event.clientX - <span class="hljs-number">200</span>);<br>      setTop(event.clientY - <span class="hljs-number">200</span>);<br>    &#125;<br>  &#125;;<br>  <span class="hljs-keyword">const</span> debouceDrag = debounce(drag);<br>  <span class="hljs-keyword">return</span> (<br>    <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;App&quot;</span>&gt;</span></span><br><span class="xml">      <span class="hljs-tag">&lt;<span class="hljs-name">div</span></span></span><br><span class="hljs-tag"><span class="xml">        <span class="hljs-attr">style</span>=<span class="hljs-string">&#123;&#123;</span></span></span><br><span class="hljs-tag"><span class="xml">          <span class="hljs-attr">position:</span> &quot;<span class="hljs-attr">fixed</span>&quot;,</span></span><br><span class="hljs-tag"><span class="xml">          <span class="hljs-attr">left:</span> <span class="hljs-attr">left</span> + &quot;<span class="hljs-attr">px</span>&quot;,</span></span><br><span class="hljs-tag"><span class="xml">          <span class="hljs-attr">top:</span> <span class="hljs-attr">top</span> + &quot;<span class="hljs-attr">px</span>&quot;,</span></span><br><span class="hljs-tag"><span class="xml">          <span class="hljs-attr">backgroundColor:</span> &quot;#<span class="hljs-attr">000000</span>&quot;,</span></span><br><span class="hljs-tag"><span class="xml">          <span class="hljs-attr">width:</span> &quot;<span class="hljs-attr">400px</span>&quot;,</span></span><br><span class="hljs-tag"><span class="xml">          <span class="hljs-attr">height:</span> &quot;<span class="hljs-attr">400px</span>&quot;,</span></span><br><span class="hljs-tag"><span class="xml">        &#125;&#125;</span></span><br><span class="hljs-tag"><span class="xml">        <span class="hljs-attr">ref</span>=<span class="hljs-string">&#123;dragTest&#125;</span></span></span><br><span class="hljs-tag"><span class="xml">        <span class="hljs-attr">onMouseDown</span>=<span class="hljs-string">&#123;(event:</span> <span class="hljs-attr">any</span>) =&gt;</span> &#123;</span><br><span class="xml">          click = true;</span><br><span class="xml">          setLeft(event.clientX - 200);</span><br><span class="xml">          setTop(event.clientY - 200);</span><br><span class="xml">        &#125;&#125;</span><br><span class="xml">        onMouseMove=&#123;(event) =&gt; &#123;</span><br><span class="xml">          debouceDrag(event);</span><br><span class="xml">        &#125;&#125;</span><br><span class="xml">        onMouseUp=&#123;() =&gt; &#123;</span><br><span class="xml">          click = false;</span><br><span class="xml">        &#125;&#125;</span><br><span class="xml">      &gt;<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="xml">    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>  );<br>&#125;<br><br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> App;<br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/11/15/%E3%80%90%E7%BB%83%E4%B9%A0%E5%B0%8Fdemo%E3%80%91%E4%BD%BF%E7%94%A8reactts%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%8B%96%E5%8A%A8%E6%8D%A2%E4%BD%8D%E7%BD%AE%E6%95%88%E6%9E%9C%EF%BC%88%E5%90%8C/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;11&#x2F;15&#x2F;%E3%80%90%E7%BB%83%E4%B9%A0%E5%B0%8Fdemo%E3%80%91%E4%BD%BF%E7%94%A8reactts%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%8B%96%E5%8A%A8%E6%8D%A2%E4%BD%8D%E7%BD%AE%E6%95%88%E6%9E%9C%EF%BC%88%E5%90%8C&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;11&#x2F;15&#x2F;%E3%80%90%E7%BB%83%E4%B9%A0%E5%B0%8Fdemo%E3%80%91%E4%BD%BF%E7%94%A8reactts%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AA%E6%8B%96%E5%8A%A8%E6%8D%A2%E4%BD%8D%E7%BD%AE%E6%95%88%E6%9E%9C%EF%BC%88%E5%90%8C&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/12/06/%E4%BB%8E%E4%B8%80%E5%90%8D%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91%E7%9A%84%E8%A7%92%E5%BA%A6%E5%87%BA%E5%8F%91%EF%BC%8C%E5%B8%A6%E4%BD%A0%E6%90%9E%E6%87%82web%E5%AE%89%E5%85%A8/"><i class="iconfont iconleft"></i>【普及向】给学妹讲讲什么是web安全</a>
+    <a href="/2020/10/20/%E3%80%90js%E6%89%8B%E5%86%99%E3%80%91%E9%98%B2%E6%8A%96%E5%92%8C%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0/">【js手写】防抖和节流函数<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E6%80%9D%E8%B7%AF%E5%88%86%E6%9E%90"><span class="toc-text">1.思路分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%8Ereact%E7%BB%93%E5%90%88"><span class="toc-text">2.与react结合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E8%8A%82%E6%B5%81%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E5%86%99"><span class="toc-text">3.节流函数的编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E4%B8%9A%E5%8A%A1%E9%80%BB%E8%BE%91%E7%BC%96%E5%86%99"><span class="toc-text">4.业务逻辑编写</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81%EF%BC%9A"><span class="toc-text">完整代码：</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

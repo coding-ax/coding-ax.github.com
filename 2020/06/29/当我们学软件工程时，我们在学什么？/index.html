@@ -1,0 +1,362 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>当我们学软件工程时，我们在学什么？ - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="当我们学软件工程时，我们在学什么？读《构建之法》 ——...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">当我们学软件工程时，我们在学什么？</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E6%98%9F%E7%A9%BA%20%E6%98%9F%E7%90%83%20%E4%B8%A4%E4%B8%AA%E5%8A%A8%E6%BC%AB%E7%BE%8E%E5%A5%B34k%E9%AB%98%E6%B8%85%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">当我们学软件工程时，我们在学什么？</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 29, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3250</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="当我们学软件工程时，我们在学什么？"><a href="#当我们学软件工程时，我们在学什么？" class="headerlink" title="当我们学软件工程时，我们在学什么？"></a>当我们学软件工程时，我们在学什么？</h3><h5 id="读《构建之法》-——从一位前端初学者的视角谈软件工程（3k字）"><a href="#读《构建之法》-——从一位前端初学者的视角谈软件工程（3k字）" class="headerlink" title="读《构建之法》 ——从一位前端初学者的视角谈软件工程（3k字）"></a>读《构建之法》 ——从一位前端初学者的视角谈软件工程（3k字）</h5><h4 id="开篇："><a href="#开篇：" class="headerlink" title="开篇："></a>开篇：</h4><p>不记得是在哪儿见过这样一段话：</p>
+<blockquote>
+<p><strong><em>当你给自己冠以前端开发工程师这个头衔的时候，你首先得是一名工程师，然后才是一名前端的程序员</em></strong></p>
+</blockquote>
+<p>初见这一说法时，我刚踏上自学web这条道路，每日混迹于掘金知乎等论坛，心中自是对这一说法神往不已。嗯，“码农”一词听上去多low啊，要做就要做一名“工程师”。 论坛里的话自是没有过多地放在心上，毕竟碎片化信息的时代，这句话并没有铭刻于心。 然而在我阅读邹欣老师的《构建之法》，我的脑海里总是闪现出这句话。 从翻开这本书的第一页——序言——开始，到我拿出所有的书签和笔记便贴，彻底将它合上，我总是能听到到大脑中这句话的“单曲循环”。</p>
+<h4 id="阅读感受："><a href="#阅读感受：" class="headerlink" title="阅读感受："></a>阅读感受：</h4><p>在教授我软件工程课程的老师提起《构建之法》这本书前，我便已经在各大社区的《计算机专业必读书目》等专栏中，多次见到过此书的身影，书的名字也甚是大气，本着先入为主的观念，原本以为此书应该如同其他榜上有名的书籍一般，高深莫测，晦涩难懂。 但当我首次翻开这本书，立刻就被邹欣老师诙谐幽默的语言风格所打动，多次为其中精妙绝伦的比喻或者类比捧腹大笑。见识到了此书的不同之处，也感受到了其不同于学院派书籍的一面。 书中以虚拟人物的方式来类比我们在开发过程中所遇到的场景，展现了不同技术水平的工程师/学生之间的冲突与矛盾。陷于本人学识浅陋，尚不太理解企业中的运作方式，不敢妄自说其中场景的真实性。但在我个人的理解之中，阿超（书中虚拟人物）和果冻等人开发上的冲突和彼此不相同的思路，或许就是我们学生和真正开发人员差异之处的真实写照。 邹欣老师的行文生动活泼，就算是原本死板，教条的概念，也能因为邹老师独到的行文方式，让我能认真看下去，不失趣味性的同时，又在潜移默化中理解了原本学术范儿的概念。很感谢邹欣老师如此流畅地对软件工程这一原本抽象而又晦涩艰深的概念进行解读。 而让我感触更深的是邹欣老师对中国互联网的历史的介绍，我在书中看到了过去某两家企业恶性竞争中的“不共戴机”，看到了我童年时光拨号上网的岁月，看到了那个10元70M流量的时光，看到了许多企业曾经的历史，还有最感兴趣的某些世界知名开发人员的“黑”历史。在很多个瞬间，我仿佛觉得他们就在我的眼前，就在和我同龄的年纪，做出或神奇或伟大的项目，并通过这些项目，推动这个世界的改变。这些在我心中原本神性多于人性的聚聚们，也立体生动了起来。 书中有多次讲到一名合格软件开发工程师应该如何与人，与团队相处。其中甚至细化讲到了如何给人提出建议，如何友善而又不失效率的组织会议，如何含蓄地表达自己的想法而又不被别人漏掉从而错过。这些内容都是我曾经在社会学，心理学书籍中偶然瞟过的内容，但放在这样一本书籍中，不但不显得突兀，反而很是生动形象，比那些刻意讲心理学的书籍更容易让人接受和理解。 书中以“大跃进”时期类比软件工程中某些浮躁求成的状况，笔锋犀利，让我看到了一个学者的态度，看到了邹欣老师对世界的观察与认知，也让我对许多事情有了更深层次的思考。 通过阅读书中对个人技术，软件开发，软件测试的部分，我了解到了单元测试，个人技术提升等多方面的内容，原本浮躁的心也因此得到了沉寂。 在《构建之法》中没有强调技术的重要性，反而有意地压缩个人技术在软件项目中的比重，其实这是因为技术不是软件工程构建之中的重点，而并非是轻视。它是我们开发人员必须要具备的，且需要不断完善打磨的东西，是我们个人开发人员最重要的环节之一。 在书本关于全栈的描述中，邹欣老师以个人乐团和专业音乐家类比，阐释了技艺中专与精的关系，这让原本正身处急切，浮躁且焦虑的我反应过来，回想起某位超级厉害的学长在自己GitHub简介中所描述的那一句“热爱技术，深耕前端，乐于分享”。是啊，何必急切地想要摸清楚其他的陌生技术栈背后的逻辑和思维呢？既然决定了自己的道路，就应该一往无前，深耕到底，而不是瞻前顾后，畏畏缩缩。 原本以为自己只是为了匆忙完成老师所给的提交作业任务，所以在买来书籍到阅读的这一过程中，拖了许久（也许这就是所谓“叛逆心理”，“强扭的瓜不甜”？ 但在我翻开此书，我逐渐开始认认真真阅读每一行每一句，而非最初一目十行地瞟视，也许是浮躁地太久了，碎片化的阅读过量，正好需要解解毒。<strong>感谢老师的推荐！</strong> 读书的过程出乎意料的通畅与快乐，书中确实也存在一些晦涩难懂的概念，但是并不妨碍其行文的流畅感。</p>
+<h4 id="个人思考："><a href="#个人思考：" class="headerlink" title="个人思考："></a>个人思考：</h4><p>读完本书最大的感触，就是前文所提到的那句在我读书过程中不断闪现的话： <strong>”当你给自己冠以前端开发工程师这个头衔的时候，你首先得是一名工程师，然后才是一名前端程序员“</strong> 工程师，而非“码农”（虽然码农一词也大多是程序员的自嘲）。 该怎么样定义工程师这一说法呢？ 别的领域接触较浅薄，就前端而言，随着webpack，node等工具的出现与普及，三大MVVM框架的流行，原本简单的HTML,CSS,JS加JQuery写界面的时代在不知不觉中就要走向了末尾。 前端有了编译的概念，有了打包以及所谓的脚手架，有了与后端同样复杂甚至更加严格的目录分级，有了更加工程化和系统化的工作方式。 这大概就是前后端分离以来，前端日益强化的体现。 而这些，用软件工程的思想来表述，就是因为有需求，才有这样的变化。 随着计算机性能的提升，用户想见到更好更酷炫的UI界面，想拥有更加舒适的用户体验，所以前端日趋复杂，工程化与模块化的程度加深。ES6正式加入的module语法，也意味着这一技术栈正式官宣着走向了模块化，不再是依赖于原本的commonJS等“社区语法” 软件工程并不像我们在课本中接触的那样冷冰冰的，它其实是一门有温度的适合于实践的学科，我们与用户交流，从而获取用户的需求，了解用户的需要，明白要开发的项目到底是作何用处，或者说应用于何物。 我们通过前人的指导，借助前人的总结，运用软件工程学科中科学而又富有实践意味的方法，对软件采用工程化的管理方式，从而搭建一座真正意味上的脚手架，完成工程，提供更加优质优良的软件作品，改变这世界。 而Vue,React等MVVM框架，也将软件工程中组件化的思想贯彻到了极致，万物都可以由组件拼凑而来，而组件可以由更小的组件构成。就如同生物的构成一般，细胞构成组织，组织往上是器官，然后是系统，最后拼凑成完整的个体，一个独立的人。以vue-cli的目录结构为例：最小的HTML标签，就是一个个细胞，而他们组成的最基本的组件components就是组织，而组织中可以混搭其他的结构，各个component组合起来又形成新的大型的component，就好比组织形成器官，而views（vue-router)目录的组件则是有器官组成的系统，最后在App.vue下，成为一个完整的系统（如同一个独立的人）。 在目前我所接触到的知识体系中，有着许许多多的小的设计，它们暗含着《构建之法》中所描述的工程化的思想，也就是软件工程中的各种精神。 鄙人愚见：工程化的思想，不只是在软件工程这一方面吗，它其实是通过科学认识这个世界最好的方式，通过工程化的思想了解这个世界，就能看到更透彻的现实。我们如果能从工程化的角度出发，能更好的明白事物的规律。</p>
+<h4 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h4><p>《构建之法》的封面，是一个精致的鲁班锁，邹欣老师在书中特别说明到了它的精妙之处。大概人类文明的优秀之处，就是在这一代又一代的薪火相承之中吧。制作鲁班锁的老祖先，肯定想不到后世会有计算机这样精妙绝伦，堪称人类文明巅峰作品的东西，但是在他们制作鲁班锁的时候，这种传承便已经开始了。 在游戏<strong>《古剑奇谭3》</strong>中有这样的一段话，用于形容人类的这种传承精神：</p>
+<blockquote>
+<p><strong>世上千千万万的，都是我们这种人啊，也不大有可为吗？这个世界是被所有人一起推着往前的</strong></p>
+</blockquote>
+<p><strong>我们成不了下一个比尔盖茨，成不了下一个乔布斯。</strong> <strong>但是世界，是被所有千千万万个你我一起推动的，</strong> <strong>往前走，深耕自己的领域，就不枉费生而为人。</strong></p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/06/29/%E5%BD%93%E6%88%91%E4%BB%AC%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%AD%A6%E4%BB%80%E4%B9%88%EF%BC%9F/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;06&#x2F;29&#x2F;%E5%BD%93%E6%88%91%E4%BB%AC%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%AD%A6%E4%BB%80%E4%B9%88%EF%BC%9F&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;06&#x2F;29&#x2F;%E5%BD%93%E6%88%91%E4%BB%AC%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%AD%A6%E4%BB%80%E4%B9%88%EF%BC%9F&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/07/01/jsx%E8%AF%AD%E6%B3%95%E5%AD%A6%E4%B9%A0/"><i class="iconfont iconleft"></i>【React整理系列】JSX语法学习</a>
+    <a href="/2020/04/04/%EF%BC%88%E8%87%AA%E5%AD%A6-%E5%88%9D%E5%AD%A6%E8%80%85%E6%99%AE%E5%8F%8A%EF%BC%89%E6%B5%85%E8%B0%88%E5%89%8D%E5%90%8E%E7%AB%AF%E4%B8%8E%E5%89%8D%E5%90%8E%E7%AB%AF%E5%88%86%E7%A6%BB%EF%BC%88%E5%88%AB/">（自学/初学者普及）浅谈前后端与前后端分离（别再说你不懂什么是前后端分离）<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BD%93%E6%88%91%E4%BB%AC%E5%AD%A6%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B%E6%97%B6%EF%BC%8C%E6%88%91%E4%BB%AC%E5%9C%A8%E5%AD%A6%E4%BB%80%E4%B9%88%EF%BC%9F"><span class="toc-text">当我们学软件工程时，我们在学什么？</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

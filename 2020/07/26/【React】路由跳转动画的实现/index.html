@@ -1,0 +1,376 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【React】路由跳转动画的实现 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="一、效果演示react-transition-grou...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【React】路由跳转动画的实现</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E8%98%91%E8%8F%87%E6%A3%AE%E6%9E%973440x1440%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【React】路由跳转动画的实现</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 26, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4960</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h3 id="一、效果演示"><a href="#一、效果演示" class="headerlink" title="一、效果演示"></a>一、效果演示</h3><p>react-transition-group转场动画： <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/07/transition-166x300.gif" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" > （如果无法播放可点击<a href="https://xgpax.top/wp-content/uploads/2020/07/transition-166x300.gif">下载查看</a>）</p>
+<h4 id="二、安装"><a href="#二、安装" class="headerlink" title="二、安装"></a>二、安装</h4><p>这个演示界面是通过路由实现的，谈到这个我们就不得不提到成熟的react动画库：react-transition-group 首先我们通过npm进行安装（这里假定你已经学会了使用react-router-dom,react-router,react-router-config)如果你还没有学习，那我建议你稍微进行学习后再来了解路由动画。 安装命令:</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs crmsh">npm install react-transition-<span class="hljs-keyword">group</span> <span class="hljs-title">--save</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="三、完整源码"><a href="#三、完整源码" class="headerlink" title="三、完整源码"></a>三、完整源码</h4><p>不想看实现过程的请直接看源码实现并进行copy： index.js:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs react">import React from &quot;react&quot;;<br>import &#123; CSSTransition, TransitionGroup &#125; from &quot;react-transition-group&quot;;<br>import &#123; Switch, Route, withRouter &#125; from &quot;react-router-dom&quot;;<br>import &quot;./index.css&quot;;<br><br>/**<br> *<br> * @param &#123;way&#125; props<br> * @description 用于页面路由跳转 通过way指定跳转方式，指定way=refade<br> * 则反向<br> *<br> */<br>const ANIMATION_MAP = &#123;<br>  PUSH: &quot;fade&quot;,<br>  POP: &quot;refade&quot;,<br>&#125;;<br>function AnimationGo(props) &#123;<br>  const &#123; children &#125; = props;<br>  // console.log(props.history.action);<br>  // 根据动作自行判断前进和后退<br>  /*使用React.cloneElement API对props中的classNames这一props进行修改 */<br>  return (<br>    &lt;Route<br>      render=&#123;(&#123; location &#125;) =&gt; (<br>        &lt;TransitionGroup<br><br>          childFactory=&#123;(child) =&gt;<br>            React.cloneElement(child, &#123;<br>              classNames: ANIMATION_MAP[props.history.action],<br>            &#125;)<br>          &#125;<br>        &gt;<br>          &lt;CSSTransition timeout=&#123;500&#125; key=&#123;location.pathname&#125;&gt;<br>            &lt;Switch location=&#123;location&#125;&gt;&#123;children&#125;&lt;/Switch&gt;<br>          &lt;/CSSTransition&gt;<br>        &lt;/TransitionGroup&gt;<br>      )&#125;<br>    &gt;&lt;/Route&gt;<br>  );<br>&#125;<br><br>export default withRouter(AnimationGo);<br><br></code></pre></td></tr></table></figure>
+
+<p>index.css</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-comment">/* 入场动画开始 */</span><br><span class="hljs-selector-class">.fade-enter</span>,<span class="hljs-selector-class">.fade-appear</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>&#125;<br><br><span class="hljs-comment">/*入场动画过程*/</span><br><span class="hljs-selector-class">.fade-enter-active</span>,<span class="hljs-selector-class">.fade-appear</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>);<br>    <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">0.5s</span> ease;<br>&#125;<br><br><span class="hljs-comment">/*入场动画结束*/</span><br><span class="hljs-comment">/* .fade-enter-done &#123;</span><br><span class="hljs-comment">    transform: translateX(0);</span><br><span class="hljs-comment">&#125; */</span><br><br><span class="hljs-comment">/*离场动画开始*/</span><br><span class="hljs-selector-class">.fade-exit</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0</span>);<br>&#125;<br><br><span class="hljs-comment">/*离场动画过程*/</span><br><span class="hljs-selector-class">.fade-exit-active</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(-<span class="hljs-number">100%</span>);<br>    <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">0.5s</span> ease;<br>&#125;<br><br><span class="hljs-comment">/*离场动画结束*/</span><br><span class="hljs-selector-class">.fade-exit-done</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(-<span class="hljs-number">100%</span>);<br>&#125;<br><br><span class="hljs-comment">/*页面第一次加载时的开始状态*/</span><br><span class="hljs-comment">/* .fade-appear &#123;</span><br><span class="hljs-comment">    transform: translateX(100%);</span><br><span class="hljs-comment">&#125; */</span><br><br><span class="hljs-comment">/*页面第一次加载时的动画过程*/</span><br><span class="hljs-comment">/* .fade-appear-active &#123;</span><br><span class="hljs-comment">    transform: translateX(0%);</span><br><span class="hljs-comment">    transition: transform 0.5s ease-in;</span><br><span class="hljs-comment">&#125; */</span><br><br><br><br><br><span class="hljs-comment">/* 反向back */</span><br><span class="hljs-comment">/*入场动画开始*/</span><br><span class="hljs-selector-class">.refade-enter</span>,<span class="hljs-selector-class">.refade-appear</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(-<span class="hljs-number">100%</span>);<br>&#125;<br><br><span class="hljs-comment">/*入场动画过程*/</span><br><span class="hljs-selector-class">.refade-enter-active</span>,<span class="hljs-selector-class">.refade-appear-active</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0%</span>);<br>    <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">0.5s</span> ease;<br>&#125;<br><br><span class="hljs-comment">/*入场动画结束*/</span><br><span class="hljs-selector-class">.refade-enter-done</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0%</span>);<br>&#125;<br><br><span class="hljs-comment">/*离场动画开始*/</span><br><span class="hljs-selector-class">.refade-exit</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">0%</span>);<br>&#125;<br><br><span class="hljs-comment">/*离场动画过程*/</span><br><span class="hljs-selector-class">.refade-exit-active</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>    <span class="hljs-attribute">transition</span>: transform <span class="hljs-number">0.5s</span> ease;<br>&#125;<br><br><span class="hljs-comment">/*离场动画结束*/</span><br><span class="hljs-selector-class">.refade-exit-done</span> &#123;<br>    <span class="hljs-attribute">transform</span>: <span class="hljs-built_in">translateX</span>(<span class="hljs-number">100%</span>);<br>&#125;<br><br><span class="hljs-comment">/*页面第一次加载时的开始状态*/</span><br><span class="hljs-comment">/* .refade-appear &#123;</span><br><span class="hljs-comment">    transform: translateX(0);</span><br><span class="hljs-comment">&#125; */</span><br><br><span class="hljs-comment">/*页面第一次加载时的动画过程*/</span><br><span class="hljs-comment">/* .refade-appear-active &#123;</span><br><span class="hljs-comment">    transform: translateX(100%);</span><br><span class="hljs-comment">    transition: transform 0.5s ease-in;</span><br><span class="hljs-comment">&#125; */</span><br></code></pre></td></tr></table></figure>
+
+<p>挂载组件：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs react">function App() &#123;<br>  return (<br>    &lt;div className=&quot;App&quot;&gt;<br>      &lt;Router&gt;<br>        &lt;AnimationGo&gt;&#123;renderRoutes(routes)&#125;&lt;/AnimationGo&gt;<br>      &lt;/Router&gt;<br>    &lt;/div&gt;<br>  );<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="四、组件编写分析"><a href="#四、组件编写分析" class="headerlink" title="四、组件编写分析"></a>四、组件编写分析</h4><p>创建组件编写文件夹，在这里同样不加赘述 首先导入我们所需要的一切控件，在这里，我们将通过函数式组件来构建封装这个组件</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; CSSTransition, TransitionGroup &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-transition-group&quot;</span>;<br><span class="hljs-keyword">import</span> &#123; Switch, Route, withRouter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><span class="hljs-keyword">import</span> <span class="hljs-string">&quot;./index.css&quot;</span>;<br></code></pre></td></tr></table></figure>
+
+<p>导入的React不必多说，这是编写JSX必须的操作。 关于react-transition-group,它的用法看上去很类似Vue内置的Transition组件，实际上它就是以vue的transition组件为灵感进行编写的。</p>
+<blockquote>
+<p>A transition component inspired by the <a target="_blank" rel="noopener" href="https://vuejs.org/v2/guide/transitions.html#Transition-Modes">vue transition modes</a>.</p>
+</blockquote>
+<p>在react-transition-group中，其提供了如下四个组件和一个config对象： <a href="https://xgpax.top/wp-content/uploads/2020/07/wp_editor_md_254eb8ee2d369c9e7f76b3947790da9f.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/07/wp_editor_md_254eb8ee2d369c9e7f76b3947790da9f.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> 由于本文重点在于路由跳转动画的实现，所以它的各个详细作用，请自行查看<a target="_blank" rel="noopener" href="https://reactcommunity.org/react-transition-group/">官网文档</a>： 我们在这里需要用到的是<strong>CSSTransiton</strong>以及<strong>TransitionGroup</strong>这两个组件，我们先来了解一下这两个组件：</p>
+<ul>
+<li><strong>CSSTransition</strong>用于通过不同CSS的指定形式来展现动画，它有<strong>-enter</strong>(入场动画初始状态，第一帧)，<strong>-enter-active</strong>(入场动画进行时)，<strong>-enter-done</strong>(入场完成后的样式，一般就是-enter-active所指定的末状态，可以不指定),<strong>-exit</strong>(离场动画初始状态，第一帧)，<strong>-exit-active</strong>(离场状态进行时),<strong>-exit-done</strong>（与enter-done类似，同样也几乎没有太大意义）这几个关键的CSS类别。 而CSSTransion有以下几个关键的属性：in,timeout,classNames(注意是className<strong>s</strong>,不是className),in属性就是动画开关，classNames即为前文所提到CSS属性名称的前缀部分，timeout即为动画维持时间。</li>
+<li><strong>TransitionGroup</strong>组件，如同它的字面意义，它用于管理一组的过渡组件（比如上文的CSSTransion组件，以及用于其他平台的Transition组件），也就是说，它的子组件，一般是包裹着CSSTransion/Transion组件的组件，它的子组件CSSTransion/Transion上必须指定key属性，利用React根据key值进行diff算法的特性，当发生状态改变的时候，它会暂时保留原本需要移除或变化的子组件，并执行CSSTransion/Transion指定的动画。</li>
+</ul>
+<p>​ 简单来说，CSSTransion组件用于进行单个组件的动画过程，而通过TransitionGroup可以对多个由 CSSTransion构成的组件进行管理，而在路由切换这一过程中，本质上就是两个view级别（视图级别）组件的切换过程，这一过程中，在必定存在一个如下图所示的过程： <a href="https://xgpax.top/wp-content/uploads/2020/07/wp_editor_md_38cce9563e13b476323864c8ab47bc82.jpg"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/07/wp_editor_md_38cce9563e13b476323864c8ab47bc82.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a> ​ 也就是说，A与B在进行动画切换的时候必定同时存在，这时候就需要使用到TransitionGroup了。 ​</p>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/07/26/%E3%80%90React%E3%80%91%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;26&#x2F;%E3%80%90React%E3%80%91%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;26&#x2F;%E3%80%90React%E3%80%91%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/07/27/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E8%BF%B0/"><i class="iconfont iconleft"></i>【计算机网络学习笔记】第一章 概述</a>
+    <a href="/2020/07/25/pymql%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E3%80%90%E5%85%A5%E9%97%A8crud%E3%80%91/">PyMQL简单使用【入门CRUD】<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E6%95%88%E6%9E%9C%E6%BC%94%E7%A4%BA"><span class="toc-text">一、效果演示</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

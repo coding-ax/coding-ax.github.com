@@ -1,0 +1,407 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【计算机网络学习笔记】第三章 数据链路层 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="数据链路层数据链路层研究的是在同一个局域网中，分组怎样...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【计算机网络学习笔记】第三章 数据链路层</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E5%B0%91%E5%A5%B3%E6%AD%8C%E5%89%A7%20%E9%BB%84%E8%89%B2%E5%A4%B4%E5%8F%91%E7%BB%BF%E8%89%B2%E7%9C%BC%E7%9D%9B%E5%8A%A8%E6%BC%AB%E5%A5%B3%E7%94%9F6k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【计算机网络学习笔记】第三章 数据链路层</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 30, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2773</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h2 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h2><p>数据链路层研究的是在同一个局域网中，分组怎样从一个主机传送到另一个主机（不经过路由器） 数据链路不等于链路：链路是指从一个结点到相邻结点的一段物理线路（有线或无线），而中间没有任何其他的交换结点。而<strong>数据链路</strong>则是<strong>链路</strong>加上<strong>必要的通信协议</strong>。</p>
+<h3 id="1-点对点信道和广播信道"><a href="#1-点对点信道和广播信道" class="headerlink" title="1. 点对点信道和广播信道"></a>1. 点对点信道和广播信道</h3><ul>
+<li><strong>点对点信道</strong> 这种信道采用一对一的点对点通信方式<ul>
+<li>  帧</li>
+</ul>
+  数据链路层的协议数据单元 数据链路层将网络层下发的数据构成帧发送到链路上，以及把接收到的帧中的数据取出来上交给网络层。 通信时的主要步骤：<ol>
+<li> 结点A的数据链路层将网络层下发的IP数据报添加首部和尾部封装成帧</li>
+<li> 结点A的数据链路层把封装好的帧发送给结点B的数据链路层</li>
+<li>结点B的数据链路层对收到的帧进行校验，若无差错就提取出IP数据报上交给网络层，否则将丢弃这个帧</li>
+</ol>
+<ul>
+<li>  PPP协议（point-to-point protocol）</li>
+</ul>
+  PPP协议就是用户计算机和ISP进行通信时所使用的数据链路层协议 1 . PPP协议的组成 ​ 一个将IP数据报封装到串行链路的方法。 ​ 一个用来建立、配置和测试数据链路连接的链路控制协议LCP。 ​ 一套网络控制协议NCP，其中的每一个协议支持不同的网络层协议。 2 . PPP协议的帧格式 <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200730000947955.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> ​ PPP帧的首部和尾部分别为4个字段和2个字段，信息字段的长度是可变的，但不能超过1500字节。 ​ PPP<strong>首部的第一个字段</strong>和<strong>尾部的第二个字段</strong>（最后一个）都是标志字段F（Flag），规定都是0x7E，符号0x用来表示它后面的字符都是十六进制表示的，7E则是(01111110)，标志着一个字段的开始或结束。（其实就是上文提到的定界符） ​ <strong>首部的第二个字段</strong>A规定为0xFF，<strong>首部的第三个字段</strong>C规定为0x03（00000011）.这两个字段的值的意义至今没有被给出。 ​ <strong>首部的第四个字段</strong>则是协议字段，占据两个字节。 ​ 如果是0x0021，表示信息字段是IP数据报。 ​ 如果是0xC021，说明是PPP链路控制协议LCP的数据。 ​ 如果是0x9021，说明是网络层的控制信息。 ​ ​ <strong>尾部的第一个字段</strong>（2个字节）是使用CRC的帧校验序列FCS<ol start="3">
+<li>PPP协议的字节填充 当信息字段中出现和标志字段一样的(0x7E)时，会使用字节填充，当PPP使用异步传输（逐个字符地传送）时，它把转义方法定义为(0x7D)</li>
+<li>PPP协议的零比特填充 当PPP协议用在SONET/SDH链路时，使用同步运输（一连串地连续发送）</li>
+</ol>
+</li>
+<li><strong>广播信道</strong> 这种信道使用一对多的广播通信方式。过程比较复杂，连接的主机很多，必须使用专用的共享信道协议来协调这些主机的数据发送。 局域网：网络为一个单位所拥有且地理范围和站点数目均有限。 以太网几乎成为了局域网的同义词<ul>
+<li>  CSMA/CD协议</li>
+<li>  准备发送：适配器从网络层获得一个分组，加上以太网的首部和尾部，组成以太网帧，放入适配器的缓存中。但在发送之前必须先检测信道</li>
+<li>  检测信道：若检测到信道忙，则应不停地检测，一直等待信道转为空闲。若检测到信道空闲，并在96比特时间内信道保持空闲，就发送这个帧</li>
+<li>在发送过程中不断检测信道，即网络适配器边发送边监听。<ul>
+<li>  这里会出现两种情况：1. 发送成功，未检测到冲突，则什么都不做，返回1</li>
+<li><ol start="2">
+<li> 发送失败，在争用期检测到碰撞，这时候立刻停止发送数据并按规定发送干扰信号。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="2-三个基本问题"><a href="#2-三个基本问题" class="headerlink" title="2. 三个基本问题"></a>2. 三个基本问题</h3><h4 id="封装成帧"><a href="#封装成帧" class="headerlink" title="封装成帧"></a>封装成帧</h4><p>在网络层下发的数据的前后添加首部和尾部，这样就构成了一个帧 首部（SOH，十六进制编码为01）和尾部(EOT,十六进制编码为04)有一个重要的作用就是进行帧定界（确定帧的界限），SOH和EOT在传输出现错误时可以有效进行矫正，每一种数据链路层协议都规定了所能传送的帧的数据部分长度上限——最大传送单位（MTU） <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200729234138289.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<h4 id="透明传输"><a href="#透明传输" class="headerlink" title="透明传输"></a>透明传输</h4><p>透明：某一个实际存在的事物看起来却好像不存在一样。 由于前文提到的SOH和EOT本质上也是一种数据，为了避免来自网络层的数据中出现与SOH与EOT相同的部分从而导致出错。 <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200729234039421.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 我们在数据段出现SOH和EOT的时候，在SOH与EOT的前面加入一个转义字符，而如果存在一个转义字符，那就再加一个。这样就保证了数据再数据链路层中传输的时候是“透明”的。 <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200729234001919.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></p>
+<h4 id="差错检测"><a href="#差错检测" class="headerlink" title="差错检测"></a>差错检测</h4><p>比特在传输过程中可能会出现差错，比如1变成0或者0变成1，这叫做比特差错。 误码率表示传输错误的比特占所有比特总数的比率为误码率BER 目前在数据链路层广泛使用了循环冗余校验CRC的检错技术</p>
+<h3 id="3-以太网MAC层的物理地址"><a href="#3-以太网MAC层的物理地址" class="headerlink" title="3. 以太网MAC层的物理地址"></a>3. 以太网MAC层的物理地址</h3><p>MAC层地硬件地址：又称为物理地址或者MAC地址（这种地址用在MAC中） MAC地址：局域网中地每一台计算机固化在适配器的ROM中的地址</p>
+<h3 id="4-适配器、转发器、集线器、网桥、以太网交换机的作用及其使用场合"><a href="#4-适配器、转发器、集线器、网桥、以太网交换机的作用及其使用场合" class="headerlink" title="4. 适配器、转发器、集线器、网桥、以太网交换机的作用及其使用场合"></a>4. 适配器、转发器、集线器、网桥、以太网交换机的作用及其使用场合</h3><ul>
+<li>适配器： 计算机与外界局域网通过适配器进行连接，又称为网络接口卡（网卡） 作用：进行数据串行运输和并行运输的转换，实现以太网的协议，接受和发送各种帧</li>
+<li>转发器 特点与集线器类似，但是只有两个接口。</li>
+<li>集线器 当以太网采用星型拓扑结构，在星型的中心增加了一个可靠性非常高的设备，这个设备就是集线器。 特点：<ol>
+<li> 使用集线器的以太网在逻辑上仍是一个总线网，各站共享逻辑上的总线，实用的还是CSMA/CD。各站中的适配器执行CSMA/CD协议，各站必须竞争对传输媒体的控制，并且在同一时刻之多只允许一个站发送数据；</li>
+<li> 一个集线器有许多接口，从工作原理上来说，集线器很像一个<strong>多接口的转发器；</strong></li>
+<li> 集线器工作在物理层，每个接口仅仅进行简单的比特转发，不进行碰撞检测。</li>
+<li> 集线器采用了专门的芯片，进行自适应串音回拨抵消。</li>
+</ol>
+</li>
+<li>网桥<ol>
+<li>网桥的每个端口与一个网段相连，网桥从端口接收网段上传送的各种帧。</li>
+<li>每当收到一个帧时，就先暂存在其缓冲中。若此帧未出现差错，且欲发往的目的站MAC地址属于另一网段，则通过查找站表，将收到的帧送往对应的端口转发出去。</li>
+<li>若该帧出现差错，则丢弃此帧。网桥过滤了通信量，扩大了物理范围，提高了可靠性，可互连不同物理层、不同MAC子层和不同速率的局域网。但同时也增加了时延，对用户太多和通信量太大的局域网不适合。 网桥与转发器不同： （1）网桥工作在数据链路层，而转发器工作在物理层； （2）网桥不像转发器转发所有的帧，而是只转发未出现差错，且目的站属于另一网络的帧或广播帧； （3）转发器转发一帧时不用检测传输媒体，而网桥在转发一帧前必须执行CSMA/CD算法； （4）网桥和转发器都有扩展局域网的作用，但网桥还能提高局域网的效率并连接不同MAC子层和不同速率局域网的作用。</li>
+</ol>
+</li>
+<li>以太网交换机  实质上是一个多接口的网桥。</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/07/30/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;30&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;30&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" rel="tag">学习笔记</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2020/08/04/%E3%80%90%E5%A4%87%E5%BF%98%E3%80%91%E5%8E%9F%E7%94%9Fjs%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84ajax%E6%89%8B%E5%8A%A8%E5%B0%81%E8%A3%85/"><i class="iconfont iconleft"></i>【备忘】原生js进行简单的ajax手动封装</a>
+    <a href="/2020/07/28/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82/">【计算机网络学习笔记】第二章 物理层<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="toc-text">数据链路层</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E7%82%B9%E5%AF%B9%E7%82%B9%E4%BF%A1%E9%81%93%E5%92%8C%E5%B9%BF%E6%92%AD%E4%BF%A1%E9%81%93"><span class="toc-text">1. 点对点信道和广播信道</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E4%B8%89%E4%B8%AA%E5%9F%BA%E6%9C%AC%E9%97%AE%E9%A2%98"><span class="toc-text">2. 三个基本问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%BB%A5%E5%A4%AA%E7%BD%91MAC%E5%B1%82%E7%9A%84%E7%89%A9%E7%90%86%E5%9C%B0%E5%9D%80"><span class="toc-text">3. 以太网MAC层的物理地址</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E9%80%82%E9%85%8D%E5%99%A8%E3%80%81%E8%BD%AC%E5%8F%91%E5%99%A8%E3%80%81%E9%9B%86%E7%BA%BF%E5%99%A8%E3%80%81%E7%BD%91%E6%A1%A5%E3%80%81%E4%BB%A5%E5%A4%AA%E7%BD%91%E4%BA%A4%E6%8D%A2%E6%9C%BA%E7%9A%84%E4%BD%9C%E7%94%A8%E5%8F%8A%E5%85%B6%E4%BD%BF%E7%94%A8%E5%9C%BA%E5%90%88"><span class="toc-text">4. 适配器、转发器、集线器、网桥、以太网交换机的作用及其使用场合</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

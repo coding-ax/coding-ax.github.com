@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>【计算机网络学习笔记】第一章 概述 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="1. 计算机网络在信息时代的作用：
+传统意义上的“网络...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">【计算机网络学习笔记】第一章 概述</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E7%BE%8E%E5%B0%91%E5%A5%B3%20%E7%9A%87%E5%86%A0%20%E7%B4%AB%E8%89%B2%E7%A4%BC%E6%9C%8D%E9%95%BF%E8%A3%99%E5%AD%90%20%E9%AB%98%E8%B7%9F%E9%9E%8B%20%E5%9F%8E%E5%A0%A1%204k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">【计算机网络学习笔记】第一章 概述</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 27, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3959</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h2 id="1-计算机网络在信息时代的作用："><a href="#1-计算机网络在信息时代的作用：" class="headerlink" title="1. 计算机网络在信息时代的作用："></a>1. 计算机网络在信息时代的作用：</h2><ul>
+<li>传统意义上的“网络”指的是“三网”：<strong>电信网络</strong>，<strong>有线电视网络</strong>，<strong>计算机网络</strong> 其中发展最快且起到核心作用的是<strong>计算机网络</strong> 但是随着技术的发展，<strong>电信网络</strong>和<strong>有线电视网络</strong>逐渐融入了现代<strong>计算机网络</strong>,这一趋势叫做”<strong>网络融合</strong>“</li>
+<li>计算机网络向用户提供的最重要的功能有两个：<ol>
+<li><strong>连通性</strong> 连通性指的是通过计算机网络可以使得上网用户可以进行信息的交换，就仿佛这些用户的计算机互相连通一样。</li>
+<li><strong>共享</strong> 共享指的是资源共享，由于网络的存在，计算机彼此的资源仿佛就在用户身边。</li>
+</ol>
+</li>
+<li>计算机网络<strong>定义</strong>： 计算机网络的精确定义并未统一 最简单的定义：<strong>一些互相连接的、自治的计算机的集合</strong> 其他定义：<strong>计算机网络</strong>是指将地理位置不同的具<strong>有独立功能的多台计算机及其外部设备</strong>，通过<strong>通信线路</strong>连接起来，在<strong>网络操作系统</strong>，<strong>网络管理软件</strong>及<strong>网络通信协议</strong>的管理和协调下，实现<strong>资源共享</strong>和<strong>信息传递</strong>的<strong>计算机系统。</strong> 它的<strong>本质</strong>是一种<strong>通信基础设施</strong></li>
+</ul>
+<h2 id="2-因特网概述："><a href="#2-因特网概述：" class="headerlink" title="2. 因特网概述："></a>2. 因特网概述：</h2><ul>
+<li><strong>因特网</strong>是世界上<strong>最大的互连网络</strong></li>
+<li>一些网络相关的概念：<ol>
+<li>主机： 连接在<strong>因特网</strong>上的计算机 <a href="https://xgpax.top/wp-content/uploads/2020/07/wp_editor_md_378aaecd8381b28b64a8bae3deb734f1.jpg"><img   class="lazyload" data-original="https://imgconvert.csdnimg.cn/aHR0cHM6Ly94Z3BheC50b3Avd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDcvd3BfZWRpdG9yX21kXzM3OGFhZWNkODM4MWIyOGI2NGE4YmFlM2RlYjczNGYxLmpwZw?x-oss-process=image/format,png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a></li>
+<li>结点： 计算机，集线器，交换器或路由器等<strong>可以与链路相互连接的设备</strong></li>
+<li>链路: 结点之间相互连接的物理层通道，无源的点到点的<strong>物理连接</strong>。通常分为有线和无线，通过链路可以将结点在物理上连接在一起。</li>
+<li>网络: 由<strong>若干结点</strong>和连接这些结点的<strong>链路</strong>组成的<strong>系统</strong> 书上有这样一份图解： <a href="https://xgpax.top/wp-content/uploads/2020/07/wp_editor_md_f6c34fc5d8917f1ad9ef37e245a99ecf.jpg"><img   class="lazyload" data-original="https://imgconvert.csdnimg.cn/aHR0cHM6Ly94Z3BheC50b3Avd3AtY29udGVudC91cGxvYWRzLzIwMjAvMDcvd3BfZWRpdG9yX21kX2Y2YzM0ZmM1ZDg5MTdmMWFkOWVmMzdlMjQ1YTk5ZWNmLmpwZw?x-oss-process=image/format,png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" ></a></li>
+<li>互联网: 网络与网络之间通过路由器与其链路互连起来的覆盖范围更大的网络，也就是“<strong>网络的网络</strong>”</li>
+</ol>
+</li>
+<li>【<strong>重要概念</strong>】<strong>因特网的组成</strong>： 因特网的拓扑结构非常复杂，但是从工作原理上可以划分为<strong>边缘部分</strong>和<strong>核心部分</strong>： <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200727100838696.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span> 明确通信的概念：</li>
+</ul>
+<p>我们所说的<strong>“主机A和主机B进行通信”</strong>，实际上是指“运行在主机A上的某个程序和运行在主机B上的另一个程序进行通信”，或者说<strong>“主机A的某个进程和主机B上的另一个进程进行通信”</strong></p>
+<ol>
+<li> <strong>边缘部分</strong>：</li>
+</ol>
+<ul>
+<li>定义： 边缘部分<strong>由所有连接在因特网上的主机组成</strong>。它由用户直接使用，用来进行通信（传送数据，音频或视频）和资源共享。 边缘部分一般采用<strong>速率较低</strong>的链路<ul>
+<li>通信方式：<ul>
+<li>Client-Server（C/S）方式 最常见也是最传统的方式，客户是服务请求方，服务器是服务提供方，它具有下面的一些特点： 客户端程序：<ol>
+<li> 主动向服务端发起通信，进行请求，<strong>必须</strong>知道服务端程序的地址</li>
+<li> 对硬件和操作系统要求低，占用的资源少</li>
+</ol>
+  服务端程序：<ol>
+<li> 专门用来提供某种服务，可以同时处理多个请求</li>
+<li> 被动地等待来自各地的客户的通信请求，连接前不知道客户端的地址。由于需要等待，所以需要长时间稳定运行</li>
+<li> 消耗资源大，对硬件和操作系统要求高</li>
+</ol>
+</li>
+<li>Peer-to-Peer(P2P)方式 它在本质上仍然是c/s通信方式，但是对等连接中的每一个主机即是客户又是服务器，两个主机在通信时，并不区分哪一方是服务请求方或者服务提供方。是一种对等的连接方式。</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li><strong>核心部分</strong>：</li>
+</ol>
+<ul>
+<li>定义： 核心部分<strong>由大量网络和连接这些网络的路由器组成</strong>。它为边缘部分提供服务(连通性和交换) 核心部分的链路一般都是<strong>高速链路</strong>，以保障数据的高速传递</li>
+<li>分组交换： 因为核心部分要向网络边缘中的主机提供连通信，使得边缘部分的任何一台主机都能够向其他主机通信，所以它是因特网中最复杂的部分，为了优化连通性，因特网核心部分使用分组转发来进行通信。 在讲述分组转发步骤前，先看以下概念<ul>
+<li><strong>路由器</strong>： 因特网核心部分通信方式采用的是分组转发的方式，而路由器是实现分组转发的关键构件，用于转发收到的分组，进行分组交换。</li>
+<li><strong>报文</strong>： 我们把要发送的整块数据称为一个报文</li>
+<li><strong>分组和分组首部（包与包头）</strong>： 分组：在发送报文之前，<strong>主机</strong>先把较长的报文划分成一个个<strong>更小</strong>的<strong>等长</strong>数据段，然后在该数据段的最前面。加入一些<strong>必要的控制信息</strong>（比如目的地址和源地址等），这些控制信息的集合就叫做<strong>分组首部</strong>（<strong>包头header</strong>），而这由数据段和包头共同组成的部分就叫做<strong>分组（包）</strong> <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200727113305358.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></li>
+</ul>
+</li>
+<li>分组转发步骤：<ol>
+<li> 首先<strong>主机将</strong>要发送的<strong>报文进行分组</strong>，然后逐个地将分组<strong>发送给</strong>与主机直接相连的<strong>路由器</strong>。</li>
+<li> <strong>路由器</strong>收到分组后，先<strong>暂存</strong>在内存中进行排队，当处理到该分组时，路由器会检查分组首部中的目的地址，<strong>然后查找转发表，</strong>找到合适的接口<strong>将它转发出去</strong>。</li>
+<li> 而<strong>其他路由器</strong>拿到对应分组后也会<strong>进行同样的操作</strong>，一步一步地以存储转发的形式最<strong>终将数据交付给目的主机。</strong></li>
+</ol>
+</li>
+<li>意义： <strong>高效</strong>：分组传输地过程中动态分配传输带宽，对通信链路是逐段占用的，大大提高了效率，有利于计算机突发数据进行通信传输。 <strong>灵活</strong>：因为为每一个分组都独立地选择转发路由，且单个分组的长度远远小于整段报文，时延小，具有更好的灵活性。 <strong>迅速</strong>：以分组作为传送单位，不需要提前建立与主机的连接（只需要经由各级路由） <strong>可靠</strong>：基于可靠的网络协议，分布式多路由的分组交换网，使得在某节点出问题的情况下仍然可以通过其他节点进行传输。</li>
+<li>问题： 分组在各路由器存储转发的时候<strong>需要排队</strong>，会造成一定的时延。 分组交换没有建立连接来保证通信所需要的各种资源，<strong>无法确保</strong>通信时端到端的<strong>带宽</strong>。 各个分组所携带的<strong>控制信息</strong>（包头）也<strong>造成</strong>了一定的<strong>开销</strong>。 整个分组交换网络<strong>需要</strong>专门的<strong>管理和控制机制</strong>。</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-计算机网络的性能"><a href="#3-计算机网络的性能" class="headerlink" title="3. 计算机网络的性能"></a>3. 计算机网络的性能</h2><h3 id="3-1-【重要概念】计算机网络的性能指标"><a href="#3-1-【重要概念】计算机网络的性能指标" class="headerlink" title="3.1 【重要概念】计算机网络的性能指标"></a>3.1 【<strong>重要概念</strong>】计算机网络的性能指标</h3><p>​ 性能指标计算机网络通常有七个性能指标：速率，带宽，吞吐量，时延，时延带宽积，往返时间RTT，利用率。</p>
+<h4 id="3-1-1-速率"><a href="#3-1-1-速率" class="headerlink" title="3.1.1 速率"></a>3.1.1 速率</h4><p>​ <strong>计算机中数据量和信息论中的单位</strong>，也被称为<strong>数据率</strong>或<strong>比特率</strong>。速率的单位是bit/s，也写作b/s,bps，如100M以太网，它代表的就是额定速率为100Mb/s的以太网络。另外一个<strong>常见的混淆</strong>：100MB和100Mb，前者的MB中M指的是2^20^=1048576，而不是10^6^,1B = 8bit.所以 1MB= 1048576x8=8388608 bit 另外1Mb/s的速率每秒钟大约能传输：100000 / (1024x8) = 122.1KB数据 ​ 速率是一个瞬时量。</p>
+<h4 id="3-1-2-带宽"><a href="#3-1-2-带宽" class="headerlink" title="3.1.2 带宽"></a>3.1.2 带宽</h4><p>​ 带宽具有两种不同的意义，有两种不同的表述，分别为<strong>频域称谓</strong>和<strong>时域称谓</strong>，在本质上是相同的。 ​ 一条通信链路的带宽越宽，其所能传输的“最高通信率”也越高。</p>
+<ul>
+<li>频域称谓下的带宽意义： <strong>指某个信号具有的频带宽度， 信号的带宽是指该信号所包含的各种不同频率成份所占据的频率范围</strong>。 这种意义下的带宽单位是Hz/kHz，用来表示允许通过的信号频带范围。</li>
+<li>时域称谓下的带宽意义： 通常情况下，这就是计算机网络中的带宽意义：<strong>表示网络的通信线路传送数据的能力，表示在单位时间内从网络的某一点到另一点所能通过的最高数据率</strong>。在这里带宽的单位是b/s</li>
+</ul>
+<h4 id="3-1-3-吞吐量"><a href="#3-1-3-吞吐量" class="headerlink" title="3.1.3 吞吐量"></a>3.1.3 吞吐量</h4><p>吞吐量表示在单位时间内通过某个网络（或信道，接口）的数据量，常用于对测量网络连接情况。吞吐量受到带宽或网络的额定速率的限制，比如说一个100Mb/s的以太网，它的额定速率就是100Mb/s,但是其吞吐量可能在某一时刻只有70Mb/s</p>
+<h4 id="3-1-4-时延"><a href="#3-1-4-时延" class="headerlink" title="3.1.4 时延"></a>3.1.4 时延</h4><ul>
+<li>发送时延： 主机或路由器发送数据帧所需要的时间，也就是从发送数据帧的第一个bit算起，到该帧的最后一个bit所需要的时间。 计算公式： 发送时延 = 数据帧长度(b) / 发送速率(b/s)</li>
+<li>传播时延： 电磁波在信道中传播一定的距离需要花费的时间。 计算工是： 传播时延 = 信道长度(m)/电磁波在信道上传播速率(m/s) 值得一提，在自由空间中电磁波的传播速率是光速，但在网络传输媒体中速度要低些(铜丝:2.3 x 10^9^m/s,光缆:2.0 x 10^9^m/s) 速记：1000km的光纤传播时延通常为5ms</li>
+<li>处理时延： 主机或路由器收到分组后通常需要花费时间进行数据处理，从而产生了处理时延</li>
+<li>排队时延： 分组进入路由器后需要在内存中排队等待处理，这就产生了排队时延。</li>
+<li>总时延： 总时延 = 发送时延 + 传播时延 + 处理时延 + 排队时延</li>
+</ul>
+<h4 id="3-1-5-时延带宽积"><a href="#3-1-5-时延带宽积" class="headerlink" title="3.1.5 时延带宽积"></a>3.1.5 时延带宽积</h4><p>传播时延带宽积： ​ 时延带宽积 = 传播时延 x 带宽 ​ 时延带宽积可以表示在第一个比特即将到达终点时，发送端已经发送的数据量 ​</p>
+<h4 id="3-1-6-往返时间RTT"><a href="#3-1-6-往返时间RTT" class="headerlink" title="3.1.6 往返时间RTT"></a>3.1.6 往返时间RTT</h4><p>表示从发送方发送数据开始，到发送方收到接收方的确认（接收方收到后立即发送确认）总共经历的时间。</p>
+<h4 id="3-1-7-利用率"><a href="#3-1-7-利用率" class="headerlink" title="3.1.7 利用率"></a>3.1.7 利用率</h4><p>利用率分为信道利用率和网络利用率，信道利用率指出某信道有百分之几的时间被利用（有数据通过），而网络利用率时全网的信道利用率的加权平均值。 信道利用率高会导致时延增加，堵塞，利用率过低会造成资源浪费，类似于高速公路。 <strong>信道和网络利用率过高会导致非常大的时延</strong> 存在下列简单公式： 当前网络时延 = 空闲时网络时延 / (1 - 网络利用率)</p>
+<h3 id="3-2-计算机网络的非性能指标"><a href="#3-2-计算机网络的非性能指标" class="headerlink" title="3.2 计算机网络的非性能指标"></a>3.2 计算机网络的非性能指标</h3><ul>
+<li>  费用</li>
+<li>  质量</li>
+<li>  标准化</li>
+<li>  可靠性</li>
+<li>  可扩展性和可升级性</li>
+<li>  易于管理和维护</li>
+</ul>
+<h2 id="4-计算机网络体系结构"><a href="#4-计算机网络体系结构" class="headerlink" title="4. 计算机网络体系结构"></a>4. 计算机网络体系结构</h2><h3 id="4-1-体系结构："><a href="#4-1-体系结构：" class="headerlink" title="4.1 体系结构："></a>4.1 体系结构：</h3><h4 id="4-1-1-定义："><a href="#4-1-1-定义：" class="headerlink" title="4.1.1 定义："></a>4.1.1 定义：</h4><p>我们把<strong>计算机网络的各层及其协议的集合</strong>，称为<strong>网络的体系结构</strong>。 或者说计算机网络的体系结构就是这个计算机网络及其构件所应完成的功能的精确定义。</p>
+<h3 id="4-2-网络协议"><a href="#4-2-网络协议" class="headerlink" title="4.2 网络协议"></a>4.2 网络协议</h3><h3 id="4-2-1-定义"><a href="#4-2-1-定义" class="headerlink" title="4.2.1 定义"></a>4.2.1 定义</h3><p>网络协议：<strong>为进行网络中的数据交换而建立的规则、标准或约定</strong></p>
+<h3 id="4-2-2-分层思想"><a href="#4-2-2-分层思想" class="headerlink" title="4.2.2 分层思想"></a>4.2.2 分层思想</h3><p>网络协议通常采用分层的方式来完成复杂的网络交互</p>
+<h4 id="4-2-3-主流协议体系结构"><a href="#4-2-3-主流协议体系结构" class="headerlink" title="4.2.3 主流协议体系结构"></a>4.2.3 主流协议体系结构</h4><ul>
+<li>OSI体系结构 应用层 表示层 会话层 运输层 网络层 数据链路层 物理层</li>
+<li>TCP/IP体系结构 应用层 运输层 网际层 网络接口层</li>
+<li>【学习内容】五层协议的体系结构 应用层 运输层 网络层 数据链路层 物理层  <img    class="lazyload" data-original="https://img-blog.csdnimg.cn/20200727231918688.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQ0ODMxMDI3,size_16,color_FFFFFF,t_70" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="   ><span class="image-caption">在这里插入图片描述</span></li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/07/27/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E8%BF%B0/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;27&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E8%BF%B0&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;27&#x2F;%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%A6%82%E8%BF%B0&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/" rel="tag">计算机网络</a></li></ul> 
+
+        
+  <nav class="nav">
+    <a href="/2020/07/28/%E3%80%90%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E7%89%A9%E7%90%86%E5%B1%82/"><i class="iconfont iconleft"></i>【计算机网络学习笔记】第二章 物理层</a>
+    <a href="/2020/07/26/%E3%80%90React%E3%80%91%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/">【React】路由跳转动画的实现<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9C%A8%E4%BF%A1%E6%81%AF%E6%97%B6%E4%BB%A3%E7%9A%84%E4%BD%9C%E7%94%A8%EF%BC%9A"><span class="toc-text">1. 计算机网络在信息时代的作用：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9B%A0%E7%89%B9%E7%BD%91%E6%A6%82%E8%BF%B0%EF%BC%9A"><span class="toc-text">2. 因特网概述：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD"><span class="toc-text">3. 计算机网络的性能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E3%80%90%E9%87%8D%E8%A6%81%E6%A6%82%E5%BF%B5%E3%80%91%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">3.1 【重要概念】计算机网络的性能指标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E9%9D%9E%E6%80%A7%E8%83%BD%E6%8C%87%E6%A0%87"><span class="toc-text">3.2 计算机网络的非性能指标</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="toc-text">4. 计算机网络体系结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84%EF%BC%9A"><span class="toc-text">4.1 体系结构：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E7%BD%91%E7%BB%9C%E5%8D%8F%E8%AE%AE"><span class="toc-text">4.2 网络协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-1-%E5%AE%9A%E4%B9%89"><span class="toc-text">4.2.1 定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-2-%E5%88%86%E5%B1%82%E6%80%9D%E6%83%B3"><span class="toc-text">4.2.2 分层思想</span></a></li></ol></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

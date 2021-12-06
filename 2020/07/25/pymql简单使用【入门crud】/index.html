@@ -1,0 +1,377 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>PyMQL简单使用【入门CRUD】 - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="pymysql是python3中的mysqldb(py...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  <nav class="navbar">
+    <div class="left">
+      
+        <i class="iconfont iconhome j-navbar-back-home"></i>
+      
+      
+      
+        <i class="iconfont iconmoono" id="color-toggle" color-toggle="light"></i>
+      
+      
+    </div>
+    <div class="center">PyMQL简单使用【入门CRUD】</div>
+    <div class="right">
+      <i class="iconfont iconmenu j-navbar-menu"></i>
+    </div>
+    
+  </nav>
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E4%BA%8C%E6%AC%A1%E5%85%83%E4%B8%89%E4%B8%AA%E5%8F%AF%E7%88%B1%E5%8A%A8%E6%BC%AB%E5%B0%91%E5%A5%B33440x1440%E5%B8%A6%E9%B1%BC%E5%B1%8F%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">PyMQL简单使用【入门CRUD】</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>July 25, 2020</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2855</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <p>pymysql是python3中的mysqldb(python2) 在使用这个库之前，首先你得确保自己会使用基本的SQL语句，对MySQL数据库具有一定的了解（基本即可）。</p>
+<h5 id="一、安装"><a href="#一、安装" class="headerlink" title="一、安装"></a>一、安装</h5><p>通过pip进行安装：</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">pip <span class="hljs-keyword">install</span> pymysql<br></code></pre></td></tr></table></figure>
+
+<h5 id="二、通过数据库可视化程序-终端建数据库和表"><a href="#二、通过数据库可视化程序-终端建数据库和表" class="headerlink" title="二、通过数据库可视化程序/终端建数据库和表"></a>二、通过数据库可视化程序/终端建数据库和表</h5><p>​ pymysql在使用之前，需要通过数据库可视化程序/终端建立数据库</p>
+<h5 id="三、使用pymysql操作数据库"><a href="#三、使用pymysql操作数据库" class="headerlink" title="三、使用pymysql操作数据库"></a>三、使用pymysql操作数据库</h5><ol>
+<li><strong>连接数据库：</strong> 我们通过一下必填参数连接数据库： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 连接Mysql</span><br>conn = pymysql.connect(<br>   host=<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<br>   user=<span class="hljs-string">&#x27;自定义用户名(root)&#x27;</span>,<br>   password=<span class="hljs-string">&quot;自定义密码&quot;</span>,<br>   database=<span class="hljs-string">&#x27;数据库名称&#x27;</span>,<br>   port=<span class="hljs-number">3306</span>,<br>   charset=<span class="hljs-string">&#x27;utf8&#x27;</span><br>)<br></code></pre></td></tr></table></figure>
+ 其中的host,user,password,port,database均为定位到数据库所需要的参数，而charset用于指定该数据库的编码格式，需要与建立数据库的时候(create database 数据库名称 charset=’xxxx’)保持一致（一般为utf8)</li>
+<li><strong>获取游标对象：</strong> 连接成功后我们可以通过conn拿到其中的cursor对象，该对象即为执行SQL语句以及拿到相关结果的操作对象，也就是直译的游标对象。 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 创建游标对象</span><br>cursor = conn.cursor()<br></code></pre></td></tr></table></figure>
+</li>
+<li><strong>编写SQL语句并执行:</strong> 使用pymql需要自己手动进行SQL语句的编写，而SQL语句的基本增删改查语句中，只有查询语句不会被数据库造成影响，其他语句则均会对数据库产生作用效果。 pymysql为了避免由于出现异常或者错误情况而导致数据库出现状况，所有对数据库造成实际影响的语句，均需要通过 ```con.commit()```方法来提交所有的变更。 另外pymysql在执行SQL语句的方法 ```cursor.execute()```方法中，可以多输入一个参数，这个参数可以是数组(list)/元组(tuple)/字典(dict)，pymysql会在内部对该参数进行处理，并自动将其处理为对应完整SQL语句。 接下来的语句中也将分别使用数组/元组/dict三种形式来演示相关的写法，同时这三者是通用的。 注意一下语句，插入表为info,该表具有id,name,age,gender四个属性,可自信修改为自己所需要的属性。</li>
+</ol>
+<ul>
+<li><strong>查询语句</strong>：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 编写SQL语句</span><br>sql = <span class="hljs-string">&#x27;select * from info&#x27;</span> <span class="hljs-comment"># 表名请自行修改为自定义参数</span><br><span class="hljs-comment"># 纯字符串模式，单参数</span><br>cursor.execute(sql)<br></code></pre></td></tr></table></figure>
+</li>
+<li><strong>插入语句</strong>：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 编写增加的sql语句</span><br>sql = <span class="hljs-string">&quot;insert into info(name,age,gender) values (%s,%s,%s)&quot;</span><br><span class="hljs-comment"># 使用数组进行赋值插入，即第二个参数使用数组形式</span><br>add_data = [<span class="hljs-string">&#x27;云无月&#x27;</span>, <span class="hljs-number">4500</span>, <span class="hljs-string">&#x27;女&#x27;</span>]<br>cursor.execute(sql, add_data)<br></code></pre></td></tr></table></figure>
+</li>
+<li><strong>修改语句</strong>：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 编写修改的sql语句</span><br>sql = <span class="hljs-string">&quot;update info set name=%s where name=%s&quot;</span><br><span class="hljs-comment"># 第二个参数使用元组形式，实际上可以与上文数组写法完全一致（也可以直接自行拼接字符串）</span><br>add_data = (<span class="hljs-string">&#x27;王牛蛙&#x27;</span>, <span class="hljs-string">&#x27;王辟邪&#x27;</span>)<br><span class="hljs-comment"># 注意len返回的是修改的数目 也就是数据库修改时的数字返回值</span><br><span class="hljs-built_in">len</span> = cursor.execute(sql, add_data)<br></code></pre></td></tr></table></figure>
+</li>
+<li><strong>删除语句</strong>：  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 注意，如果要使用dict(JSON)作为sql语句补位，那么补位的位置写法为%(key命)s</span><br><span class="hljs-comment"># 如下补位为id:</span><br>sql = <span class="hljs-string">&quot;delete from info where id =%(id)s&quot;</span><br>add_data = &#123;<br>   <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;岑缨&quot;</span>,<br>   <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-number">28</span><br>&#125;<br><span class="hljs-comment"># 执行dict形式的补位</span><br>cursor.execute(sql, add_data)<br></code></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol start="4">
+<li><strong>释放资源：</strong> <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># 关闭游标</span><br>cursor.close()<br><span class="hljs-comment"># 关闭连接</span><br>conn.close()<br></code></pre></td></tr></table></figure>
+</li>
+<li><strong>异常处理与回滚:</strong> pymysql在连接的时候，就会对当前数据库进行一次快照（保留未操作初始状态），如果出现错误情况，可以通过 ```conn.rollback()```方法进行回滚。 由于数据库操作涉及到网络和其他设备的操作，所以必须需要做好异常处理。 通常我们会进行如下格式的异常处理： <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment">#!/usr/bin/env python</span><br><span class="hljs-comment"># -*- coding: utf-8 -*-</span><br><span class="hljs-comment"># 导包</span><br><span class="hljs-keyword">import</span> pymysql<br><br><span class="hljs-comment"># 连接Mysql</span><br>conn = pymysql.connect(<br>   host=<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>,<br>   user=<span class="hljs-string">&#x27;自定义用户名(root)&#x27;</span>,<br>   password=<span class="hljs-string">&quot;自定义密码&quot;</span>,<br>   database=<span class="hljs-string">&#x27;数据库名称&#x27;</span>,<br>   port=<span class="hljs-number">3306</span>,<br>   charset=<span class="hljs-string">&#x27;utf8&#x27;</span><br>)<br><span class="hljs-keyword">try</span>:<br>   <span class="hljs-comment"># 创建游标对象</span><br>   cursor = conn.cursor()<br>   <span class="hljs-comment"># 编写增加/删除/修改的sql语句</span><br><span class="hljs-comment"># 编写SQL语句,进行相关操作...</span><br>   <span class="hljs-comment"># ...如：</span><br>   sql = <span class="hljs-string">&quot;delete from info where id =%(id)s&quot;</span><br>   add_data = &#123;<br>       <span class="hljs-string">&quot;name&quot;</span>: <span class="hljs-string">&quot;岑缨&quot;</span>,<br>       <span class="hljs-string">&quot;id&quot;</span> : <span class="hljs-number">28</span><br>   &#125;<br>   <span class="hljs-comment"># 执行编写的SQL语句</span><br>   cursor.execute(sql, add_data)<br>   <span class="hljs-comment"># 提交修改</span><br>   conn.commit()<br>   <span class="hljs-comment"># 关闭，释放资源</span><br>   cursor.close()<br>   <span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;任务完成&quot;</span>)<br><br><span class="hljs-keyword">except</span> Exception <span class="hljs-keyword">as</span> e:<br>   <span class="hljs-comment"># 回滚</span><br>   conn.rollback()<br>   <span class="hljs-built_in">print</span>(e)<br><br><span class="hljs-keyword">finally</span>:<br>   conn.close()<br><br></code></pre></td></tr></table></figure></li>
+</ol>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/07/25/pymql%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E3%80%90%E5%85%A5%E9%97%A8crud%E3%80%91/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;25&#x2F;pymql%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E3%80%90%E5%85%A5%E9%97%A8crud%E3%80%91&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;07&#x2F;25&#x2F;pymql%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8%E3%80%90%E5%85%A5%E9%97%A8crud%E3%80%91&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a href="/2020/07/26/%E3%80%90React%E3%80%91%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC%E5%8A%A8%E7%94%BB%E7%9A%84%E5%AE%9E%E7%8E%B0/"><i class="iconfont iconleft"></i>【React】路由跳转动画的实现</a>
+    <a href="/2020/07/24/%E3%80%90%E5%A4%8D%E4%B9%A0%E3%80%91mysql%E7%AE%80%E5%8D%95%E5%BA%94%E7%94%A8/">【复习】MySQL简单应用<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

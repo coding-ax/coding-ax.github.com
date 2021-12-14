@@ -60,9 +60,6 @@
 *::after {
   box-sizing: border-box;
 }
-html {
-  filter: grayscale(100%);
-}
 body {
   margin: 0;
   font-size: 14px;

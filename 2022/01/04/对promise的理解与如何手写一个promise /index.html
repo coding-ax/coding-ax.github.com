@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html lang="en" color-mode=light>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title> - AX的blog</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+  <meta name="keywords" content="博客">
+  <meta name="description" content="Promise基本用法Promise凭什么解决了“回调...">
+  <meta name="author" content="AX">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
+  <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+    <meta rel="msapplication-TileImage" content="https://avatars.githubusercontent.com/u/53092569?v=4">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_p6ry5n7lrr.css">
+
+  
+
+  
+    
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+    
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css" name="highlight-style" mode="light">
+
+      
+        
+        
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/solarized-dark.min.css" name="highlight-style" mode="dark">
+
+      
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      loading: {
+        gif: '/images/theme/loading.gif',
+        lottie: ''
+      },
+      lazyload: {
+        enable: true,
+        only_post: 'false',
+        loading: {
+          gif: '/images/theme/loading.gif',
+          lottie: ''
+        }
+      },
+      donate: {
+        enable: true,
+        alipay: 'https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg',
+        wechat: ''
+      },
+      galleries: {
+        enable: false
+      },
+      fab: {
+        enable: true,
+        always_show: false
+      },
+      carrier: {
+        enable: true
+      },
+      daovoice: {
+        enable: false
+      },
+      preview: {
+        background: {
+          default: '',
+          api: ''
+        },
+        motto: {
+          default: '我在开了灯的床头下，想问问自己的心啊。',
+          typing: true,
+          api: 'https://v2.jinrishici.com/one.json',
+          data_contents: '["data","content"]'
+        },
+      },
+      qrcode: {
+        enable: false,
+        type: 'url',
+        image: '',
+      },
+      toc: {
+        enable: true
+      },
+      scrollbar: {
+        type: 'default'
+      },
+      notification: {
+        enable: false,
+        delay: 4500,
+        list: '',
+        page_white_list: '',
+        page_black_list: ''
+      },
+      search: {
+        enable: false,
+        path: ''
+      }
+    }
+  </script>
+
+  
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body class="lock-screen">
+  <div class="loading" id="loading"></div>
+  
+    
+
+
+  
+  
+
+<nav class="menu">
+  <div class="menu-container">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content"><li class="menu-item">
+        <a href="/ " class="underline "> 首页</a>
+      </li></ul>
+    
+      <div class="menu-copyright"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 </a> copyright@AX</div>
+    
+  </div>
+</nav>
+  <main id="main">
+  <div class="article-wrap">
+    <div class="row container">
+      <div class="col-xl-3"></div>
+      <div class="col-xl-6"><article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E7%81%AB%E8%BD%A6%E7%AB%99%E6%97%A5%E8%90%BD%E7%BB%98%E7%94%BB%20%E6%81%8B%E4%BA%BA%E6%8B%A5%E6%8A%B14k%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title"></h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 04, 2022</span>
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>4388</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        
+        <h2 id="Promise基本用法"><a href="#Promise基本用法" class="headerlink" title="Promise基本用法"></a>Promise基本用法</h2><h2 id="Promise凭什么解决了“回调地狱”"><a href="#Promise凭什么解决了“回调地狱”" class="headerlink" title="Promise凭什么解决了“回调地狱”"></a>Promise凭什么解决了“回调地狱”</h2><p>主要有三个原因：</p>
+<ol>
+<li><p>then链式调用，实现回调函数<strong>延迟绑定</strong></p>
+<p>通过then的链式调用，我们可以在定义了要同步执行的代码后再通过then执行其定义的回调函数。</p>
+<p>比如：</p>
+</li>
+<li><p><strong>返回值穿透</strong></p>
+<p>通过promise中then的调用，可以将其返回值作为一个新的promise，在之后的then中调用其上一个then的返回值，比如我们常用的fetch：</p>
+</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs js">fetch(<span class="hljs-string">&#x27;http://example.com/api&#x27;</span>).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> res.json()).then(<span class="hljs-function"><span class="hljs-params">jsonRes</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(jsonRes)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+<p>   在上面的逻辑中，我们在第一个then里返回response响应的json格式的数据，以供下一个then调用，第二个then中的jsonRes已经是第一个res.json()的结果了。</p>
+<ol start="3">
+<li><p><strong>错误冒泡</strong>处理</p>
+<p>在以往的回调函数中，我们往往需要同时定义success和error两种情况，而对于多个调用，这样会让开发变得非常的麻烦，要编写很多的错误处理，而在promise中，所有的错误都会冒泡到catch之中，我们可以在只编写一个回调事件用于处理出错的catch事件。</p>
+</li>
+</ol>
+<h2 id="Promise的then为什么是一个微任务"><a href="#Promise的then为什么是一个微任务" class="headerlink" title="Promise的then为什么是一个微任务"></a>Promise的then为什么是一个微任务</h2><p>在JavaScript回调函数的调用有三种方式：</p>
+<blockquote>
+<ol>
+<li>同步调用，在回调函数拿到结果前不执行任何其他代码。</li>
+<li>异步调用，作为宏任务插入到宏任务队列的队尾，在宏任务队列中按次序执行。</li>
+<li>异步调用，作为微任务插入到当前宏任务的微任务队列中，即在执行当前宏任务的最后执行微任务队列。</li>
+</ol>
+</blockquote>
+<p>显然，如果把promise的then作为第一种方式，将会<strong>导致cpu资源的浪费</strong>，<strong>出现</strong>同步的<strong>阻塞问题</strong>，这是很浪费计算机宝贵资源的（实际上就是同步异步本身的性能差异），与此同时还会有一个问题，那就是将其定义成同步任务，<strong>无法实现延迟绑定回调函数</strong>的效果</p>
+<p>延迟绑定：也就是在定义好要执行的同步函数之后，再从then中传入回调函数。</p>
+<p>而异步调用，若是作为宏任务，<strong>如果宏任务队列很长</strong>，要执行的代码很多，就<strong>会出现严重的延迟</strong>，而对于大部分的场景，我们都是希望能尽早完成回调函数的调用的。</p>
+<p>所以Promise的then自然而然地成为了一个微任务，既使用了异步回调<strong>保证效率</strong>，也<strong>保证</strong>了回调函数调用的<strong>实时性</strong>。</p>
+<h2 id="Promise手写"><a href="#Promise手写" class="headerlink" title="Promise手写"></a>Promise手写</h2><p>关于手写一个promise，难点和要点都在于then的链式调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyPromise</span> </span>&#123;<br>    <span class="hljs-comment">// 状态定义</span><br>    PENDING = <span class="hljs-string">&#x27;pending&#x27;</span><br>    FULFILLED = <span class="hljs-string">&#x27;fulfilled&#x27;</span><br>    REJECTED = <span class="hljs-string">&#x27;rejected&#x27;</span><br>    <span class="hljs-comment">// 保存失败的值</span><br>    result = <span class="hljs-literal">undefined</span>;<br>    <span class="hljs-comment">// 保存成功的值</span><br>    value = <span class="hljs-literal">undefined</span>;<br>    <span class="hljs-comment">// 保存成功回调</span><br>    onResolveArr = [];<br>    <span class="hljs-comment">// 保存失败回调</span><br>    onRejectArr = [];<br>    <span class="hljs-comment">// 状态</span><br>    status = <span class="hljs-built_in">this</span>.PENDING<br>    <span class="hljs-function"><span class="hljs-title">constructor</span>(<span class="hljs-params">executor</span>)</span> &#123;<br>        <span class="hljs-comment">// 确保状态正确</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.status === <span class="hljs-built_in">this</span>.PENDING) &#123;<br>            <span class="hljs-comment">// 构造就去调用executor</span><br>            <span class="hljs-keyword">try</span> &#123;<br>                executor(<span class="hljs-built_in">this</span>.resolve, <span class="hljs-built_in">this</span>.reject);<br>            &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>                <span class="hljs-comment">// 出现异常直接调用error</span><br>                <span class="hljs-built_in">this</span>.reject(error)<br>            &#125;<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 一定要用箭头函数 因为只有此时的箭头函数中this指向这个class</span><br>    resolve = <span class="hljs-function">(<span class="hljs-params">value</span>) =&gt;</span> &#123;<br>        <span class="hljs-comment">// 一个promise状态只能改变一次</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.status === <span class="hljs-built_in">this</span>.PENDING) &#123;<br>            <span class="hljs-comment">// 修改状态</span><br>            <span class="hljs-built_in">this</span>.status = <span class="hljs-built_in">this</span>.FULFILLED;<br>            <span class="hljs-built_in">this</span>.value = value;<br>            <span class="hljs-comment">// 执行成功的回调函数</span><br>            <span class="hljs-built_in">this</span>.onResolveArr.forEach(<span class="hljs-function"><span class="hljs-params">resolveFn</span> =&gt;</span> (resolveFn(<span class="hljs-built_in">this</span>.value)))<br>        &#125;<br>    &#125;<br>    reject = <span class="hljs-function">(<span class="hljs-params">result</span>) =&gt;</span> &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-built_in">this</span>.status === <span class="hljs-built_in">this</span>.PENDING) &#123;<br>            <span class="hljs-built_in">this</span>.status = <span class="hljs-built_in">this</span>.REJECTED;<br>            <span class="hljs-built_in">this</span>.result = result;<br>            <span class="hljs-comment">// 执行失败的回调函数</span><br>            <span class="hljs-built_in">this</span>.onRejectArr.forEach(<span class="hljs-function"><span class="hljs-params">rejectFn</span> =&gt;</span> (rejectFn(<span class="hljs-built_in">this</span>.result)))<br>        &#125;<br>    &#125;<br>    <span class="hljs-comment">// 做到能链式调用</span><br>    <span class="hljs-function"><span class="hljs-title">then</span>(<span class="hljs-params">resolveCallBack, rejectCallBack</span>)</span> &#123;<br>        <span class="hljs-comment">// 确保传入为函数</span><br>        <span class="hljs-keyword">typeof</span> resolveCallBack === <span class="hljs-string">&#x27;function&#x27;</span> ? <span class="hljs-literal">null</span> : resolveCallBack = <span class="hljs-function"><span class="hljs-params">value</span> =&gt;</span> value;<br>        <span class="hljs-keyword">typeof</span> rejectCallBack === <span class="hljs-string">&#x27;function&#x27;</span> ? <span class="hljs-literal">null</span> : rejectCallBack = <span class="hljs-function"><span class="hljs-params">result</span> =&gt;</span> &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-built_in">TypeError</span>(result <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Error</span> ? result.message : result)<br>        &#125;<br>        <span class="hljs-comment">// 返回一个新的promise对象</span><br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> MyPromise(<span class="hljs-function">(<span class="hljs-params">resolveFn, rejectFn</span>) =&gt;</span> &#123;<br>            <span class="hljs-comment">// 需要注意 由于此处使用的是箭头函数 this指向的是前文的promise</span><br>            <span class="hljs-comment">// 另外 此处的函数不是立刻执行的</span><br>            <span class="hljs-built_in">this</span>.onResolveArr.push(<span class="hljs-function">() =&gt;</span> &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">// 执行此时的then函数</span><br>                    <span class="hljs-keyword">let</span> res = resolveCallBack(<span class="hljs-built_in">this</span>.value)<br>                    <span class="hljs-comment">// 判断res是不是一个promise</span><br>                    res <span class="hljs-keyword">instanceof</span> MyPromise ? res.then(resolveFn, rejectFn) : resolveFn(res)<br>                &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>                    rejectFn(error)<br>                &#125;<br>            &#125;)<br>            <span class="hljs-built_in">this</span>.onRejectArr.push(<span class="hljs-function">() =&gt;</span> &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    <span class="hljs-comment">// 执行此时的then函数</span><br>                    <span class="hljs-keyword">let</span> res = rejectCallBack(<span class="hljs-built_in">this</span>.result)<br>                    <span class="hljs-comment">// 判断res是不是一个promise</span><br>                    res <span class="hljs-keyword">instanceof</span> MyPromise ? res.then(resolveFn, rejectFn) : resolveFn(res)<br>                &#125; <span class="hljs-keyword">catch</span> (error) &#123;<br>                    rejectFn(error)<br>                &#125;<br>            &#125;)<br>        &#125;)<br>    &#125;<br>    <span class="hljs-keyword">catch</span> (reject) &#123;<br>        <span class="hljs-built_in">this</span>.then(<span class="hljs-literal">null</span>, reject)<br>    &#125;<br>&#125;<br><br><span class="hljs-comment">// 测试</span><br><span class="hljs-keyword">new</span> MyPromise(<span class="hljs-function">(<span class="hljs-params">resolve, reject</span>) =&gt;</span> &#123;<br>    <span class="hljs-built_in">setTimeout</span>(<span class="hljs-function">() =&gt;</span> &#123;<br>        <span class="hljs-built_in">Math</span>.random() * <span class="hljs-number">100</span> &gt; <span class="hljs-number">50</span> ? resolve(<span class="hljs-string">&quot;ok&quot;</span>) : reject(<span class="hljs-string">&quot;no&quot;</span>)<br>    &#125;, <span class="hljs-number">1000</span>);<br>&#125;).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(res)<br>    <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;next&quot;</span><br>&#125;).then(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(res)<br>&#125;).catch(<span class="hljs-function"><span class="hljs-params">res</span> =&gt;</span> &#123;<br>    <span class="hljs-built_in">console</span>.log(res)<br>&#125;)<br></code></pre></td></tr></table></figure>
+
+      </section>
+      <section class="extra">
+        
+          <ul class="copyright">
+  
+    <li><strong>本文作者：</strong>AX</li>
+    <li><strong>本文链接：</strong><a href="http://xgpax.top/2022/01/04/%E5%AF%B9promise%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%A6%82%E4%BD%95%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AApromise%20/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2022&#x2F;01&#x2F;04&#x2F;%E5%AF%B9promise%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%A6%82%E4%BD%95%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AApromise%20&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2022&#x2F;01&#x2F;04&#x2F;%E5%AF%B9promise%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%A6%82%E4%BD%95%E6%89%8B%E5%86%99%E4%B8%80%E4%B8%AApromise%20&#x2F;index.html</a></li>
+    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
+  
+</ul>
+        
+        
+          <section class="donate">
+  <div id="qrcode-donate">
+    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
+  </div>
+  <div class="icon">
+    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
+    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
+  </div>
+</section>
+        
+        
+        
+  <nav class="nav">
+    <a></a>
+    <a href="/2021/06/08/%E6%9D%A5%E5%88%B0%E5%AD%97%E8%8A%82%E8%B7%B3%E5%8A%A8%E5%AE%9E%E4%B9%A0%E7%9A%84%E5%9B%9B%E4%B8%AA%E6%9C%88%EF%BC%8C%E6%88%91%E5%AD%A6%E5%88%B0%E4%BA%86%E4%BA%9B%E4%BB%80%E4%B9%88%EF%BC%9F/">来到字节跳动实习的四个月，我学到了些什么？<i class="iconfont iconright"></i></a>
+  </nav>
+
+      </section>
+      
+    </section>
+  </div>
+</article></div>
+      <div class="col-xl-3">
+        
+          
+  <aside class="toc-wrap">
+    <h3 class="toc-title">文章目录：</h3>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise%E5%9F%BA%E6%9C%AC%E7%94%A8%E6%B3%95"><span class="toc-text">Promise基本用法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise%E5%87%AD%E4%BB%80%E4%B9%88%E8%A7%A3%E5%86%B3%E4%BA%86%E2%80%9C%E5%9B%9E%E8%B0%83%E5%9C%B0%E7%8B%B1%E2%80%9D"><span class="toc-text">Promise凭什么解决了“回调地狱”</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise%E7%9A%84then%E4%B8%BA%E4%BB%80%E4%B9%88%E6%98%AF%E4%B8%80%E4%B8%AA%E5%BE%AE%E4%BB%BB%E5%8A%A1"><span class="toc-text">Promise的then为什么是一个微任务</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise%E6%89%8B%E5%86%99"><span class="toc-text">Promise手写</span></a></li></ol>
+  </aside>
+
+        
+      </div>
+    </div>
+  </div>
+</main>
+  
+
+<footer class="footer">
+  <div class="footer-social"><a 
+        href="tencent://message/?Menu=yes&uin=1312976124 "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#12B7F5'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconQQ "></i>
+      </a><a 
+        href="https://github.com/WHUT-XGP "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color= '#9f7be1'" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  icongithub-fill "></i>
+      </a><a 
+        href="mailto:codingax@foxmail.com "
+        target="_blank"
+        class="footer-social-item"
+        onMouseOver="this.style.color=#FF3B00" 
+        onMouseOut="this.style.color='#33333D'">
+          <i class="iconfont  iconmail"></i>
+      </a></div>
+  
+    <div class="footer-copyright"><a target="_blank" rel="noopener" href="https://beian.miit.gov.cn"><img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/01/备案图标.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" /> 湘ICP备20002549号-1 </a> copyright@AX</div>
+  
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+  
+  
+    
+<script src="/js/color-mode.js"></script>
+
+  
+  
+</body>
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+  
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+  
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+
+
+  <script>
+    (function () {
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+      } else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+      }
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>

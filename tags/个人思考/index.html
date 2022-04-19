@@ -6,12 +6,12 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>箭头函数()=&gt;{} - AX的blog</title>
+  <title>个人思考 - AX的blog</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
   <meta name="keywords" content="博客">
-  <meta name="description" content="ES6中的箭头函数（之前确实是通过阮一峰老师的书籍学过...">
+  <meta name="description" content="当下心愿是顺利毕业">
   <meta name="author" content="AX">
   <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="16x16">
   <link rel="icon" href="https://avatars.githubusercontent.com/u/53092569?v=4" type="image/png" sizes="32x32">
@@ -150,7 +150,7 @@
       
       
     </div>
-    <div class="center">箭头函数()=&gt;{}</div>
+    <div class="center">标签</div>
     <div class="right">
       <i class="iconfont iconmenu j-navbar-menu"></i>
     </div>
@@ -174,89 +174,23 @@
   </div>
 </nav>
   <main id="main">
-  <div class="article-wrap">
-    <div class="row container">
-      <div class="col-xl-3"></div>
-      <div class="col-xl-6"><article class="article">
-  <div class="wrap">
-    <section class="head">
-  <img   class="lazyload" data-original="https://web.xgpax.top/wp-content/uploads/images/%E9%87%91%E5%8F%91%E5%B0%91%E5%A5%B3%20%E6%A9%99%E8%89%B2%E7%9C%BC%E7%9D%9B%E9%95%BF%E5%A4%B4%E5%8F%91%20%E5%90%8A%E8%A2%9C%E5%B8%A6%20%E9%9D%B4%20%E6%9E%AA%204k%E5%8A%A8%E6%BC%AB%E5%A3%81%E7%BA%B8.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-  <div class="head-mask">
-    <h1 class="head-title">箭头函数()=>{}</h1>
-    <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>March 11, 2020</span>
-      
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>712</span>
-    </div>
-  </div>
-</section>
-    <section class="main">
-      <section class="content">
+  <section class="archive">
+    <div class="archive-container">
+      <div class="archive-post">
+        <h2 class="archive-total"># 个人思考</h2>
         
-        <p>ES6中的箭头函数（之前确实是通过阮一峰老师的书籍学过，但是学的很模糊哦，呜呜呜）</p>
-<p>基本语法：(参数)=&gt;{函数内容}</p>
-<p>注意:箭头必须和参数在同一行（显然这也是必要的）</p>
-<p>如果只有一个参数，则括号()可以省略，如果函数只有一个语句，则{}可以省略，另外后者的写法将会默认return其属性但不需要手写return（但是这个写法，在返回对象为{}对象字面量（注意此处对象的含义，咳咳）时必须加上return语句，以免造成语句的歧义）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript">()=&gt;&#123;<span class="hljs-keyword">return</span> &#123;<span class="hljs-attr">AX</span>:<span class="hljs-number">666</span>&#125;&#125;;<br></code></pre></td></tr></table></figure>
-
-<p>箭头函数常用在将函数作为另一个函数的参数时使用，比如用在<code>`setTimeout```以及```setTimeIntervals`</code>中</p>
-<p>箭头函数有以下几个特点：</p>
-<p>1.不绑定this</p>
-<p>这意味着在箭头函数中的this总是指向上一作用域之中，也就是指向之前作用域所指向的对象（若之前也没有，就沿着作用域链往上搜索this)</p>
-<p>因此，在定义方法时，如果想要使用箭头函数，那么这个函数尽量不要使用到this，或者要使用，也必须要确保使用的this是上一作用域的。</p>
-<p>2.没有arguments对象</p>
-<p>不能通过arguments对象来调用输入参数。</p>
-<p>个人认为箭头函数一般都是写死在属性中，或者本身就是参数，也就没有一定要明确输入参数的必要。</p>
-<p>3.不能作为生成器和构造器：</p>
-<p>也就是说因为箭头函数没有this，没法构造对象和生成对象（箭头函数不能使用yield关键字)</p>
-<p>4.没有原型</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> fn=<span class="hljs-function">()=&gt;</span>&#123;&#125;;<br><span class="hljs-built_in">console</span>.log(fn.propotype);<span class="hljs-comment">//undefinded</span><br></code></pre></td></tr></table></figure>
-      </section>
-      <section class="extra">
-        
-          <ul class="copyright">
-  
-    <li><strong>本文作者：</strong>AX</li>
-    <li><strong>本文链接：</strong><a href="http://xgpax.top/2020/03/11/%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0/index.html" title="http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;03&#x2F;11&#x2F;%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0&#x2F;index.html">http:&#x2F;&#x2F;xgpax.top&#x2F;2020&#x2F;03&#x2F;11&#x2F;%E7%AE%AD%E5%A4%B4%E5%87%BD%E6%95%B0&#x2F;index.html</a></li>
-    <li><strong>版权声明：</strong>本博客所有文章均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh" title="BY-NC-SA" target="_blank" rel="noopener">BY-NC-SA</a> 许可协议，转载请注明出处！</li>
-  
-</ul>
-        
-        
-          <section class="donate">
-  <div id="qrcode-donate">
-    <img   class="lazyload" data-original="https://xgpax.top/wp-content/uploads/2020/08/7B380A61FC6C13C919A5BC16903FB11E.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg==" >
-  </div>
-  <div class="icon">
-    <a href="javascript:;" id="alipay"><i class="iconfont iconalipay"></i></a>
-    <a href="javascript:;" id="wechat"><i class="iconfont iconwechat-fill"></i></a>
-  </div>
-</section>
-        
-        
-        
-  <nav class="nav">
-    <a href="/2020/03/11/%E5%89%8D%E5%90%8E%E7%AB%AF%E8%B7%AF%E7%94%B1%E4%B8%8E%E5%89%8D%E5%90%8E%E7%AB%AF%E6%B8%B2%E6%9F%93%E7%9A%84%E6%A6%82%E5%BF%B5/"><i class="iconfont iconleft"></i>前后端路由与前后端渲染的概念</a>
-    <a href="/2020/02/20/%E4%B8%80%E6%8B%9B%E6%95%99%E4%BD%A0%E9%83%A8%E7%BD%B2%E8%87%AA%E5%B7%B1%E7%9A%84%E9%9D%99%E6%80%81h5%E9%A1%B5%E9%9D%A2%E5%88%B0wordpress%E6%9C%8D%E5%8A%A1%E5%99%A8%EF%BC%88%E9%98%BF%E9%87%8C%E4%BA%91/">一招教你部署自己的静态h5页面到WordPress服务器（阿里云WordPress应用镜像）（纯新手向）<i class="iconfont iconright"></i></a>
-  </nav>
-
-      </section>
-      
-    </section>
-  </div>
-</article></div>
-      <div class="col-xl-3">
         
           
-  <aside class="toc-wrap">
-    <h3 class="toc-title">文章目录：</h3>
-    
-  </aside>
-
+            <h3 class="archive-year">2022 年</h3>
+          
+          <div class="archive-item">
+            <a class="archive-date" href="/2022/04/19/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E6%83%B3%E8%A6%81%E4%B8%80%E4%B8%AA%E5%B4%AD%E6%96%B0%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%9F/">04/19</a>
+            <a class="archive-title" href="/2022/04/19/%E4%B8%BA%E4%BB%80%E4%B9%88%E6%88%91%E6%83%B3%E8%A6%81%E4%B8%80%E4%B8%AA%E5%B4%AD%E6%96%B0%E7%9A%84%E5%8D%9A%E5%AE%A2%EF%BC%9F/">为什么我想要一个崭新的博客？</a>
+          </div>
         
       </div>
     </div>
-  </div>
+  </section>
 </main>
   
 
